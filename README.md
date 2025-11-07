@@ -72,7 +72,7 @@ A comprehensive **medical information and reference system** powered by Google's
 - **Drug Comparison** - Compare multiple medications side-by-side
 
 ### 🔍 Diagnostic Tools
-[View detailed documentation →](docs/diagnostic_tools/)
+[View detailed documentation →](docs/diagnostic_ai/)
 
 - **Medical Tests** - Information about diagnostic tests and their purposes
 - **Test Devices** - Medical diagnostic equipment and devices
@@ -82,7 +82,7 @@ A comprehensive **medical information and reference system** powered by Google's
 - **Synthetic Case Reports** - Generated medical case studies for learning
 
 ### 🧠 Mental Health
-[View detailed documentation →](docs/mental_health/)
+[View detailed documentation →](docs/psychology_ai/)
 
 - **Mental Health Assessments** - Structured screening tools and assessments
 - **Mental Health Chat** - Conversational mental health support interface
@@ -253,8 +253,8 @@ Comprehensive documentation is available for all features and modules.
 |---------|-------------|------|
 | **Medical Reference** | Disease info, anatomy, specialties, implants, herbal medicine | [📖 View](docs/medical_ai/) |
 | **Drug Database** | Medicine info, drug interactions, dosing, alternatives | [📖 View](docs/drug_ai/) |
-| **Diagnostic Tools** | Medical tests, devices, physical exams, decision guides | [📖 View](docs/diagnostic_tools/) |
-| **Mental Health** | Assessments, chat, SANE interview, crisis resources | [📖 View](docs/mental_health/) |
+| **Diagnostic Tools** | Medical tests, devices, physical exams, decision guides | [📖 View](docs/diagnostic_ai/) |
+| **Mental Health** | Assessments, chat, SANE interview, crisis resources | [📖 View](docs/psychology_ai/) |
 | **CLI Tools** | Command-line interfaces for all modules | [📖 View](cli/README.md) |
 | **API Reference** | Complete API documentation | [📖 View](docs/api/) |
 | **Tutorials** | Step-by-step usage guides | [📖 View](docs/tutorials.rst) |
