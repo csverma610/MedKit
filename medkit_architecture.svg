@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 950" width="1200" height="950">
+  <defs>
+    <style>
+      .title { font-size: 32px; font-weight: bold; text-anchor: middle; fill: #1a1a1a; }
+      .subtitle { font-size: 16px; font-style: italic; fill: #666; text-anchor: middle; }
+      .module-title { font-size: 18px; font-weight: bold; text-anchor: middle; fill: #1a1a1a; }
+      .module-item { font-size: 13px; text-anchor: start; fill: #333; }
+      .utilities-text { font-size: 12px; text-anchor: middle; fill: #555; font-style: italic; }
+    </style>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="950" fill="white"/>
+
+  <!-- Title Section -->
+  <text x="600" y="50" class="title">MedKit: Medical Information &amp; Reference System</text>
+  <text x="600" y="85" class="subtitle">Powered by Google Gemini AI</text>
+
+  <!-- Core Central Box -->
+  <rect x="400" y="130" width="400" height="80" rx="10" fill="#f0f0f0" stroke="#333" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="600" y="160" class="module-title">Core: Gemini API Integration</text>
+  <text x="600" y="185" style="font-size: 12px; text-anchor: middle; fill: #666;">Client • Config • Caching</text>
+
+  <!-- Connecting lines from Core -->
+  <line x1="500" y1="210" x2="190" y2="280" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="600" y1="210" x2="560" y2="280" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="700" y1="210" x2="930" y2="280" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+
+  <!-- Medical Reference Box -->
+  <rect x="50" y="280" width="280" height="240" rx="10" fill="#e8f4f8" stroke="#0288d1" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="50" y="280" width="280" height="35" rx="10" fill="#0288d1"/>
+  <text x="190" y="308" style="font-size: 18px; font-weight: bold; text-anchor: middle; fill: white;">Medical Reference</text>
+
+  <text x="70" y="335" class="module-item">• Disease Information</text>
+  <text x="70" y="360" class="module-item">• Medical Anatomy</text>
+  <text x="70" y="385" class="module-item">• Medical Dictionary</text>
+  <text x="70" y="410" class="module-item">• Medical Specialties</text>
+  <text x="70" y="435" class="module-item">• Surgical Procedures</text>
+  <text x="70" y="460" class="module-item">• Medical Implants</text>
+  <text x="70" y="485" class="module-item">• Herbal Medicine</text>
+  <text x="70" y="510" class="module-item">• Medical Terminology</text>
+
+  <!-- Drug Database Box -->
+  <rect x="420" y="280" width="280" height="240" rx="10" fill="#fff4e6" stroke="#f57c00" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="420" y="280" width="280" height="35" rx="10" fill="#f57c00"/>
+  <text x="560" y="308" style="font-size: 18px; font-weight: bold; text-anchor: middle; fill: white;">Drug Database</text>
+
+  <text x="440" y="335" class="module-item">• Medicine Information</text>
+  <text x="440" y="360" class="module-item">• Drug-Drug Interactions</text>
+  <text x="440" y="385" class="module-item">• Drug-Disease Interactions</text>
+  <text x="440" y="410" class="module-item">• Drug-Food Interactions</text>
+  <text x="440" y="435" class="module-item">• Similar Drugs</text>
+  <text x="440" y="460" class="module-item">• Drug Comparison</text>
+  <text x="440" y="485" class="module-item">• Dosage &amp; Side Effects</text>
+  <text x="440" y="510" class="module-item">• Contraindications</text>
+
+  <!-- Diagnostic Tools Box -->
+  <rect x="790" y="280" width="280" height="240" rx="10" fill="#f0e6ff" stroke="#7b1fa2" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="790" y="280" width="280" height="35" rx="10" fill="#7b1fa2"/>
+  <text x="930" y="308" style="font-size: 18px; font-weight: bold; text-anchor: middle; fill: white;">Diagnostic Tools</text>
+
+  <text x="810" y="335" class="module-item">• Medical Tests Info</text>
+  <text x="810" y="360" class="module-item">• Diagnostic Devices</text>
+  <text x="810" y="385" class="module-item">• Physical Examinations</text>
+  <text x="810" y="410" class="module-item">• Decision Guides</text>
+  <text x="810" y="435" class="module-item">• Symptom Detection</text>
+  <text x="810" y="460" class="module-item">• Test Sequencing</text>
+  <text x="810" y="485" class="module-item">• Case Reports</text>
+  <text x="810" y="510" class="module-item">• Differential Diagnosis</text>
+
+  <!-- Mental Health Box -->
+  <rect x="50" y="600" width="420" height="180" rx="10" fill="#ffe6f0" stroke="#c2185b" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="50" y="600" width="420" height="35" rx="10" fill="#c2185b"/>
+  <text x="260" y="628" style="font-size: 18px; font-weight: bold; text-anchor: middle; fill: white;">Mental Health Support</text>
+
+  <text x="70" y="660" class="module-item">• Mental Health Assessment  • Chat Support  • SANE Interview  • Crisis Resources</text>
+  <text x="70" y="685" class="module-item">• Symptom Detection Chat  • Risk Assessment  • Emergency Hotlines</text>
+
+  <!-- Utilities Box -->
+  <rect x="550" y="600" width="520" height="180" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="550" y="600" width="520" height="35" rx="10" fill="#2e7d32"/>
+  <text x="810" y="628" style="font-size: 18px; font-weight: bold; text-anchor: middle; fill: white;">Features &amp; Utilities</text>
+
+  <text x="570" y="660" class="module-item">✓ Local LMDB Caching for offline access      ✓ HIPAA-aware Privacy Compliance</text>
+  <text x="570" y="685" class="module-item">✓ AI-powered Fact Checking                  ✓ Multi-access: Python API • CLI • Chat</text>
+
+  <!-- Key Features Footer -->
+  <rect x="50" y="840" width="1100" height="80" rx="8" fill="#f5f5f5" stroke="#999" stroke-width="1.5"/>
+  <text x="600" y="865" style="font-size: 16px; font-weight: bold; text-anchor: middle; fill: #1a1a1a;">Key Capabilities</text>
+  <text x="600" y="895" class="utilities-text">Comprehensive medical database • AI-powered differential diagnosis • Drug interaction checking</text>
+  <text x="600" y="915" class="utilities-text">Physical examination guides • Mental health assessments • Evidence-based decision support</text>
+</svg>
