@@ -2,7 +2,7 @@
 
 This directory contains command-line interfaces for querying MedKit medical information modules. These tools provide easy access to comprehensive medical knowledge through the terminal.
 
-## Available CLI Tools (12 Tools)
+## Available CLI Tools (13 Tools)
 
 ### 1. Disease Information
 ```bash
@@ -55,7 +55,20 @@ python cli/cli_medical_devices.py "CT scanner" --verbose
 python cli/cli_medical_devices.py ultrasound --output ultrasound_info.json
 ```
 
-### 5. Medicine/Drug Information
+### 5. Medical Facts Checker
+```bash
+python cli/cli_facts_checker.py <statement> [--output file.json] [--verbose]
+```
+Verify medical claims and debunk health myths with confidence scoring and supporting evidence.
+
+**Example:**
+```bash
+python cli/cli_facts_checker.py "Vitamin C prevents common cold"
+python cli/cli_facts_checker.py "Coffee increases anxiety" --verbose
+python cli/cli_facts_checker.py "Eggs are bad for cholesterol" --output fact_check.json
+```
+
+### 6. Medicine/Drug Information
 ```bash
 python cli/cli_medicine_info.py <drug_name> [--interactions] [--verbose]
 ```
@@ -67,7 +80,7 @@ python cli/cli_medicine_info.py aspirin
 python cli/cli_medicine_info.py ibuprofen --interactions
 ```
 
-### 6. Drug-Drug Interaction Checker
+### 7. Drug-Drug Interaction Checker
 ```bash
 python cli/cli_drug_interaction.py <drug1> <drug2> [--severity] [--verbose]
 ```
@@ -79,7 +92,7 @@ python cli/cli_drug_interaction.py aspirin ibuprofen
 python cli/cli_drug_interaction.py warfarin aspirin --severity
 ```
 
-### 7. Medical Anatomy
+### 8. Medical Anatomy
 ```bash
 python cli/cli_medical_anatomy.py <body_part> [--functions] [--verbose]
 ```
@@ -91,7 +104,7 @@ python cli/cli_medical_anatomy.py heart
 python cli/cli_medical_anatomy.py brain --functions
 ```
 
-### 8. Medical Dictionary/Terminology
+### 9. Medical Dictionary/Terminology
 ```bash
 python cli/cli_medical_dictionary.py <term> [--synonyms] [--verbose]
 ```
@@ -103,7 +116,7 @@ python cli/cli_medical_dictionary.py hypertension
 python cli/cli_medical_dictionary.py "myocardial infarction" --verbose
 ```
 
-### 9. Medical Specialties
+### 10. Medical Specialties
 ```bash
 python cli/cli_medical_speciality.py <specialty> [--doctors] [--conditions] [--procedures]
 ```
@@ -115,7 +128,7 @@ python cli/cli_medical_speciality.py cardiology
 python cli/cli_medical_speciality.py neurology --conditions
 ```
 
-### 10. Herbal Medicine Information
+### 11. Herbal Medicine Information
 ```bash
 python cli/cli_herbal_info.py <herb_name> [--benefits] [--interactions] [--dosage] [--safety]
 ```
@@ -128,7 +141,7 @@ python cli/cli_herbal_info.py ginger --benefits
 python cli/cli_herbal_info.py echinacea --interactions
 ```
 
-### 11. Mental Health Tools
+### 12. Mental Health Tools
 ```bash
 python cli/cli_mental_health.py [--assessment] [--chat] [--interview] [--anonymous]
 ```
@@ -141,7 +154,7 @@ python cli/cli_mental_health.py --chat
 python cli/cli_mental_health.py --interview
 ```
 
-### 12. Symptom Checker
+### 13. Symptom Checker
 ```bash
 python cli/cli_symptoms_checker.py --symptoms "symptom1,symptom2,..." [--severity] [--duration] [--urgent]
 ```
