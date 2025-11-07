@@ -55,13 +55,21 @@ A comprehensive **medical information and reference system** powered by Google's
 [View detailed documentation →](docs/MEDICAL_REFERENCE.md)
 
 - **Disease Information** - Comprehensive disease definitions, symptoms, causes, and treatments
-- **Drug Database** - Medicine information including dosages, side effects, and contraindications
-- **Drug Interactions** - Drug-drug, drug-disease, and drug-food interaction checking
 - **Medical Anatomy** - Detailed anatomical structures and physiological functions
 - **Medical Specialties** - Information about different medical disciplines and subspecialties
 - **Surgical Procedures** - Surgical techniques, instruments, and operative procedures
 - **Medical Implants** - Types and uses of medical implants and prosthetics
 - **Herbal Medicine** - Evidence-based information on herbal remedies
+
+### 💊 Drug Database
+[View detailed documentation →](docs/DRUG_DATABASE.md)
+
+- **Medicine Information** - Drug details, dosing, side effects, and contraindications
+- **Drug-Drug Interactions** - Check interactions between medications
+- **Drug-Disease Interactions** - Safety in specific conditions
+- **Drug-Food Interactions** - Dietary considerations
+- **Similar Drugs** - Find alternative medications
+- **Drug Comparison** - Compare multiple medications side-by-side
 
 ### 🔍 Diagnostic Tools
 [View detailed documentation →](docs/DIAGNOSTIC_TOOLS.md)
@@ -80,16 +88,6 @@ A comprehensive **medical information and reference system** powered by Google's
 - **Mental Health Chat** - Conversational mental health support interface
 - **SANE Interview** - Structured clinical interview tool
 - **Symptom Detection Chat** - Interactive symptom assessment
-
-### 💊 Drug Database
-[View detailed documentation →](docs/DRUG_DATABASE.md)
-
-- **Medicine Information** - Drug details, dosing, side effects
-- **Drug-Drug Interactions** - Check interactions between medications
-- **Drug-Disease Interactions** - Safety in specific conditions
-- **Drug-Food Interactions** - Dietary considerations
-- **Similar Drugs** - Find alternative medications
-- **Drug Comparison** - Compare multiple medications side-by-side
 
 ### 🛠️ Utilities
 - **Local Caching** - LMDB-based caching for offline access and performance
