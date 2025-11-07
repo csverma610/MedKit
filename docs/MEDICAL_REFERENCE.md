@@ -1,476 +1,165 @@
 # Medical Reference Documentation
 
-Comprehensive medical knowledge and reference materials covering disease information, medical anatomy, specialties, and related medical information.
-
-## Table of Contents
-
-1. [Disease Information](#disease-information)
-2. [Medical Anatomy](#medical-anatomy)
-3. [Medical Dictionary](#medical-dictionary)
-4. [Medical Specialties](#medical-specialties)
-5. [Surgical Procedures](#surgical-procedures)
-6. [Medical Implants](#medical-implants)
-7. [Herbal Medicine](#herbal-medicine)
-
----
+The Medical Reference module provides comprehensive access to medical knowledge including disease information, anatomical structures, medical terminology, specialties, surgical procedures, medical devices, and herbal remedies.
 
 ## Disease Information
 
-Get comprehensive information about diseases, conditions, and medical disorders.
+Get detailed information about diseases, medical conditions, and health disorders. This module helps you understand what a disease is, its symptoms, causes, how it's diagnosed, and what treatment options are available.
 
-### Features
-- Disease definitions and descriptions
-- Symptoms and clinical presentations
-- Causes and risk factors
-- Epidemiology and prevalence
-- Treatment options and prognosis
-- Complications and management strategies
+When you look up a disease like diabetes, you get a clear explanation of what the disease is, the symptoms people experience, what causes it, how doctors diagnose it, and what treatment options exist. You also learn about possible complications and how to manage the condition.
 
-### Usage
+**Using Disease Information:**
 
-#### Programmatic
 ```python
 from medkit.medical.disease_info import get_disease_info
 
-# Get disease information
-info = get_disease_info("diabetes mellitus")
-print(f"Definition: {info.definition}")
-print(f"Symptoms: {info.symptoms}")
-print(f"Treatment: {info.treatment}")
+# Look up any disease
+info = get_disease_info("diabetes")
+print(info)  # Get all information about diabetes
 ```
 
-#### Command-Line
-```bash
-python cli/cli_disease_info.py diabetes
-python cli/cli_disease_info.py "heart disease" --verbose
-```
+**What You Can Find:**
 
-### Available Information
-- **Definition**: Clear, accurate medical definition
-- **Symptoms**: Common and uncommon presentations
-- **Causes**: Underlying etiology
-- **Risk Factors**: Preventable and non-preventable factors
-- **Diagnosis**: Diagnostic criteria and tests
-- **Treatment**: Medical and surgical options
-- **Prognosis**: Outcomes and complications
-- **Prevention**: Evidence-based prevention strategies
-
-### Examples
-
-```python
-# Diabetes
-disease_info = get_disease_info("type 2 diabetes")
-
-# Heart Disease
-disease_info = get_disease_info("myocardial infarction")
-
-# Infections
-disease_info = get_disease_info("COVID-19")
-```
+The disease module covers common diseases like diabetes, heart disease, high blood pressure, infections, mental health conditions, and many others. Each disease entry includes the medical definition, symptoms that people experience, what causes the disease, who is at risk, how doctors diagnose it, available treatments, possible complications, and prevention strategies.
 
 ---
 
 ## Medical Anatomy
 
-Detailed anatomical structures, functions, and physiological processes.
+Understand how the human body is structured and how different body parts work. The anatomy module explains the organs, bones, muscles, nerves, and blood vessels that make up our body systems.
 
-### Features
-- Organ system descriptions
-- Anatomical structures and relationships
-- Physiological functions
-- Blood supply and innervation
-- Common pathologies
-- Clinical significance
+Learning anatomy helps you understand how the body functions normally and why certain diseases affect specific parts of the body. For example, understanding heart anatomy helps you understand heart diseases better.
 
-### Usage
+**Using Anatomy Information:**
 
-#### Programmatic
 ```python
 from medkit.medical.medical_anatomy import get_anatomy_info
 
-# Get anatomical information
+# Learn about a body part
 anatomy = get_anatomy_info("heart")
-print(anatomy.structure)
-print(anatomy.function)
+print(anatomy)  # Get detailed heart anatomy
 ```
 
-#### Command-Line
-```bash
-python cli/cli_medical_anatomy.py heart
-python cli/cli_medical_anatomy.py brain --functions
-```
+**Body Systems Covered:**
 
-### Body Systems Covered
-- **Cardiovascular System**: Heart, blood vessels, circulation
-- **Respiratory System**: Lungs, airways, gas exchange
-- **Nervous System**: Brain, spinal cord, nerves
-- **Musculoskeletal System**: Bones, muscles, joints
-- **Gastrointestinal System**: Organs of digestion
-- **Endocrine System**: Glands and hormones
-- **Urinary System**: Kidneys and bladder
-- **Reproductive System**: Male and female organs
-- **Lymphatic System**: Immune organs and vessels
-- **Integumentary System**: Skin and associated structures
-
-### Examples
-
-```python
-# Cardiovascular anatomy
-anatomy = get_anatomy_info("heart")
-anatomy = get_anatomy_info("blood vessels")
-
-# Nervous system
-anatomy = get_anatomy_info("brain")
-anatomy = get_anatomy_info("spinal cord")
-
-# Musculoskeletal
-anatomy = get_anatomy_info("knee joint")
-```
+This module covers all major body systems including the heart and blood vessels, the lungs and breathing system, the brain and nervous system, bones and muscles, the stomach and digestive system, hormones and the endocrine system, kidneys and the urinary system, and skin. Each system is explained clearly so you understand how it works normally.
 
 ---
 
 ## Medical Dictionary
 
-Comprehensive medical terminology with definitions, synonyms, and explanations.
+A comprehensive medical terminology reference that explains medical words and phrases in simple language. Many medical terms can be confusing, so this module breaks them down into understandable explanations.
 
-### Features
-- Medical term definitions
-- Alternative names and synonyms
-- Etymology and origins
-- Related terms and concepts
-- Clinical usage examples
+When doctors use medical terms, you can look them up here to understand what they mean. The dictionary includes disease names, procedure names, anatomical terms, drug names, and common medical abbreviations.
 
-### Usage
+**Using the Dictionary:**
 
-#### Programmatic
 ```python
 from medkit.medical.medical_dictionary import get_medical_definition
 
-# Look up medical terms
+# Look up any medical term
 definition = get_medical_definition("hypertension")
+print(definition)
 ```
 
-#### Command-Line
-```bash
-python cli/cli_medical_dictionary.py hypertension
-python cli/cli_medical_dictionary.py "myocardial infarction" --verbose
-```
+**What's Included:**
 
-### Coverage
-- **Medical Conditions**: Disease names and syndromes
-- **Procedures**: Surgical and diagnostic procedures
-- **Anatomy**: Anatomical structures and terms
-- **Pharmacology**: Drug names and classifications
-- **Pathology**: Disease processes and mechanisms
-- **Abbreviations**: Common medical abbreviations (MI, HTN, DM, etc.)
-
-### Examples
-
-```python
-# Condition-related terms
-definition = get_medical_definition("diabetes")
-definition = get_medical_definition("hypertension")
-
-# Procedure terms
-definition = get_medical_definition("angioplasty")
-definition = get_medical_definition("biopsy")
-
-# Anatomical terms
-definition = get_medical_definition("myocardium")
-definition = get_medical_definition("ventricle")
-```
+The dictionary covers medical condition names, surgical procedures, anatomical structures, drug classifications, medical abbreviations like "MI" for heart attack, and disease processes. Every term is explained clearly without using too much medical jargon.
 
 ---
 
 ## Medical Specialties
 
-Information about medical disciplines, specialists, and their areas of focus.
+Learn about different medical specialties and what doctors in each specialty do. Medical specialties are areas where doctors focus their training and experience.
 
-### Features
-- Specialty descriptions
-- Specialist types and roles
-- Common conditions treated
-- Procedures and interventions
-- Training and qualifications
-- Sub-specialties
+If you need to see a specialist, you can use this module to understand what that doctor specializes in and what conditions they treat. For example, a cardiologist specializes in heart problems.
 
-### Usage
+**Using Specialty Information:**
 
-#### Programmatic
 ```python
 from medkit.medical.medical_speciality import get_speciality_info
 
-# Get specialty information
+# Learn about a specialty
 specialty = get_speciality_info("cardiology")
+print(specialty)
 ```
 
-#### Command-Line
-```bash
-python cli/cli_medical_speciality.py cardiology
-python cli/cli_medical_speciality.py neurology --conditions
-```
+**Available Specialties:**
 
-### Available Specialties
-- **Cardiology**: Heart and cardiovascular system
-- **Neurology**: Nervous system and brain
-- **Orthopedics**: Bones, joints, and musculoskeletal system
-- **Dermatology**: Skin conditions and dermatologic diseases
-- **Oncology**: Cancer diagnosis and treatment
-- **Gastroenterology**: Digestive system
-- **Pulmonology**: Respiratory system and lungs
-- **Psychiatry**: Mental health and behavior
-- **Pediatrics**: Children's medicine
-- **Obstetrics & Gynecology**: Pregnancy and women's health
-- **Urology**: Urinary and reproductive systems
-- **Otolaryngology**: Ears, nose, and throat
-- **Ophthalmology**: Eyes and vision
-
-### Examples
-
-```python
-# Major specialties
-specialty = get_speciality_info("cardiology")
-specialty = get_speciality_info("psychiatry")
-specialty = get_speciality_info("oncology")
-
-# Sub-specialties
-specialty = get_speciality_info("interventional cardiology")
-specialty = get_speciality_info("neuro-oncology")
-```
+This module covers many medical specialties including cardiology (heart doctors), neurology (brain and nerve doctors), orthopedics (bone and joint doctors), dermatology (skin doctors), oncology (cancer doctors), psychiatry (mental health doctors), pediatrics (children's doctors), and many others. Each specialty explains what the doctors do and what conditions they treat.
 
 ---
 
 ## Surgical Procedures
 
-Comprehensive information about surgical techniques, instruments, and procedures.
+Detailed information about surgical operations including how the surgery is performed, why it's needed, what to expect before and after, and what tools are used.
 
-### Features
-- Procedure indications
-- Surgical technique descriptions
-- Pre-operative preparation
-- Surgical instruments used
-- Post-operative care
-- Complications and risks
-- Recovery timeline
+If you're having surgery or need to understand a surgical procedure, this module explains it clearly. You learn what the procedure is for, how the surgeon does it, what happens before surgery, what happens during surgery, and what recovery is like.
 
-### Usage
+**Using Surgery Information:**
 
-#### Programmatic
 ```python
 from medkit.medical.surgery_info import get_surgery_info
 
-# Get surgical procedure information
+# Learn about a procedure
 surgery = get_surgery_info("coronary artery bypass")
-print(surgery.indication)
-print(surgery.technique)
+print(surgery)
 ```
 
-#### Command-Line (Available via CLI)
-```bash
-# Currently available through Python API
-python -c "from medkit.medical.surgery_info import get_surgery_info; print(get_surgery_info('bypass surgery'))"
-```
+**Procedures Covered:**
 
-### Common Procedures
-- **Cardiovascular**: CABG, angioplasty, valve replacement
-- **Orthopedic**: Joint replacement, arthroscopy, fusion
-- **General**: Appendectomy, cholecystectomy, hernia repair
-- **Neurosurgery**: Craniotomy, tumor resection
-- **Vascular**: Aneurysm repair, bypass grafts
-- **Thoracic**: Lung resection, pleurectomy
-- **Urologic**: Prostatectomy, nephrectomy
-- **Gynecologic**: Hysterectomy, cesarean section
-
-### Examples
-
-```python
-# Cardiac surgeries
-surgery = get_surgery_info("coronary artery bypass grafting")
-surgery = get_surgery_info("valve replacement")
-
-# Orthopedic surgeries
-surgery = get_surgery_info("total knee replacement")
-surgery = get_surgery_info("spinal fusion")
-
-# General surgeries
-surgery = get_surgery_info("appendectomy")
-surgery = get_surgery_info("cholecystectomy")
-```
+This module covers common surgeries including heart surgeries, orthopedic surgeries, general surgeries, brain surgeries, and many others. Each procedure is explained step by step so you understand what happens.
 
 ---
 
 ## Medical Implants
 
-Information about medical devices, implants, and prosthetics used in patient care.
+Information about medical devices and implants that are placed in the body to help with health conditions. Implants include pacemakers for the heart, artificial joints for bones, and many other devices.
 
-### Features
-- Implant descriptions and purposes
-- Indications for use
-- Materials and composition
-- Installation/surgical procedure
-- Maintenance and care
-- Complications and considerations
-- Longevity and replacement timeline
+When a doctor recommends an implant, you can learn what it is, how it works, why you might need it, how long it lasts, and what to expect living with it.
 
-### Usage
+**Using Implant Information:**
 
-#### Programmatic
 ```python
 from medkit.medical.medical_implant import get_implant_info
 
-# Get implant information
-implant = get_implant_info("cardiac pacemaker")
-print(implant.purpose)
-print(implant.indications)
-```
-
-### Types of Implants
-- **Cardiac**: Pacemakers, defibrillators, stents, artificial hearts
-- **Orthopedic**: Joint replacements, plates, screws, rods
-- **Neurological**: Deep brain stimulators, spinal cord stimulators
-- **Ophthalmic**: Intraocular lenses, corneal implants
-- **Otologic**: Cochlear implants, bone-conduction devices
-- **Vascular**: Stents, grafts, filters
-- **Dental**: Implants, bridges, dentures
-- **Urologic**: Artificial sphincters, penile implants
-
-### Examples
-
-```python
-# Cardiac implants
+# Learn about an implant
 implant = get_implant_info("pacemaker")
-implant = get_implant_info("coronary stent")
-
-# Orthopedic implants
-implant = get_implant_info("hip replacement")
-implant = get_implant_info("knee replacement")
-
-# Sensory implants
-implant = get_implant_info("cochlear implant")
-implant = get_implant_info("intraocular lens")
+print(implant)
 ```
+
+**Types of Implants:**
+
+This module includes heart implants like pacemakers, bone implants like artificial hip replacements, hearing implants like cochlear implants, and eye implants. Each implant description explains what it does, who needs it, and how it works.
 
 ---
 
 ## Herbal Medicine
 
-Evidence-based information about herbal remedies, traditional medicine, and botanical treatments.
+Evidence-based information about herbal remedies, traditional medicines, and plant-based treatments. This module explains what each herb does, whether scientific research supports using it, what the safety concerns are, and how to use it safely.
 
-### Features
-- Herbal remedy descriptions
-- Traditional and scientific uses
-- Active compounds and mechanisms
-- Dosage and administration
-- Safety profile and contraindications
-- Drug-herb interactions
-- Efficacy evidence
+Herbal remedies have been used for thousands of years, and many are now studied scientifically. This module helps you understand which herbs have scientific support and which ones might interact with medications you're taking.
 
-### Usage
+**Using Herbal Information:**
 
-#### Programmatic
 ```python
 from medkit.medical.herbal_info import get_herbal_information
 
-# Get herbal medicine information
+# Learn about an herb
 herb = get_herbal_information("turmeric")
-print(herb.traditional_uses)
-print(herb.safety)
+print(herb)
 ```
 
-#### Command-Line
-```bash
-python cli/cli_herbal_info.py turmeric
-python cli/cli_herbal_info.py ginger --benefits --interactions
-```
+**Important Safety Information:**
 
-### Covered Herbs
-- **Anti-inflammatory**: Turmeric, ginger, boswellia
-- **Immune Support**: Echinacea, elderberry, astragalus
-- **Digestive**: Peppermint, ginger, fennel
-- **Sleep & Relaxation**: Valerian, chamomile, passionflower
-- **Cardiovascular**: Hawthorn, garlic, ginkgo
-- **Pain Relief**: Willow bark, capsaicin, feverfew
-- **Respiratory**: Eucalyptus, thyme, licorice
-- **Metabolic**: Green tea, cinnamon, fenugreek
+Herbal remedies can be powerful and can interact with medications. Before using any herb, especially if you take medications, are pregnant, are breastfeeding, or have health conditions, talk to your doctor. Some herbs can reduce the effectiveness of medications, while others can increase side effects.
 
-### ⚠️ Important Safety Notes
+**Herbs Covered:**
 
-**Before using herbal remedies:**
-- Consult with healthcare provider
-- Discuss with pharmacist about drug interactions
-- Verify safe dosing
-- Check contraindications
-- Monitor for adverse effects
-
-**Special precautions for:**
-- Pregnancy and breastfeeding
-- Children and elderly patients
-- Immunocompromised individuals
-- Patients on medications
-- Those with allergies or sensitivities
-
-### Examples
-
-```python
-# Anti-inflammatory herbs
-herb = get_herbal_information("turmeric")
-herb = get_herbal_information("ginger")
-
-# Immune support
-herb = get_herbal_information("echinacea")
-herb = get_herbal_information("elderberry")
-
-# Digestive aids
-herb = get_herbal_information("peppermint")
-herb = get_herbal_information("ginger")
-```
-
----
-
-## General Usage Notes
-
-### Error Handling
-All functions include error handling for invalid inputs:
-
-```python
-try:
-    info = get_disease_info("unknown_disease_12345")
-except ValueError as e:
-    print(f"Error: {e}")
-```
-
-### Caching
-Results are cached locally for better performance:
-
-```python
-from medkit.utils.lmdb_storage import get_cached_result
-
-# Check cache first
-cached = get_cached_result("disease:diabetes")
-```
-
-### Privacy
-All functions respect privacy and HIPAA guidelines:
-
-```python
-from medkit.utils.privacy_compliance import anonymize_data
-
-# Use when handling patient data
-anonymized = anonymize_data(patient_info)
-```
-
----
-
-## Related Documentation
-
-- [Drug Database Documentation](DRUG_DATABASE.md)
-- [Diagnostic Tools Documentation](DIAGNOSTIC_TOOLS.md)
-- [Mental Health Documentation](MENTAL_HEALTH.md)
-- [CLI Tools Documentation](../cli/README.md)
-- [API Reference](api/modules.rst)
+This module covers commonly used herbs including turmeric for inflammation, ginger for nausea and inflammation, echinacea for immune support, and many others. Each entry explains what the herb is traditionally used for, what scientific research says about it, how to use it safely, and what precautions to take.
 
 ---
 
 ## Disclaimer
 
-This software is for **informational purposes only** and should not replace professional medical advice. Always consult with qualified healthcare providers for medical decisions, diagnoses, and treatment plans.
+This medical reference information is for educational purposes to help you understand medical concepts and health information better. It should not replace a consultation with your doctor. Always talk to your healthcare provider before making decisions about your health, starting new treatments, or taking supplements.

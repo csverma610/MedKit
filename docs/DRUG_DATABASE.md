@@ -1,475 +1,159 @@
 # Drug Database Documentation
 
-Comprehensive pharmaceutical information including medicine details, drug interactions, dosing, and safety information.
-
-## Table of Contents
-
-1. [Medicine Information](#medicine-information)
-2. [Drug-Drug Interactions](#drug-drug-interactions)
-3. [Drug-Disease Interactions](#drug-disease-interactions)
-4. [Drug-Food Interactions](#drug-food-interactions)
-5. [Similar Drugs & Alternatives](#similar-drugs--alternatives)
-6. [Drug Comparison](#drug-comparison)
-7. [RxNorm Integration](#rxnorm-integration)
-
----
+The Drug Database module helps you understand medicines and medications. It provides information about how drugs work, their side effects, dosages, and most importantly, how different drugs can interact with each other or with food.
 
 ## Medicine Information
 
-Get comprehensive information about medications, drugs, and pharmaceuticals.
+Learn detailed information about any medication or drug. When you search for a medicine, you get comprehensive information about what it does, how to take it, what side effects to watch for, and who should not take it.
 
-### Features
-- Drug names (brand and generic)
-- Dosage forms and strengths
-- Indications and uses
-- Dosing recommendations
-- Side effects and adverse reactions
-- Contraindications and warnings
-- Drug interactions summary
-- Pharmacokinetics and mechanism
+For example, if your doctor prescribes aspirin, you can look it up to understand what aspirin does, how much to take, what side effects might happen, and what other medicines or conditions might affect whether it's safe for you to take.
 
-### Usage
+**How to Use:**
 
-#### Programmatic
 ```python
 from medkit.drug.medicine_info import get_medicine_info
 
-# Get medicine information
+# Look up a medication
 info = get_medicine_info("aspirin")
-print(f"Generic Name: {info.generic_name}")
-print(f"Brand Names: {info.brand_names}")
-print(f"Dosage: {info.dosage}")
-print(f"Indications: {info.indications}")
-print(f"Side Effects: {info.side_effects}")
+print(info)
 ```
 
-#### Command-Line
+**From Command Line:**
+
 ```bash
 python cli/cli_medicine_info.py aspirin
 python cli/cli_medicine_info.py ibuprofen --interactions
-python cli/cli_medicine_info.py "metformin" --verbose
 ```
 
-### Available Information
+**What Information You Get:**
 
-#### Basic Information
-- **Generic Name**: International nonproprietary name (INN)
-- **Brand Names**: Proprietary/trade names
-- **Drug Class**: Therapeutic category
-- **Manufacturer**: Original manufacturer
-
-#### Clinical Information
-- **Indications**: What the drug treats
-- **Dosage Forms**: Tablets, capsules, injections, etc.
-- **Strengths**: Available doses
-- **Dosing**: Typical dosing schedules
-- **Administration**: How to take the medication
-
-#### Safety Information
-- **Side Effects**: Common and serious adverse reactions
-- **Contraindications**: When NOT to use
-- **Warnings**: Important safety considerations
-- **Precautions**: Special populations (pregnancy, elderly, etc.)
-- **Allergic Reactions**: Known allergens
-
-#### Pharmacological Information
-- **Mechanism**: How the drug works
-- **Absorption**: How it enters the body
-- **Distribution**: Where it goes in the body
-- **Metabolism**: How the body processes it
-- **Elimination**: How it leaves the body
-- **Half-life**: Duration of action
-
-### Examples
-
-```python
-# Pain relievers
-info = get_medicine_info("aspirin")
-info = get_medicine_info("ibuprofen")
-info = get_medicine_info("acetaminophen")
-
-# Cardiovascular medications
-info = get_medicine_info("lisinopril")
-info = get_medicine_info("metoprolol")
-info = get_medicine_info("atorvastatin")
-
-# Antibiotics
-info = get_medicine_info("amoxicillin")
-info = get_medicine_info("azithromycin")
-
-# Diabetes medications
-info = get_medicine_info("metformin")
-info = get_medicine_info("insulin")
-```
+When you look up a medicine, you learn the generic name and brand names, what type of medicine it is, what it's used to treat, how much to take and how often, what side effects can happen, who should not take it, any special warnings, how it works in your body, and how long it stays in your system.
 
 ---
 
 ## Drug-Drug Interactions
 
-Check for interactions between two or more medications.
+Understand what happens when you take two or more medicines together. Some medicines interact with each other in ways that can be dangerous or reduce how well they work.
 
-### Features
-- Interaction identification
-- Severity levels (mild, moderate, severe)
-- Mechanism of interaction
-- Clinical significance
-- Management recommendations
-- Monitoring parameters
+For example, some blood thinner medications become dangerous when taken with aspirin because the combination increases bleeding risk too much. This module helps you know if medicines you take together are safe.
 
-### Usage
+**How to Use:**
 
-#### Programmatic
 ```python
 from medkit.drug.drug_drug_interaction import get_drug_interaction
 
-# Check interaction between two drugs
+# Check if two drugs interact
 interaction = get_drug_interaction("warfarin", "aspirin")
-print(f"Severity: {interaction.severity}")
-print(f"Mechanism: {interaction.mechanism}")
-print(f"Management: {interaction.management}")
+print(interaction)
 ```
 
-#### Command-Line
+**From Command Line:**
+
 ```bash
-python cli/cli_drug_interaction.py aspirin ibuprofen
-python cli/cli_drug_interaction.py warfarin aspirin --severity
-python cli/cli_drug_interaction.py metformin alcohol --verbose
+python cli/cli_drug_interaction.py warfarin aspirin
+python cli/cli_drug_interaction.py metformin alcohol --severity
 ```
 
-### Severity Levels
+**Understanding Severity:**
 
-- **Mild**: No clinical significance, monitor if needed
-- **Moderate**: May require dose adjustment or monitoring
-- **Severe**: Contraindicated or requires significant caution
+When you check a drug interaction, you get a severity rating. Mild interactions mean there's little to no risk, but you should still be aware. Moderate interactions mean the interaction is real but can usually be managed with dose adjustments or careful monitoring. Severe interactions mean you should not take these drugs together without talking to your doctor first.
 
-### Common Drug Interactions
+**Common Examples:**
 
-#### Anticoagulants (Blood Thinners)
-- Warfarin + NSAIDs = Increased bleeding risk
-- Warfarin + Aspirin = Increased bleeding risk
-- Aspirin + Clopidogrel = Increased bleeding risk
-
-#### Cardiovascular Drugs
-- ACE inhibitors + NSAIDs = Kidney problems
-- Beta-blockers + Calcium channel blockers = Bradycardia
-- Statins + Macrolide antibiotics = Muscle problems
-
-#### Diabetes Medications
-- Metformin + Contrast dye = Kidney problems
-- Sulfonylureas + NSAIDs = Hypoglycemia
-- Insulin + Beta-blockers = Masked hypoglycemia
-
-#### CNS Depressants
-- Alcohol + Opioids = Respiratory depression
-- Alcohol + Benzodiazepines = CNS depression
-- Alcohol + Sedatives = Enhanced sedation
-
-### Examples
-
-```python
-# Anticoagulation interactions
-interaction = get_drug_interaction("warfarin", "aspirin")
-interaction = get_drug_interaction("warfarin", "ibuprofen")
-
-# Cardiovascular interactions
-interaction = get_drug_interaction("lisinopril", "ibuprofen")
-interaction = get_drug_interaction("metoprolol", "diltiazem")
-
-# Common OTC interactions
-interaction = get_drug_interaction("acetaminophen", "alcohol")
-interaction = get_drug_interaction("ibuprofen", "aspirin")
-```
+Blood thinners like warfarin should not be taken with aspirin because it increases bleeding too much. Some heart medications interact with each other in dangerous ways. Some antibiotics reduce the effectiveness of birth control. Alcohol can interact dangerously with many pain relievers and sedatives.
 
 ---
 
 ## Drug-Disease Interactions
 
-Check for interactions between medications and medical conditions.
+Understand whether a medicine is safe for someone with a specific medical condition. Some medicines can be harmful if you have certain diseases.
 
-### Features
-- Condition-drug contraindications
-- Safety considerations for specific diseases
-- Alternative medication recommendations
-- Monitoring requirements
-- Dosage adjustments needed
+For example, if you have kidney disease, some medicines can make it worse. If you have heart disease, certain other medicines might not be safe. This module helps you understand how medicines work with your health conditions.
 
-### Usage
+**How to Use:**
 
-#### Programmatic
 ```python
 from medkit.drug.drug_disease_interaction import get_drug_disease_interaction
 
-# Check drug safety in disease
-interaction = get_drug_disease_interaction("ibuprofen", "kidney disease")
-print(f"Safety: {interaction.safety_rating}")
-print(f"Recommendation: {interaction.recommendation}")
+# Check if medicine is safe with a condition
+result = get_drug_disease_interaction("ibuprofen", "kidney disease")
+print(result)
 ```
 
-### Common Drug-Disease Interactions
+**Common Examples:**
 
-#### Renal Disease
-- Avoid NSAIDs (damage kidneys)
-- Avoid ACE inhibitors (in advanced stages)
-- Adjust doses of renally-cleared drugs
-
-#### Hepatic Disease
-- Avoid acetaminophen (liver damage)
-- Avoid statins (liver toxicity)
-- Adjust doses of hepatically-metabolized drugs
-
-#### Cardiac Conditions
-- Avoid NSAIDs (fluid retention, hypertension)
-- Avoid decongestants (increase BP)
-- Avoid some antiarrhythmics (proarrhythmic)
-
-#### Pregnancy
-- Avoid ACE inhibitors
-- Avoid NSAIDs (especially 3rd trimester)
-- Avoid tetracyclines
-- Use prenatal-safe alternatives
-
-### Examples
-
-```python
-# Renal disease considerations
-interaction = get_drug_disease_interaction("ibuprofen", "chronic kidney disease")
-interaction = get_drug_disease_interaction("lisinopril", "end-stage renal disease")
-
-# Hepatic disease considerations
-interaction = get_drug_disease_interaction("acetaminophen", "hepatitis")
-interaction = get_drug_disease_interaction("atorvastatin", "cirrhosis")
-
-# Cardiac considerations
-interaction = get_drug_disease_interaction("ibuprofen", "heart failure")
-interaction = get_drug_disease_interaction("decongestant", "hypertension")
-```
+Nonsteroidal anti-inflammatory drugs like ibuprofen can damage kidneys, especially if you already have kidney disease. Certain blood pressure medicines can be dangerous if you have specific heart conditions. Acetaminophen can damage the liver if you have liver disease or drink alcohol heavily. Some medicines that treat low blood pressure can be dangerous if you have heart failure.
 
 ---
 
 ## Drug-Food Interactions
 
-Information about interactions between medications and food.
+Learn how food and drinks can affect medicines. Some foods can change how well a medicine works or increase side effects.
 
-### Features
-- Food components that interact with drugs
-- Absorption effects
-- Efficacy impacts
-- Safety considerations
-- Dietary recommendations
+For example, grapefruit juice can make some cholesterol medicines work too well, causing side effects. Vitamin K in leafy greens can reduce the effect of blood thinners. This module helps you understand these interactions so you can take your medicines safely.
 
-### Usage
+**How to Use:**
 
-#### Programmatic
 ```python
 from medkit.drug.drug_food_interaction import get_drug_food_interaction
 
-# Check drug-food interaction
-interaction = get_drug_food_interaction("warfarin", "vitamin K")
-print(f"Effect: {interaction.effect}")
-print(f"Recommendation: {interaction.dietary_advice}")
+# Check if food affects a medicine
+result = get_drug_food_interaction("warfarin", "vitamin K")
+print(result)
 ```
 
-#### Command-Line (Available via Python API)
-```bash
-python -c "from medkit.drug.drug_food_interaction import get_drug_food_interaction; print(get_drug_food_interaction('metformin', 'alcohol'))"
-```
+**Common Examples:**
 
-### Common Drug-Food Interactions
-
-#### Warfarin (Blood Thinner)
-- Vitamin K decreases effectiveness
-- Cranberry juice increases bleeding risk
-- Alcohol increases bleeding risk
-- Consistent vitamin K intake important
-
-#### Certain Antibiotics
-- Tetracyclines + Calcium/Iron = Reduced absorption
-- Fluoroquinolones + Dairy = Reduced absorption
-
-#### Statins
-- Grapefruit juice increases side effects
-- High-fat meals increase absorption (good for some)
-
-#### Thyroid Medications
-- Calcium/Iron/Fiber decrease absorption
-- Take on empty stomach
-- Consistent timing important
-
-### Examples
-
-```python
-# Anticoagulation
-interaction = get_drug_food_interaction("warfarin", "vitamin K")
-interaction = get_drug_food_interaction("warfarin", "cranberry")
-
-# Antibiotic absorption
-interaction = get_drug_food_interaction("tetracycline", "calcium")
-interaction = get_drug_food_interaction("fluoroquinolone", "dairy")
-
-# Statin interactions
-interaction = get_drug_food_interaction("simvastatin", "grapefruit juice")
-```
+Grapefruit juice increases the effect of many cholesterol medicines and can cause dangerous side effects. Leafy green vegetables like spinach and kale contain vitamin K which reduces how well blood thinners like warfarin work, so you need to eat about the same amount consistently. Dairy products reduce how well some antibiotics work, so take these antibiotics on an empty stomach. Alcohol mixed with pain relievers or sedatives can cause serious problems.
 
 ---
 
-## Similar Drugs & Alternatives
+## Similar Drugs and Alternatives
 
-Find alternative medications and similar drugs.
+Find alternative medicines that work similarly to a medicine you take. If a medicine isn't working for you, causes bad side effects, or is too expensive, there are usually alternatives.
 
-### Features
-- Similar drug recommendations
-- Alternative therapeutic options
-- Indication-based alternatives
-- Cost and availability comparison
-- Efficacy and safety profiles
+This module helps you understand what other medicines in the same family might work better for you. You can discuss these alternatives with your doctor or pharmacist.
 
-### Usage
+**How to Use:**
 
-#### Programmatic
 ```python
 from medkit.drug.similar_drugs import get_similar_drugs
 
-# Find alternative medications
-alternatives = get_similar_drugs("aspirin", indication="pain relief")
-for alt in alternatives:
-    print(f"{alt.name}: {alt.indication}")
+# Find alternatives
+alternatives = get_similar_drugs("aspirin")
+print(alternatives)
 ```
 
-### Examples
+**Examples:**
 
-```python
-# Pain relief alternatives
-similar = get_similar_drugs("aspirin")  # ibuprofen, acetaminophen, naproxen
-similar = get_similar_drugs("ibuprofen")  # naproxen, meloxicam, celecoxib
-
-# Hypertension alternatives
-similar = get_similar_drugs("lisinopril")  # ramipril, enalapril, losartan
-similar = get_similar_drugs("metoprolol")  # atenolol, carvedilol, propranolol
-
-# Diabetes alternatives
-similar = get_similar_drugs("metformin")  # glyburide, pioglitazone, glipizide
-```
+If aspirin doesn't work well for you, similar pain relievers include ibuprofen, naproxen, and acetaminophen. If you're on one blood pressure medicine, your doctor might try a different type that works better for you. If one antibiotic doesn't work, another antibiotic in a similar class might be better.
 
 ---
 
 ## Drug Comparison
 
-Compare multiple medications side-by-side.
+Compare medicines side-by-side to understand their differences. When you have several medicine options, comparison helps you and your doctor decide which is best for you.
 
-### Features
-- Efficacy comparison
-- Side effect profiles
-- Cost comparison
-- Dosing schedules
-- Convenience factors
-- Safety profiles
+You can compare how well medicines work, what side effects each has, how often you need to take them, how much they cost, and other important factors.
 
-### Usage
+**How to Use:**
 
-#### Programmatic
 ```python
 from medkit.drug.drugs_comparison import compare_drugs
 
-# Compare medications
+# Compare multiple medicines
 comparison = compare_drugs(["aspirin", "ibuprofen", "acetaminophen"])
-print(comparison.efficacy_table)
-print(comparison.side_effects_comparison)
+print(comparison)
 ```
 
-### Examples
+**What to Compare:**
 
-```python
-# Pain relievers
-comparison = compare_drugs(["aspirin", "ibuprofen", "acetaminophen"])
-
-# ACE inhibitors for hypertension
-comparison = compare_drugs(["lisinopril", "enalapril", "ramipril"])
-
-# Statins for cholesterol
-comparison = compare_drugs(["atorvastatin", "simvastatin", "rosuvastatin"])
-```
-
----
-
-## RxNorm Integration
-
-Access RxNorm database for standardized drug information and identifiers.
-
-### Features
-- RxNorm concept IDs and terms
-- Drug normalization
-- Ingredient information
-- Strength standardization
-- Dose form information
-
-### Usage
-
-#### Programmatic
-```python
-from medkit.drug.rxnorm_client import RxNormClient
-
-# Initialize client
-rxnorm = RxNormClient()
-
-# Get RxNorm information
-results = rxnorm.search("aspirin")
-for result in results:
-    print(f"RxCUI: {result.rxcui}, Name: {result.name}")
-```
-
-### RxNorm Benefits
-- **Standardization**: Consistent drug naming
-- **Integration**: Works with EHR systems
-- **Accuracy**: Official FDA/NLM standards
-- **Interoperability**: Industry standard identifiers
-
----
-
-## Best Practices
-
-### Before Taking Any Medication
-
-1. **Check Interactions**
-   ```python
-   # Check all interactions
-   interaction = get_drug_interaction(drug1, drug2)
-   ```
-
-2. **Verify Dosing**
-   ```python
-   # Get correct dosing
-   info = get_medicine_info(drug)
-   print(info.dosing)
-   ```
-
-3. **Check Contraindications**
-   ```python
-   # Check for disease interactions
-   interaction = get_drug_disease_interaction(drug, condition)
-   ```
-
-4. **Consult Healthcare Provider**
-   - Always verify with doctor or pharmacist
-   - Don't self-diagnose or self-treat
-
-### Database Limitations
-- Not a substitute for professional advice
-- Always consult pharmacist or doctor
-- Information may not be 100% current
-- Verify with official sources
-
----
-
-## Related Documentation
-
-- [Medical Reference Documentation](MEDICAL_REFERENCE.md)
-- [Diagnostic Tools Documentation](DIAGNOSTIC_TOOLS.md)
-- [Mental Health Documentation](MENTAL_HEALTH.md)
-- [CLI Tools Documentation](../cli/README.md)
-- [API Reference](api/modules.rst)
+When comparing medicines, look at how well each medicine works for your specific problem, what side effects each can cause, how often you need to take it, whether it has food or drug interactions, and which one is most convenient for you.
 
 ---
 
 ## Disclaimer
 
-This software is for **informational purposes only**. Always consult with qualified healthcare providers, pharmacists, and refer to official pharmaceutical resources for medication decisions. Never start, stop, or change medications without professional medical guidance.
+This drug information is educational only and should not replace consultation with your pharmacist or doctor. Before taking any new medicine, changing doses, or stopping medicine, talk to your healthcare provider or pharmacist. Never stop or change medicines on your own without talking to your doctor first. Always take medicines exactly as prescribed, even if you feel better or feel worse.
+
+Medical interactions can be serious. If you think you have taken too much medicine or are having a bad reaction, call poison control or emergency services immediately.

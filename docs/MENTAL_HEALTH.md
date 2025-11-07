@@ -1,533 +1,173 @@
 # Mental Health Documentation
 
-Comprehensive mental health assessment tools, screening instruments, and support resources.
-
-## Table of Contents
-
-1. [Mental Health Assessment](#mental-health-assessment)
-2. [Mental Health Chat](#mental-health-chat)
-3. [SANE Interview](#sane-interview)
-4. [Symptom Detection Chat](#symptom-detection-chat)
-5. [Mental Health Reports](#mental-health-reports)
-6. [Crisis Resources](#crisis-resources)
-
----
+The Mental Health module provides tools to understand, assess, and support mental health. It includes screening questionnaires, assessment tools, conversation interfaces, and important crisis resources.
 
 ## Mental Health Assessment
 
-Structured assessment tools for mental health screening and evaluation.
+Complete structured assessments to understand your mental health. These are questionnaires used by mental health professionals to screen for common conditions like depression, anxiety, and other mental health issues.
 
-### Features
-- Validated screening instruments
-- Symptom severity assessment
-- Risk stratification
-- Diagnostic support
-- Report generation
-- Treatment recommendations
+Mental health assessments help you understand what you're experiencing and whether you should talk to a mental health professional. The assessments use questions that have been proven to help identify mental health conditions accurately.
 
-### Usage
+**How to Use:**
 
-#### Programmatic
 ```python
 from medkit.mental_health.mental_health_assessment import assess_mental_health
 
-# Conduct mental health assessment
-responses = {
-    "mood": "depressed",
-    "sleep": "poor",
-    "appetite": "decreased",
-    "energy": "low"
-}
-
-assessment = assess_mental_health(responses)
-print(f"Risk Level: {assessment.risk_level}")
-print(f"Severity: {assessment.severity_score}")
-print(f"Recommendations: {assessment.recommendations}")
+# Complete an assessment
+assessment = assess_mental_health()
+print(assessment)
 ```
 
-#### Command-Line
+**From Command Line:**
+
 ```bash
 python cli/cli_mental_health.py --assessment
 ```
 
-### Screening Instruments
+**What Assessments Are Available:**
 
-#### Depression Screening
-- **PHQ-9 (Patient Health Questionnaire-9)**
-  - 9-item depression severity scale
-  - Scores 0-27 (none, mild, moderate, moderately severe, severe)
-  - Questions about mood, sleep, appetite, guilt, energy
+The module includes screening for depression that asks about mood, sleep, appetite, and energy. There's an anxiety screening that asks about worry and panic. Substance use screening helps identify if alcohol or drugs are a problem. Bipolar disorder screening looks for periods of high energy. PTSD screening asks about trauma reactions.
 
-- **PHQ-2 (Quick Screen)**
-  - 2-item screen for depression
-  - Good sensitivity and specificity
-  - Quick initial assessment
+**How Assessments Work:**
 
-#### Anxiety Screening
-- **GAD-7 (Generalized Anxiety Disorder-7)**
-  - 7-item anxiety severity scale
-  - Scores 0-21
-  - Assess worry, panic, tension
-
-- **STAI (State-Trait Anxiety Inventory)**
-  - 40-item comprehensive anxiety assessment
-  - Distinguishes state vs. trait anxiety
-
-#### Substance Use
-- **DAST-10 (Drug Abuse Screening Test)**
-  - 10-item substance use screening
-  - Good sensitivity for substance disorders
-
-- **AUDIT (Alcohol Use Disorders Identification Test)**
-  - 10-item alcohol screening
-  - Identifies hazardous drinking patterns
-
-#### Bipolar Disorder
-- **Mood Disorder Questionnaire (MDQ)**
-  - 13-item screening for bipolar disorder
-  - Assesses hypomanic/manic symptoms
-
-#### PTSD
-- **PCL-5 (PTSD Checklist for DSM-5)**
-  - 20-item PTSD symptom assessment
-  - Validated trauma screening tool
-
-### Assessment Components
-
-#### Mood Assessment
-- Current mood state
-- Mood stability and variability
-- Mood triggers
-- Impact on functioning
-
-#### Cognitive Assessment
-- Concentration and attention
-- Memory function
-- Decision-making ability
-- Suicidal/homicidal ideation
-
-#### Sleep Assessment
-- Sleep quantity (hours per night)
-- Sleep quality
-- Insomnia or hypersomnia
-- Sleep disturbances
-
-#### Appetite Assessment
-- Changes in appetite
-- Weight changes
-- Eating pattern changes
-- Nutritional status
-
-#### Functional Assessment
-- Work/school performance
-- Social relationships
-- Self-care activities
-- Activities of interest
-
-### Examples
-
-```python
-# Depression assessment
-assessment = assess_mental_health({"mood": "depressed", "energy": "low"})
-
-# Anxiety assessment
-assessment = assess_mental_health({"worry": "constant", "panic": "frequent"})
-
-# Comprehensive assessment
-assessment = assess_mental_health({
-    "mood": "variable",
-    "sleep": "poor",
-    "appetite": "decreased",
-    "energy": "low",
-    "concentration": "poor"
-})
-```
+You answer questions about how you've been feeling. Your answers create a score that indicates whether you might have a mental health condition. If your score suggests you might have an issue, the recommendation is to talk to a mental health professional for proper evaluation.
 
 ---
 
 ## Mental Health Chat
 
-Conversational support and information interface.
+Talk to a supportive chatbot about your mental health concerns. This isn't therapy, but it provides a way to discuss what you're experiencing and get supportive responses.
 
-### Features
-- Chat-based interaction
-- Empathetic responses
-- Information provision
-- Resource recommendations
-- Crisis identification
-- Appointment scheduling assistance
+The chat interface listens to what you say, responds supportively, provides information about mental health conditions, suggests coping strategies, and can help you understand whether you should talk to a professional.
 
-### Usage
+**How to Use:**
 
-#### Programmatic
 ```python
 from medkit.mental_health.mental_health_chat import start_mental_health_chat
 
-# Start chat session
-chat = start_mental_health_chat(user_name="User")
-
-# Single turn conversation
-response = chat.send_message("I've been feeling really sad lately")
+# Start chatting
+chat = start_mental_health_chat()
+response = chat.send_message("I've been feeling really sad")
 print(response)
-
-# Continuous conversation
-while True:
-    user_input = input("You: ")
-    if user_input.lower() in ['quit', 'exit']:
-        break
-    response = chat.send_message(user_input)
-    print(f"Assistant: {response}")
 ```
 
-#### Command-Line
+**From Command Line:**
+
 ```bash
 python cli/cli_mental_health.py --chat
 ```
 
-### Chat Capabilities
-- **Emotional Support**: Validation and empathetic listening
-- **Psychoeducation**: Information about mental health conditions
-- **Coping Strategies**: Practical techniques and skills
-- **Resource Connection**: Referrals and resource information
-- **Crisis Assessment**: Identifies urgent needs
+**What the Chat Can Do:**
 
-### Common Chat Topics
-- Depression and low mood
-- Anxiety and worry
-- Sleep problems
-- Relationship issues
-- Work stress
-- Grief and loss
-- Life transitions
-- Self-esteem concerns
+The chat provides emotional support and understanding about your feelings. It offers information about mental health conditions. It suggests practical coping strategies like breathing exercises, grounding techniques, and self-care activities. It can identify if you're in crisis and provide emergency resources. It encourages you to talk to a professional.
 
-### Safety Features
-- **Crisis Detection**: Identifies suicidal/homicidal ideation
-- **Emergency Response**: Provides crisis resources
-- **Escalation Path**: Recommends professional help
-- **Confidentiality**: Maintains privacy within system limitations
+**What the Chat Cannot Do:**
+
+This chat is not therapy and cannot replace talking to a mental health professional. It doesn't prescribe medications. It doesn't treat mental health conditions. For serious concerns, always talk to a doctor or mental health professional.
 
 ---
 
 ## SANE Interview
 
-Structured Affective Neuroscience Environment interview protocol.
+Complete a structured mental health interview called SANE (Structured Affective Neuroscience Environment). This is a comprehensive interview format used by mental health professionals to gather detailed information about your mental health history.
 
-### Features
-- Comprehensive psychiatric interview
-- Structured questioning
-- Symptom documentation
-- Risk assessment
-- Diagnostic formulation
-- Treatment planning support
+The SANE interview systematically asks about your current symptoms, how long you've had them, past mental health issues, family history, substance use, medical conditions, and your current situation. This structured approach ensures nothing important is missed.
 
-### Usage
+**How to Use:**
 
-#### Programmatic
 ```python
 from medkit.mental_health.sane_interview import SANEInterview
 
-# Initialize SANE interview
-interview = SANEInterview(patient_name="John Doe")
-
-# Conduct interview sections
-demographics = interview.demographics_section()
-chief_complaint = interview.chief_complaint_section()
-present_illness = interview.present_illness_section()
-past_psychiatric = interview.past_psychiatric_section()
-substance_use = interview.substance_use_section()
-medical_history = interview.medical_history_section()
-family_history = interview.family_history_section()
-social_history = interview.social_history_section()
-mental_status = interview.mental_status_exam()
-
-# Generate interview summary
-summary = interview.generate_summary()
+# Start the interview
+interview = SANEInterview()
+response = interview.next_question()
+print(response)
 ```
 
-#### Command-Line
+**From Command Line:**
+
 ```bash
 python cli/cli_mental_health.py --interview
 ```
 
-### SANE Interview Components
+**Interview Sections:**
 
-#### Chief Complaint
-- Primary reason for visit
-- Timeline of symptom onset
-- Acute vs. chronic presentation
+The interview starts by getting your basic information. It asks about your main concern. It goes into detail about current symptoms. It asks about past mental health issues. It asks about family history of mental health problems. It asks about substance use. It covers medical history. It collects information about your life situation and support systems. It does a mental status examination.
 
-#### History of Present Illness (HPI)
-- Detailed symptom description
-- Onset and progression
-- Associated symptoms
-- Trigger factors
-- Previous episodes
-- Treatment history
+**Why This Format Helps:**
 
-#### Past Psychiatric History
-- Prior diagnoses
-- Previous hospitalizations
-- Medication trials
-- Therapy history
-- Suicide/self-harm attempts
-- Violence history
-
-#### Substance Use History
-- Alcohol use
-- Drug use (prescription and illicit)
-- Tobacco use
-- Caffeine use
-- Age of first use
-- Current use patterns
-- Dependence symptoms
-
-#### Medical History
-- Chronic medical conditions
-- Medications
-- Allergies
-- Surgeries
-- Neurological history
-- Head trauma
-
-#### Family Psychiatric History
-- Family members with mental illness
-- Suicide in family
-- Substance use in family
-- Medical conditions
-
-#### Social History
-- Living situation
-- Relationships
-- Employment/school
-- Legal issues
-- Financial status
-- Support systems
-
-#### Mental Status Examination
-- **Appearance**: Grooming, clothing, psychomotor activity
-- **Behavior**: Cooperation, agitation, withdrawal
-- **Speech**: Rate, volume, coherence
-- **Mood & Affect**: Current mood, emotional expression
-- **Thought Process**: Organization, flow
-- **Thought Content**: Delusions, hallucinations, obsessions
-- **Perception**: Auditory/visual hallucinations
-- **Cognition**: Orientation, memory, concentration, intelligence
-- **Judgment**: Decision-making ability
-- **Insight**: Awareness of illness
+The structured approach makes sure doctors have all the information they need. It follows the format mental health professionals are trained to use. It creates a comprehensive picture of your mental health history. Information gathered is organized so it's easy for professionals to review.
 
 ---
 
 ## Symptom Detection Chat
 
-AI-powered conversational symptom analysis for mental health.
+Chat about your symptoms in a conversational way to explore what might be going on. This is different from a rigid questionnaire - it's more like talking to someone.
 
-### Features
-- Conversational symptom gathering
-- Symptom pattern recognition
-- Preliminary diagnostic suggestions
-- Red flag identification
-- Resource recommendations
-- Urgency assessment
+As you describe your symptoms in conversation, the tool analyzes them and helps identify possible conditions you might want to discuss with a doctor.
 
-### Usage
+**How to Use:**
 
-#### Programmatic
-```python
-from medkit.mental_health.sympton_detection_chat import SymptomDetectionChat
-
-# Start symptom detection
-detector = SymptomDetectionChat()
-
-# Gather symptoms conversationally
-symptoms = detector.gather_symptoms()
-
-# Analyze and generate report
-analysis = detector.analyze_gathered_symptoms()
-print(f"Symptoms: {analysis.identified_symptoms}")
-print(f"Likely Conditions: {analysis.possible_diagnoses}")
-print(f"Urgency: {analysis.urgency_level}")
-```
-
-#### Command-Line
 ```bash
-python cli/cli_symptoms_checker.py --symptoms "sadness,hopelessness,fatigue"
+python cli/cli_symptoms_checker.py --symptoms "sadness,hopelessness,sleep problems"
 ```
 
-### Mental Health Symptoms Covered
+**What Happens:**
 
-#### Mood Symptoms
-- Depression
-- Mania
-- Hypomania
-- Mood instability
-- Irritability
-- Anxiety
+You describe how you're feeling. The tool asks clarifying questions to understand better. Based on what you say, it suggests possible mental health conditions that have those symptoms. It identifies any emergency warning signs. It recommends whether you should talk to a professional.
 
-#### Cognitive Symptoms
-- Difficulty concentrating
-- Memory problems
-- Confusion
-- Difficulty decision-making
-- Intrusive thoughts
+**Important Limitation:**
 
-#### Sleep Symptoms
-- Insomnia
-- Hypersomnia
-- Nightmares
-- Sleep terror
-- Restless sleep
-
-#### Behavioral Symptoms
-- Withdrawal from activities
-- Reckless behavior
-- Self-harm
-- Aggression
-- Increased/decreased activity
-
-#### Physical Symptoms
-- Fatigue
-- Appetite changes
-- Weight changes
-- Aches and pains
-- Restlessness
+This symptom checker is educational only. It cannot diagnose you. Many different mental health conditions have overlapping symptoms. Only a mental health professional who talks to you and learns your full history can make a real diagnosis. Use this as a starting point for talking to a professional, not as a diagnosis.
 
 ---
 
-## Mental Health Reports
+## Emergency Resources
 
-Generate comprehensive mental health reports and summaries.
+If you're in a mental health crisis or having thoughts of suicide, get help immediately. These resources are available 24/7.
 
-### Features
-- Report generation
-- Treatment plans
-- Medication recommendations
-- Psychotherapy suggestions
-- Follow-up scheduling
-- Referral generation
+**National Suicide Prevention Lifeline:** 988 (call or text, available in the US)
+You can call or text 988 any time if you're having thoughts of suicide or if you're in crisis. Trained counselors will listen and help.
 
-### Usage
+**Crisis Text Line:** Text HOME to 741741
+You can text if you're more comfortable communicating that way. Send messages to 741741 and trained counselors will respond.
 
-#### Programmatic
-```python
-from medkit.mental_health.mental_health_report import generate_mental_health_report
+**Emergency Services:** 911 (in the US) or your local emergency number
+Call 911 if you're in immediate danger. Go to your nearest emergency room if you think you might hurt yourself.
 
-# Generate comprehensive report
-assessment_data = {...}  # From assessment
-report = generate_mental_health_report(assessment_data)
-
-print(report.diagnosis)
-print(report.severity_assessment)
-print(report.treatment_plan)
-print(report.recommended_follow_up)
-```
-
-### Report Components
-
-#### Summary
-- Patient demographics
-- Chief complaint
-- Timeline
-- Symptoms
-
-#### Assessment
-- Diagnostic impression
-- Severity rating
-- Functional impact
-- Risk assessment
-
-#### Treatment Recommendations
-- Medication options
-- Psychotherapy modalities
-- Lifestyle modifications
-- Self-care strategies
-
-#### Follow-Up
-- Timing of next visit
-- Monitoring parameters
-- Crisis plan
-- Resources
+**International Association for Suicide Prevention:** https://www.iasp.info/resources/Crisis_Centres/
+This website lists crisis hotlines around the world.
 
 ---
 
-## Crisis Resources
+## When to Get Help
 
-Emergency contacts and crisis support information.
+Talk to a mental health professional if you're experiencing any of these: feeling sad or empty most of the day for more than two weeks, losing interest in activities you normally enjoy, significant changes in sleep or appetite, difficulty concentrating, feeling hopeless or worthless, having thoughts of death or suicide, excessive worry that interferes with daily life, panic attacks, substance use problems, or significant life changes.
 
-### ⚠️ EMERGENCY RESOURCES
-
-#### Immediate Help
-- **National Suicide Prevention Lifeline**: 988 (call or text, US)
-- **Crisis Text Line**: Text HOME to 741741
-- **International Association for Suicide Prevention**: https://www.iasp.info/resources/Crisis_Centres/
-
-#### Emergency Services
-- **Emergency Room**: Call 911 (US) or your local emergency number
-- **Mobile Crisis Teams**: Available in many areas
-- **Psychiatric Hospitals**: 24-hour inpatient care
-
-#### Substance Use Help
-- **SAMHSA National Helpline**: 1-800-662-4357 (free, confidential, 24/7)
-- **Alcoholics Anonymous**: https://www.aa.org/
-- **Narcotics Anonymous**: https://www.na.org/
-
-#### General Mental Health Resources
-- **Psychology Today Therapist Directory**: https://www.psychologytoday.com/
-- **NAMI (National Alliance on Mental Illness)**: https://www.nami.org/
-- **Mental Health America**: https://www.mhanational.org/
-
-### Crisis Safety Planning
-1. **Identify Warning Signs**: What leads to crisis
-2. **Internal Coping Strategies**: Strategies to use alone
-3. **External Coping Strategies**: Social support activities
-4. **Social Contacts**: People to reach out to
-5. **Professional Contacts**: Therapist, doctor, crisis line
-6. **Hospitalization Plan**: When/where to go for emergency help
+Mental health is just as important as physical health. Getting help early works better than waiting. Mental health professionals can help, and treatment works.
 
 ---
 
-## Important Disclaimers
+## What Mental Health Treatment Involves
 
-### This System is NOT for Emergencies
-- **Not a substitute for emergency services**
-- If in immediate danger, call 911
-- If suicidal, contact 988 or crisis line immediately
-- For serious mental health concerns, seek professional help
+Therapy involves talking to a trained mental health professional who helps you understand your feelings and develop strategies to feel better. Different types of therapy work for different people.
 
-### Professional Mental Health Care
-- This tool provides **information and support only**
-- Cannot diagnose mental health conditions
-- Cannot provide psychotherapy
-- Cannot prescribe medications
-- Assessment results require professional confirmation
+Medication prescribed by a psychiatrist can help with some mental health conditions. Many people benefit from a combination of therapy and medication.
 
-### When to Seek Professional Help
-- Symptoms lasting 2+ weeks
-- Symptoms interfering with daily life
-- Thoughts of self-harm or suicide
-- Substance use problems
-- Severe anxiety or panic
-- Dramatic behavior changes
-- Inability to care for yourself
+Support groups connect you with others experiencing similar challenges. Peer support from people who understand what you're going through can be very helpful.
 
----
-
-## Related Documentation
-
-- [Medical Reference Documentation](MEDICAL_REFERENCE.md)
-- [Drug Database Documentation](DRUG_DATABASE.md)
-- [Diagnostic Tools Documentation](DIAGNOSTIC_TOOLS.md)
-- [CLI Tools Documentation](../cli/README.md)
-- [API Reference](api/modules.rst)
+Lifestyle changes like better sleep, exercise, and social connection support mental health recovery.
 
 ---
 
 ## Disclaimer
 
-This system is for **educational and informational purposes only**. It is not a substitute for professional mental health care, psychiatric evaluation, or emergency mental health services. Always consult with qualified mental health professionals for diagnosis, treatment, and emergency situations.
+This mental health information is educational only. It is not treatment. If you're struggling mentally, please talk to a mental health professional, doctor, or call a crisis line. Mental health conditions are treatable, and help is available. You don't have to struggle alone.
 
-**If you are in crisis or having thoughts of self-harm, please contact:**
-- National Suicide Prevention Lifeline: 988
-- Crisis Text Line: Text HOME to 741741
-- Emergency Services: 911
-- Nearest Emergency Room
+If you're thinking about suicide or hurting yourself, please reach out:
+- Call or text 988 (Suicide & Crisis Lifeline)
+- Text HOME to 741741
+- Call 911 or go to your nearest emergency room
+- Tell someone you trust how you're feeling
+
+Your life matters. Help is available.
