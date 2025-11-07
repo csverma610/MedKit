@@ -1,14 +1,14 @@
 # MedKit CLI Tools
 
-This directory contains command-line interfaces for querying MedKit medical information modules.
+This directory contains command-line interfaces for querying MedKit medical information modules. These tools provide easy access to comprehensive medical knowledge through the terminal.
 
-## Available CLI Tools
+## Available CLI Tools (9 Tools)
 
-### Disease Information
+### 1. Disease Information
 ```bash
 python cli/cli_disease_info.py <disease_name> [--verbose]
 ```
-Get comprehensive information about a disease.
+Get comprehensive disease definitions, symptoms, causes, and treatments.
 
 **Example:**
 ```bash
@@ -16,11 +16,11 @@ python cli/cli_disease_info.py diabetes
 python cli/cli_disease_info.py "heart disease" --verbose
 ```
 
-### Medicine/Drug Information
+### 2. Medicine/Drug Information
 ```bash
 python cli/cli_medicine_info.py <drug_name> [--interactions] [--verbose]
 ```
-Get information about medications and drugs, including interaction data.
+Get detailed medication information including dosages, side effects, and contraindications.
 
 **Example:**
 ```bash
@@ -28,16 +28,90 @@ python cli/cli_medicine_info.py aspirin
 python cli/cli_medicine_info.py ibuprofen --interactions
 ```
 
-### Medical Anatomy
+### 3. Drug-Drug Interaction Checker
+```bash
+python cli/cli_drug_interaction.py <drug1> <drug2> [--severity] [--verbose]
+```
+Check interactions between two medications and get severity information.
+
+**Example:**
+```bash
+python cli/cli_drug_interaction.py aspirin ibuprofen
+python cli/cli_drug_interaction.py warfarin aspirin --severity
+```
+
+### 4. Medical Anatomy
 ```bash
 python cli/cli_medical_anatomy.py <body_part> [--functions] [--verbose]
 ```
-Get anatomical information about body parts.
+Get anatomical structures and physiological function information about body parts.
 
 **Example:**
 ```bash
 python cli/cli_medical_anatomy.py heart
 python cli/cli_medical_anatomy.py brain --functions
+```
+
+### 5. Medical Dictionary/Terminology
+```bash
+python cli/cli_medical_dictionary.py <term> [--synonyms] [--verbose]
+```
+Look up medical terms and get definitions, synonyms, and related information.
+
+**Example:**
+```bash
+python cli/cli_medical_dictionary.py hypertension
+python cli/cli_medical_dictionary.py "myocardial infarction" --verbose
+```
+
+### 6. Medical Specialties
+```bash
+python cli/cli_medical_speciality.py <specialty> [--doctors] [--conditions] [--procedures]
+```
+Get information about medical specialties, specialists, and their areas of focus.
+
+**Example:**
+```bash
+python cli/cli_medical_speciality.py cardiology
+python cli/cli_medical_speciality.py neurology --conditions
+```
+
+### 7. Herbal Medicine Information
+```bash
+python cli/cli_herbal_info.py <herb_name> [--benefits] [--interactions] [--dosage] [--safety]
+```
+Get information about herbal remedies, traditional uses, and safety information.
+
+**Example:**
+```bash
+python cli/cli_herbal_info.py turmeric
+python cli/cli_herbal_info.py ginger --benefits
+python cli/cli_herbal_info.py echinacea --interactions
+```
+
+### 8. Mental Health Tools
+```bash
+python cli/cli_mental_health.py [--assessment] [--chat] [--interview] [--anonymous]
+```
+Access mental health assessments, support chat, and SANE interview tools.
+
+**Example:**
+```bash
+python cli/cli_mental_health.py --assessment
+python cli/cli_mental_health.py --chat
+python cli/cli_mental_health.py --interview
+```
+
+### 9. Symptom Checker
+```bash
+python cli/cli_symptoms_checker.py --symptoms "symptom1,symptom2,..." [--severity] [--duration] [--urgent]
+```
+Check symptoms and get possible conditions for informational purposes (NOT a diagnosis).
+
+**Example:**
+```bash
+python cli/cli_symptoms_checker.py --symptoms "fever,cough,fatigue"
+python cli/cli_symptoms_checker.py --symptoms "chest pain" --urgent
 ```
 
 ## Setup
