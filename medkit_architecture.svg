@@ -1,96 +1,206 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 950" width="1200" height="950">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1100" width="1400" height="1100">
   <defs>
     <style>
-      .title { font-size: 32px; font-weight: bold; text-anchor: middle; fill: #1a1a1a; }
-      .subtitle { font-size: 16px; font-style: italic; fill: #666; text-anchor: middle; }
-      .module-title { font-size: 18px; font-weight: bold; text-anchor: middle; fill: #1a1a1a; }
-      .module-item { font-size: 13px; text-anchor: start; fill: #333; }
-      .utilities-text { font-size: 12px; text-anchor: middle; fill: #555; font-style: italic; }
+      .main-title { font-size: 42px; font-weight: bold; text-anchor: middle; fill: #1a1a1a; }
+      .subtitle { font-size: 18px; fill: #0277BD; text-anchor: middle; font-weight: 600; }
+      .description { font-size: 14px; fill: #666; text-anchor: middle; }
+      .section-title { font-size: 20px; font-weight: bold; text-anchor: middle; fill: white; }
+      .section-text { font-size: 12px; fill: #333; }
+      .section-item { font-size: 13px; fill: #1a1a1a; font-weight: 500; }
+      .use-case { font-size: 11px; fill: #555; }
+      .label-bold { font-size: 12px; fill: #000; font-weight: bold; }
     </style>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+    <filter id="drop-shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.2"/>
     </filter>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-orange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF3E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE0B2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F3E5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E1BEE7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad-pink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FCE4EC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F8BBD0;stop-opacity:1" />
+    </linearGradient>
   </defs>
 
   <!-- Background -->
-  <rect width="1200" height="950" fill="white"/>
+  <rect width="1400" height="1100" fill="#fafafa"/>
 
-  <!-- Title Section -->
-  <text x="600" y="50" class="title">MedKit: Medical Information &amp; Reference System</text>
-  <text x="600" y="85" class="subtitle">Powered by Google Gemini AI</text>
+  <!-- Header Section -->
+  <rect x="0" y="0" width="1400" height="100" fill="white" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="700" y="50" class="main-title">MedKit</text>
+  <text x="700" y="75" class="subtitle">AI-Powered Medical Information &amp; Reference System</text>
 
-  <!-- Core Central Box -->
-  <rect x="400" y="130" width="400" height="80" rx="10" fill="#f0f0f0" stroke="#333" stroke-width="2.5" filter="url(#shadow)"/>
-  <text x="600" y="160" class="module-title">Core: Gemini API Integration</text>
-  <text x="600" y="185" style="font-size: 12px; text-anchor: middle; fill: #666;">Client • Config • Caching</text>
+  <!-- Tagline -->
+  <text x="700" y="1060" class="description" style="font-size: 13px; font-style: italic;">
+    Real-time medical knowledge • Drug interaction checking • Clinical decision support • Mental health assessment
+  </text>
 
-  <!-- Connecting lines from Core -->
-  <line x1="500" y1="210" x2="190" y2="280" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
-  <line x1="600" y1="210" x2="560" y2="280" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
-  <line x1="700" y1="210" x2="930" y2="280" stroke="#999" stroke-width="2" stroke-dasharray="5,5"/>
+  <!-- Section 1: Medical Reference -->
+  <g filter="url(#drop-shadow)">
+    <rect x="30" y="140" width="320" height="380" rx="12" fill="url(#grad-blue)" stroke="#0277BD" stroke-width="2.5"/>
+    <rect x="30" y="140" width="320" height="50" rx="12" fill="#0277BD"/>
+    <text x="190" y="175" class="section-title">📚 Medical Reference</text>
+    <text x="50" y="215" class="section-text" style="font-weight: 600;">Comprehensive Medical Knowledge</text>
 
-  <!-- Medical Reference Box -->
-  <rect x="50" y="280" width="280" height="240" rx="10" fill="#e8f4f8" stroke="#0288d1" stroke-width="2.5" filter="url(#shadow)"/>
-  <rect x="50" y="280" width="280" height="35" rx="10" fill="#0288d1"/>
-  <text x="190" y="308" style="font-size: 18px; font-weight: bold; text-anchor: middle; fill: white;">Medical Reference</text>
+    <text x="50" y="240" class="section-item">✓ Disease Information &amp; Symptoms</text>
+    <text x="70" y="257" class="use-case">Definitions, causes, treatments</text>
 
-  <text x="70" y="335" class="module-item">• Disease Information</text>
-  <text x="70" y="360" class="module-item">• Medical Anatomy</text>
-  <text x="70" y="385" class="module-item">• Medical Dictionary</text>
-  <text x="70" y="410" class="module-item">• Medical Specialties</text>
-  <text x="70" y="435" class="module-item">• Surgical Procedures</text>
-  <text x="70" y="460" class="module-item">• Medical Implants</text>
-  <text x="70" y="485" class="module-item">• Herbal Medicine</text>
-  <text x="70" y="510" class="module-item">• Medical Terminology</text>
+    <text x="50" y="280" class="section-item">✓ Medical Anatomy &amp; Physiology</text>
+    <text x="70" y="297" class="use-case">Body systems, organs, functions</text>
 
-  <!-- Drug Database Box -->
-  <rect x="420" y="280" width="280" height="240" rx="10" fill="#fff4e6" stroke="#f57c00" stroke-width="2.5" filter="url(#shadow)"/>
-  <rect x="420" y="280" width="280" height="35" rx="10" fill="#f57c00"/>
-  <text x="560" y="308" style="font-size: 18px; font-weight: bold; text-anchor: middle; fill: white;">Drug Database</text>
+    <text x="50" y="320" class="section-item">✓ Medical Dictionary</text>
+    <text x="70" y="337" class="use-case">1000+ medical terms explained</text>
 
-  <text x="440" y="335" class="module-item">• Medicine Information</text>
-  <text x="440" y="360" class="module-item">• Drug-Drug Interactions</text>
-  <text x="440" y="385" class="module-item">• Drug-Disease Interactions</text>
-  <text x="440" y="410" class="module-item">• Drug-Food Interactions</text>
-  <text x="440" y="435" class="module-item">• Similar Drugs</text>
-  <text x="440" y="460" class="module-item">• Drug Comparison</text>
-  <text x="440" y="485" class="module-item">• Dosage &amp; Side Effects</text>
-  <text x="440" y="510" class="module-item">• Contraindications</text>
+    <text x="50" y="360" class="section-item">✓ Specialties &amp; Procedures</text>
+    <text x="70" y="377" class="use-case">Surgery, implants, treatments</text>
 
-  <!-- Diagnostic Tools Box -->
-  <rect x="790" y="280" width="280" height="240" rx="10" fill="#f0e6ff" stroke="#7b1fa2" stroke-width="2.5" filter="url(#shadow)"/>
-  <rect x="790" y="280" width="280" height="35" rx="10" fill="#7b1fa2"/>
-  <text x="930" y="308" style="font-size: 18px; font-weight: bold; text-anchor: middle; fill: white;">Diagnostic Tools</text>
+    <text x="50" y="400" class="section-item">✓ Herbal Medicine</text>
+    <text x="70" y="417" class="use-case">Evidence-based remedies</text>
 
-  <text x="810" y="335" class="module-item">• Medical Tests Info</text>
-  <text x="810" y="360" class="module-item">• Diagnostic Devices</text>
-  <text x="810" y="385" class="module-item">• Physical Examinations</text>
-  <text x="810" y="410" class="module-item">• Decision Guides</text>
-  <text x="810" y="435" class="module-item">• Symptom Detection</text>
-  <text x="810" y="460" class="module-item">• Test Sequencing</text>
-  <text x="810" y="485" class="module-item">• Case Reports</text>
-  <text x="810" y="510" class="module-item">• Differential Diagnosis</text>
+    <rect x="40" y="440" width="300" height="60" rx="8" fill="#E3F2FD" stroke="#0277BD" stroke-width="1"/>
+    <text x="50" y="460" class="label-bold">Perfect for:</text>
+    <text x="50" y="480" class="use-case">Understanding diseases • Learning anatomy</text>
+    <text x="50" y="495" class="use-case">Finding alternative treatments</text>
+  </g>
 
-  <!-- Mental Health Box -->
-  <rect x="50" y="600" width="420" height="180" rx="10" fill="#ffe6f0" stroke="#c2185b" stroke-width="2.5" filter="url(#shadow)"/>
-  <rect x="50" y="600" width="420" height="35" rx="10" fill="#c2185b"/>
-  <text x="260" y="628" style="font-size: 18px; font-weight: bold; text-anchor: middle; fill: white;">Mental Health Support</text>
+  <!-- Section 2: Drug Database -->
+  <g filter="url(#drop-shadow)">
+    <rect x="390" y="140" width="320" height="380" rx="12" fill="url(#grad-orange)" stroke="#F57C00" stroke-width="2.5"/>
+    <rect x="390" y="140" width="320" height="50" rx="12" fill="#F57C00"/>
+    <text x="550" y="175" class="section-title">💊 Drug Database</text>
+    <text x="410" y="215" class="section-text" style="font-weight: 600;">Medicine &amp; Interaction Information</text>
 
-  <text x="70" y="660" class="module-item">• Mental Health Assessment  • Chat Support  • SANE Interview  • Crisis Resources</text>
-  <text x="70" y="685" class="module-item">• Symptom Detection Chat  • Risk Assessment  • Emergency Hotlines</text>
+    <text x="410" y="240" class="section-item">✓ Medicine Information</text>
+    <text x="430" y="257" class="use-case">Dosages, side effects, uses</text>
 
-  <!-- Utilities Box -->
-  <rect x="550" y="600" width="520" height="180" rx="10" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5" filter="url(#shadow)"/>
-  <rect x="550" y="600" width="520" height="35" rx="10" fill="#2e7d32"/>
-  <text x="810" y="628" style="font-size: 18px; font-weight: bold; text-anchor: middle; fill: white;">Features &amp; Utilities</text>
+    <text x="410" y="280" class="section-item">✓ Drug-Drug Interactions</text>
+    <text x="430" y="297" class="use-case">Safety warnings, severity levels</text>
 
-  <text x="570" y="660" class="module-item">✓ Local LMDB Caching for offline access      ✓ HIPAA-aware Privacy Compliance</text>
-  <text x="570" y="685" class="module-item">✓ AI-powered Fact Checking                  ✓ Multi-access: Python API • CLI • Chat</text>
+    <text x="410" y="320" class="section-item">✓ Drug-Disease Interactions</text>
+    <text x="430" y="337" class="use-case">Safe medications for conditions</text>
 
-  <!-- Key Features Footer -->
-  <rect x="50" y="840" width="1100" height="80" rx="8" fill="#f5f5f5" stroke="#999" stroke-width="1.5"/>
-  <text x="600" y="865" style="font-size: 16px; font-weight: bold; text-anchor: middle; fill: #1a1a1a;">Key Capabilities</text>
-  <text x="600" y="895" class="utilities-text">Comprehensive medical database • AI-powered differential diagnosis • Drug interaction checking</text>
-  <text x="600" y="915" class="utilities-text">Physical examination guides • Mental health assessments • Evidence-based decision support</text>
+    <text x="410" y="360" class="section-item">✓ Drug-Food Interactions</text>
+    <text x="430" y="377" class="use-case">Dietary considerations</text>
+
+    <text x="410" y="400" class="section-item">✓ Drug Alternatives &amp; Comparison</text>
+    <text x="430" y="417" class="use-case">Find better medications</text>
+
+    <rect x="400" y="440" width="300" height="60" rx="8" fill="#FFF3E0" stroke="#F57C00" stroke-width="1"/>
+    <text x="410" y="460" class="label-bold">Perfect for:</text>
+    <text x="410" y="480" class="use-case">Checking medication safety • Verifying</text>
+    <text x="410" y="495" class="use-case">interactions • Finding alternatives</text>
+  </g>
+
+  <!-- Section 3: Diagnostic Tools -->
+  <g filter="url(#drop-shadow)">
+    <rect x="750" y="140" width="320" height="380" rx="12" fill="url(#grad-purple)" stroke="#7B1FA2" stroke-width="2.5"/>
+    <rect x="750" y="140" width="320" height="50" rx="12" fill="#7B1FA2"/>
+    <text x="910" y="175" class="section-title">🔬 Diagnostic Tools</text>
+    <text x="770" y="215" class="section-text" style="font-weight: 600;">Medical Tests &amp; Examinations</text>
+
+    <text x="770" y="240" class="section-item">✓ Medical Tests Information</text>
+    <text x="790" y="257" class="use-case">Blood tests, imaging, results</text>
+
+    <text x="770" y="280" class="section-item">✓ Diagnostic Devices</text>
+    <text x="790" y="297" class="use-case">Equipment, ultrasound, MRI, CT</text>
+
+    <text x="770" y="320" class="section-item">✓ Physical Examinations</text>
+    <text x="790" y="337" class="use-case">27+ body system exam guides</text>
+
+    <text x="770" y="360" class="section-item">✓ Medical Decision Guides</text>
+    <text x="790" y="377" class="use-case">Symptom to diagnosis paths</text>
+
+    <text x="770" y="400" class="section-item">✓ Symptom Detection</text>
+    <text x="790" y="417" class="use-case">AI-powered analysis</text>
+
+    <rect x="760" y="440" width="300" height="60" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1"/>
+    <text x="770" y="460" class="label-bold">Perfect for:</text>
+    <text x="770" y="480" class="use-case">Understanding test results • Preparing</text>
+    <text x="770" y="495" class="use-case">for doctor visits • Learning procedures</text>
+  </g>
+
+  <!-- Section 4: Mental Health -->
+  <g filter="url(#drop-shadow)">
+    <rect x="1110" y="140" width="260" height="380" rx="12" fill="url(#grad-pink)" stroke="#C2185B" stroke-width="2.5"/>
+    <rect x="1110" y="140" width="260" height="50" rx="12" fill="#C2185B"/>
+    <text x="1240" y="175" class="section-title">🧠 Mental Health</text>
+    <text x="1130" y="215" class="section-text" style="font-weight: 600;">Mental Health Support</text>
+
+    <text x="1130" y="240" class="section-item">✓ Assessments</text>
+    <text x="1150" y="255" class="use-case">Depression, anxiety screening</text>
+
+    <text x="1130" y="275" class="section-item">✓ Chat Support</text>
+    <text x="1150" y="290" class="use-case">Conversational interface</text>
+
+    <text x="1130" y="310" class="section-item">✓ SANE Interview</text>
+    <text x="1150" y="325" class="use-case">Structured assessment</text>
+
+    <text x="1130" y="345" class="section-item">✓ Crisis Resources</text>
+    <text x="1150" y="360" class="use-case">24/7 emergency hotlines</text>
+
+    <text x="1130" y="385" class="section-item">✓ Symptom Tracking</text>
+    <text x="1150" y="400" class="use-case">Monitor mental health</text>
+
+    <rect x="1120" y="440" width="240" height="60" rx="8" fill="#FCE4EC" stroke="#C2185B" stroke-width="1"/>
+    <text x="1130" y="460" class="label-bold">Perfect for:</text>
+    <text x="1130" y="480" class="use-case">Screening • Understanding</text>
+    <text x="1130" y="495" class="use-case">concerns • Finding help</text>
+  </g>
+
+  <!-- Bottom Section: Access Methods -->
+  <g filter="url(#drop-shadow)">
+    <rect x="30" y="570" width="1340" height="140" rx="12" fill="white" stroke="#0277BD" stroke-width="2"/>
+    <text x="700" y="600" style="font-size: 22px; font-weight: bold; text-anchor: middle; fill: #0277BD;">🚀 Easy Access - Three Ways to Use MedKit</text>
+
+    <!-- Python API -->
+    <g>
+      <rect x="50" y="625" width="400" height="70" rx="8" fill="#f0f7ff" stroke="#0277BD" stroke-width="1.5"/>
+      <text x="250" y="645" style="font-size: 13px; font-weight: bold; text-anchor: middle; fill: #0277BD;">Python API</text>
+      <text x="70" y="670" class="use-case">from medkit.medical import</text>
+      <text x="70" y="685" class="use-case">get_disease_info("diabetes")</text>
+    </g>
+
+    <!-- Command Line -->
+    <g>
+      <rect x="500" y="625" width="400" height="70" rx="8" fill="#fff6f0" stroke="#F57C00" stroke-width="1.5"/>
+      <text x="700" y="645" style="font-size: 13px; font-weight: bold; text-anchor: middle; fill: #F57C00;">Command Line Interface</text>
+      <text x="520" y="670" class="use-case">python cli/cli_medicine_info.py</text>
+      <text x="520" y="685" class="use-case">aspirin --interactions</text>
+    </g>
+
+    <!-- Interactive Chat -->
+    <g>
+      <rect x="950" y="625" width="400" height="70" rx="8" fill="#f9f5ff" stroke="#7B1FA2" stroke-width="1.5"/>
+      <text x="1150" y="645" style="font-size: 13px; font-weight: bold; text-anchor: middle; fill: #7B1FA2;">Interactive Chat</text>
+      <text x="970" y="670" class="use-case">start_mental_health_chat()</text>
+      <text x="970" y="685" class="use-case">send_message("I'm feeling...")</text>
+    </g>
+  </g>
+
+  <!-- Features Bar -->
+  <rect x="30" y="755" width="1340" height="70" rx="10" fill="#E8F5E9" stroke="#2E7D32" stroke-width="2" filter="url(#drop-shadow)"/>
+  <text x="50" y="780" style="font-size: 13px; font-weight: bold; fill: #2E7D32;">✓ LMDB Offline Caching</text>
+  <text x="280" y="780" style="font-size: 13px; font-weight: bold; fill: #2E7D32;">✓ HIPAA Privacy Compliance</text>
+  <text x="630" y="780" style="font-size: 13px; font-weight: bold; fill: #2E7D32;">✓ AI-Powered Fact Checking</text>
+  <text x="1000" y="780" style="font-size: 13px; font-weight: bold; fill: #2E7D32;">✓ Real-Time Updates</text>
+
+  <text x="50" y="800" style="font-size: 12px; fill: #555;">Works offline • Educational • Evidence-based • Professional-grade • Privacy-first design</text>
+
+  <!-- Use Cases Footer -->
+  <g>
+    <text x="700" y="880" style="font-size: 16px; font-weight: bold; text-anchor: middle; fill: #1a1a1a;">Who Uses MedKit?</text>
+    <text x="150" y="920" style="font-size: 12px; fill: #666; text-anchor: start;">👨‍⚕️ Healthcare Professionals • 📚 Students &amp; Educators</text>
+    <text x="650" y="920" style="font-size: 12px; fill: #666; text-anchor: start;">💡 Researchers • 👥 Patients &amp; Families</text>
+    <text x="150" y="945" style="font-size: 12px; fill: #666; text-anchor: start;">🏥 Hospitals &amp; Clinics • 📱 Health Apps • 🤖 AI Systems</text>
+  </g>
 </svg>
