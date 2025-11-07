@@ -1,121 +1,251 @@
 # Diagnostic Tools Documentation
 
-The Diagnostic Tools module helps you understand medical tests, equipment, physical examinations, and how doctors decide what tests to order. It includes information about blood tests, imaging tests, procedures, and examination techniques.
+## Overview
+
+The Diagnostic Tools module provides information about medical tests, diagnostic equipment, physical examination techniques, and how doctors decide what tests to order.
+
+**What it does:** Explains medical tests, devices, exams, and diagnostic decision-making.
+**Why it matters:** Understanding tests helps patients prepare, reduces anxiety, and lets them have informed conversations with doctors.
+
+---
 
 ## Medical Tests Information
 
-Understand what medical tests do and what the results mean. Medical tests help doctors figure out what's wrong or monitor how you're doing with a treatment.
+### Scope
+Comprehensive information about diagnostic medical tests.
 
-When your doctor orders a blood test, imaging test, or other diagnostic test, you can look it up to understand what the test is for, how it's done, what the normal results are, and what abnormal results might mean.
+### What it does
+- Explains what the test measures
+- Describes why doctors order it
+- Details how the test is performed
+- Explains what samples are needed (blood, urine, saliva, etc.)
+- Lists normal and abnormal results
+- Interprets what abnormal results might mean
+- Identifies risks or side effects
+- Describes preparation needed beforehand
+- Explains how long it takes
 
-**How to Use:**
+### Why it matters
+When a doctor orders a test, patients need to understand what is being tested, how it works, what results mean, and what happens next.
 
+### Usage
 ```python
 from medkit.diagnostics.medical_test_info import get_test_info
 
-# Look up a test
 test = get_test_info("complete blood count")
 print(test)
 ```
 
-**Types of Tests:**
+### Tests Covered
+Blood tests (CBC, metabolic panel, glucose), imaging tests (X-ray, ultrasound, CT, MRI), cardiac tests (EKG, stress test, echocardiogram), pulmonary function tests, hormone tests, liver and kidney function tests, and hundreds more.
 
-The diagnostic module covers many common tests including blood tests that count different cell types and measure chemicals, tests that look at how your heart functions, tests that measure hormone levels, kidney and liver function tests, and many others. Each test explanation tells you why the test is done, what samples are needed, what the normal values are, and what abnormal results might indicate.
-
-**Why Tests Matter:**
-
-Tests help doctors detect diseases early, monitor how well treatments are working, and understand what's causing your symptoms. Understanding what tests measure helps you have better conversations with your doctor about your health.
+### Important Note
+Results must be interpreted by a doctor. A single abnormal result doesn't mean diagnosis. Doctors look at the complete clinical picture.
 
 ---
 
 ## Diagnostic Devices
 
-Learn about medical equipment and machines used to diagnose health problems. These devices include heart monitors, ultrasound machines, CT scanners, and many others.
+### Scope
+Information about medical equipment and machines used to diagnose health problems.
 
-Understanding how diagnostic devices work helps you know what to expect if your doctor orders imaging or monitoring. Some devices use sound waves, some use radiation, and some use magnets to create pictures of your body.
+### What it does
+- Explains what the device does
+- Describes how it works (what technology it uses)
+- Identifies what it diagnoses
+- Explains what to expect during use
+- Lists any risks or discomfort
+- Describes preparation needed
+- Explains results and timing
+- Details contraindications (who can't use it)
 
-**How to Use:**
+### Why it matters
+Modern medical devices can be intimidating. Understanding how they work reduces patient anxiety and improves cooperation during procedures.
 
+### Usage
 ```python
 from medkit.diagnostics.medical_test_devices import get_device_info
 
-# Learn about a device
 device = get_device_info("ultrasound machine")
 print(device)
 ```
 
-**Common Devices:**
+### Devices Covered
+Heart monitors, ultrasound machines, CT scanners, MRI machines, X-ray equipment, EKG machines, endoscopes, colonoscopes, mammography equipment, and others.
 
-This module covers heart monitors that record your heartbeat, ultrasound machines that use sound waves to make pictures, CT scanners that take many X-rays to create detailed images, MRI machines that use magnets, X-ray equipment, and many other machines. Each device explanation describes what it does and what to expect.
+### Key Differences
+
+**Ultrasound:** Uses sound waves, safe, no radiation, real-time images.
+
+**X-ray:** Uses radiation, quick images, flat 2D pictures.
+
+**CT (Computed Tomography):** Multiple X-rays create detailed 3D images, higher radiation exposure.
+
+**MRI:** Uses magnets and radio waves, no radiation, very detailed, takes longer.
 
 ---
 
 ## Physical Examinations
 
-Get detailed guides for physical examinations performed by doctors. Physical examination is when your doctor looks at, listens to, and feels your body to check for health problems.
+### Scope
+Detailed guides for physical examinations performed by doctors.
 
-The examination guides cover how to examine different body systems including the heart and lungs, abdomen, nervous system, muscles and joints, skin, and others. These guides help you understand what doctors are doing during exams and what they're looking for.
+### What it does
+- Explains what the doctor is checking
+- Describes the examination steps
+- Explains what normal findings are
+- Identifies what abnormal findings might mean
+- Lists patient preparation needed
+- Describes what to expect during exam
+- Explains results
 
-**How Physical Exams Work:**
+### Why it matters
+When a doctor examines you, you deserve to understand what they're doing and why. Understanding the exam reduces anxiety and improves cooperation.
 
-During a physical exam, doctors use special techniques to evaluate each part of your body. They listen with a stethoscope to hear heart and lung sounds. They feel your abdomen to check if organs feel normal. They test reflexes to check nerve function. They look at your eyes, ears, and throat. All these examinations help doctors detect problems.
+### Usage
+```python
+from medkit.diagnostics.medical_tests_graph import get_exam_guide
 
-**What Gets Examined:**
+exam = get_exam_guide("cardiac examination")
+print(exam)
+```
 
-The cardiac examination looks for signs of heart problems. The respiratory examination checks lung function. The neurological examination tests how your brain and nerves work. The abdominal examination checks the organs in your belly. The musculoskeletal examination evaluates bones, muscles, and joints.
+### Examinations Covered
+Cardiac (heart) examination, respiratory (lung) examination, neurological examination, abdominal examination, musculoskeletal examination, skin examination, eye examination, ear/nose/throat examination, and 19+ others.
+
+### Common Examination Elements
+
+**Inspection:** Looking at the body part for color, swelling, deformities.
+
+**Palpation:** Feeling with hands for lumps, tenderness, temperature.
+
+**Percussion:** Tapping to listen for sounds (hollow vs. solid).
+
+**Auscultation:** Listening with stethoscope for sounds (heart, lungs, bowel).
 
 ---
 
 ## Medical Decision Guides
 
-Understand the process doctors use to figure out what's causing your symptoms. Decision guides are step-by-step paths that help doctors decide what disease you might have based on your symptoms and test results.
+### Scope
+Evidence-based guides showing how doctors diagnose conditions.
 
-These guides are based on medical experience and research about what symptoms lead to what diagnoses. Understanding decision guides helps you see how doctors think about diagnosis.
+### What it does
+- Shows the diagnostic path from symptoms to diagnosis
+- Explains what questions doctors ask
+- Identifies what tests doctors order first (initial testing)
+- Shows how results guide next steps
+- Explains why certain tests are done in certain order
+- Identifies differential diagnoses (possible conditions)
+- Shows how diagnosis is confirmed
 
-**How Decision Guides Work:**
+### Why it matters
+Diagnosis isn't random. Doctors follow evidence-based patterns. Understanding how doctors think helps patients prepare for appointments and understand the process.
 
-A doctor starts with your symptoms, then asks questions to understand more about them. Based on your answers, the doctor narrows down possible diagnoses and orders specific tests. Test results provide more information. Eventually, the doctor has enough information to make a diagnosis.
+### Usage
+```python
+from medkit.diagnostics.medical_test_info import get_decision_guide
 
-**Examples of Conditions with Guides:**
+guide = get_decision_guide("chest pain")
+print(guide)
+```
 
-There are decision guides for chest pain (is it a heart attack, anxiety, or muscle pain?), shortness of breath (is it heart disease, lung disease, or anxiety?), headaches (is it a migraine, tension headache, or something serious?), and many other conditions.
+### Decision Paths Covered
+Chest pain diagnosis, shortness of breath, headache, abdominal pain, fever, dizziness, and others.
+
+### Example: Chest Pain Diagnostic Path
+1. **Initial assessment:** History and physical exam
+2. **Initial tests:** EKG, troponin blood test (checks for heart attack)
+3. **If abnormal:** Admit to hospital, additional testing
+4. **If normal but high risk:** Stress test or cardiac catheterization
+5. **If normal and low risk:** May discharge with instructions
+6. **Result:** Rule out life-threatening conditions first, identify actual cause
 
 ---
 
 ## Symptom Detection
 
-Use this tool to explore what conditions might cause your symptoms. This is not a diagnosis, but it helps you understand possibilities you could discuss with your doctor.
+### Scope
+AI-powered analysis of symptoms to identify possible conditions.
 
-When you input your symptoms, the tool analyzes them and suggests conditions that commonly cause those symptoms. This helps you prepare for a doctor visit by thinking about what questions to ask.
+### What it does
+- Analyzes symptom patterns
+- Identifies possible conditions that match symptoms
+- Prioritizes conditions by likelihood
+- Identifies emergency warning signs
+- Recommends urgency level (see doctor today, this week, routine appointment)
+- Suggests what to tell your doctor
+- Lists questions to ask doctor
 
-**How to Use:**
+### Why it matters
+When symptoms start, people often don't know if it's serious. This helps guide urgency and preparation for doctor visits.
 
+### Usage
 ```bash
 python cli/cli_symptoms_checker.py --symptoms "fever,cough,fatigue"
 ```
 
-**Important:**
+### Important Limitations
 
-This tool provides educational information only. It cannot diagnose you. Many different conditions can cause the same symptoms. Only a doctor who examines you and does appropriate tests can make a real diagnosis. If you think you have a serious condition, see a doctor right away instead of using an online tool.
+**Cannot diagnose:** Only a doctor who examines you can diagnose.
+
+**Overlapping symptoms:** Many conditions have similar symptoms.
+
+**Many variables:** Age, medical history, medications all affect diagnosis.
+
+**Use as guide:** This is a starting point for doctor conversations, not a diagnosis.
 
 ---
 
 ## Test Relationships and Sequencing
 
-Understand how medical tests relate to each other and what order doctors use to figure out diagnosis.
+### Scope
+How medical tests relate to each other and the order doctors use them.
 
-Doctors don't order tests randomly. They start with initial tests that give general information, then order follow-up tests based on what the first tests show. This helps get to a diagnosis efficiently and avoids unnecessary testing.
+### What it does
+- Explains initial screening tests vs. confirmatory tests
+- Shows why certain tests are done before others
+- Identifies follow-up tests based on results
+- Explains efficiency in test ordering
+- Discusses cost-benefit of testing
+- Identifies when additional testing is unnecessary
 
-**How Testing Sequences Work:**
+### Why it matters
+Good doctors don't order random tests. They follow logical sequences. Understanding this reduces unnecessary testing and costs.
 
-For example, if someone has symptoms of diabetes, the doctor might first do a blood sugar test. If that's high, the doctor then does a more specific test to confirm diabetes. Then, once diabetes is confirmed, the doctor does tests to check for complications like kidney or heart damage.
+### Example: Diabetes Testing Sequence
 
-**Benefits of Smart Testing:**
+1. **Initial screening:** Fasting blood glucose or HbA1c
+2. **If abnormal:** Repeat testing to confirm (not diagnosed on one test)
+3. **If confirmed diabetic:** Kidney and liver function tests (baseline)
+4. **Routine monitoring:** HbA1c every 3 months, annual labs
+5. **Complications screening:** Kidney function, eye exam, foot exam
 
-Good test sequencing saves money by not doing unnecessary tests. It gets to diagnosis faster. It avoids exposing you to unnecessary radiation or other risks. It helps doctors understand your specific situation rather than testing for everything.
+### Why This Order?
+- **Initial tests:** Quick, inexpensive, identify the problem
+- **Confirmation:** Avoids misdiagnosis
+- **Baseline tests:** Establish normal before medication starts
+- **Monitoring:** Ensures treatment is working, watch for side effects
+- **Screening:** Catch complications early
 
 ---
 
 ## Disclaimer
 
-This diagnostic information is educational only. It helps you understand medical tests and examinations better, but it should not replace consultation with your doctor. Only a doctor who evaluates you can determine what tests you need and what the results mean for your specific situation. Don't try to self-diagnose based on this information. Always see a healthcare provider about medical concerns.
+**Educational Information Only:** This information helps you understand medical tests and procedures.
+
+**Not Diagnosis:** This information does not diagnose you or replace examination by a doctor.
+
+**Individual Variation:** Medical testing varies based on your specific situation, age, medical history, and symptoms.
+
+**Interpretation:** Results must be interpreted by a doctor. Context matters. One abnormal result may not mean disease.
+
+**Trust Your Doctor:** If your doctor recommends a test, ask questions. But follow professional medical advice over online information.
+
+**Seek Care When Needed:** If you have concerning symptoms:
+- See your doctor promptly
+- Call 911 for emergencies
+- Go to the ER for severe symptoms
+- Don't wait for online tools to decide
+
+**Privacy:** Medical testing may involve sensitive information. Ask about privacy and how results are stored.

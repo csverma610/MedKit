@@ -1,165 +1,240 @@
 # Medical Reference Documentation
 
-The Medical Reference module provides comprehensive access to medical knowledge including disease information, anatomical structures, medical terminology, specialties, surgical procedures, medical devices, and herbal remedies.
+## Overview
+
+The Medical Reference module is a comprehensive medical knowledge base. It provides factual information about diseases, human anatomy, medical terminology, medical specialties, surgical procedures, medical implants, and herbal medicine.
+
+**What it does:** Delivers accurate medical reference information on demand.
+**Why it matters:** Helps users understand medical concepts, body systems, and treatment options without jargon.
+
+---
 
 ## Disease Information
 
-Get detailed information about diseases, medical conditions, and health disorders. This module helps you understand what a disease is, its symptoms, causes, how it's diagnosed, and what treatment options are available.
+### Scope
+Provides detailed information about medical diseases and health conditions.
 
-When you look up a disease like diabetes, you get a clear explanation of what the disease is, the symptoms people experience, what causes it, how doctors diagnose it, and what treatment options exist. You also learn about possible complications and how to manage the condition.
+### What it does
+- Returns definition of the disease
+- Lists symptoms (what the person experiences)
+- Explains causes (what triggers the disease)
+- Describes how doctors diagnose it
+- Outlines treatment options available
+- Details potential complications
+- Suggests prevention strategies
+- Identifies who is at risk
 
-**Using Disease Information:**
+### Why it matters
+Users can understand what a disease is, recognize symptoms, and know what to expect when seeing a doctor.
 
+### Usage
 ```python
 from medkit.medical.disease_info import get_disease_info
 
-# Look up any disease
 info = get_disease_info("diabetes")
-print(info)  # Get all information about diabetes
+print(info)
 ```
 
-**What You Can Find:**
+### Diseases Covered
+Diabetes, heart disease, hypertension, infections, cancer, mental health conditions, autoimmune disorders, and hundreds more.
 
-The disease module covers common diseases like diabetes, heart disease, high blood pressure, infections, mental health conditions, and many others. Each disease entry includes the medical definition, symptoms that people experience, what causes the disease, who is at risk, how doctors diagnose it, available treatments, possible complications, and prevention strategies.
+### Important Note
+This information is educational only. See a doctor for diagnosis and treatment.
 
 ---
 
 ## Medical Anatomy
 
-Understand how the human body is structured and how different body parts work. The anatomy module explains the organs, bones, muscles, nerves, and blood vessels that make up our body systems.
+### Scope
+Explains how the human body is structured and functions.
 
-Learning anatomy helps you understand how the body functions normally and why certain diseases affect specific parts of the body. For example, understanding heart anatomy helps you understand heart diseases better.
+### What it does
+- Describes body organs and their location
+- Explains how body systems work together
+- Details anatomical structures (bones, muscles, nerves, blood vessels)
+- Shows relationships between body parts
+- Describes normal physiological functions
 
-**Using Anatomy Information:**
+### Why it matters
+Understanding anatomy helps users comprehend how diseases affect the body and why certain treatments work.
 
+### Usage
 ```python
 from medkit.medical.medical_anatomy import get_anatomy_info
 
-# Learn about a body part
 anatomy = get_anatomy_info("heart")
-print(anatomy)  # Get detailed heart anatomy
+print(anatomy)
 ```
 
-**Body Systems Covered:**
-
-This module covers all major body systems including the heart and blood vessels, the lungs and breathing system, the brain and nervous system, bones and muscles, the stomach and digestive system, hormones and the endocrine system, kidneys and the urinary system, and skin. Each system is explained clearly so you understand how it works normally.
+### Body Systems Available
+Cardiovascular (heart and blood vessels), respiratory (lungs), nervous system (brain and nerves), musculoskeletal (bones and muscles), digestive system (stomach and intestines), endocrine system (hormones), urinary system (kidneys), and integumentary system (skin).
 
 ---
 
 ## Medical Dictionary
 
-A comprehensive medical terminology reference that explains medical words and phrases in simple language. Many medical terms can be confusing, so this module breaks them down into understandable explanations.
+### Scope
+A reference for medical terminology and abbreviations.
 
-When doctors use medical terms, you can look them up here to understand what they mean. The dictionary includes disease names, procedure names, anatomical terms, drug names, and common medical abbreviations.
+### What it does
+- Defines medical terms in plain language
+- Explains medical abbreviations (MI = myocardial infarction)
+- Clarifies anatomical terms
+- Defines procedure names
+- Explains drug classifications
+- Breaks down complex medical concepts
 
-**Using the Dictionary:**
+### Why it matters
+Medical terminology can be confusing. This tool translates medical jargon into plain English so users understand what doctors are saying.
 
+### Usage
 ```python
 from medkit.medical.medical_dictionary import get_medical_definition
 
-# Look up any medical term
 definition = get_medical_definition("hypertension")
 print(definition)
 ```
 
-**What's Included:**
-
-The dictionary covers medical condition names, surgical procedures, anatomical structures, drug classifications, medical abbreviations like "MI" for heart attack, and disease processes. Every term is explained clearly without using too much medical jargon.
+### Coverage
+Disease names, surgical procedures, anatomical structures, drug classifications, common medical abbreviations, and physiological processes.
 
 ---
 
 ## Medical Specialties
 
-Learn about different medical specialties and what doctors in each specialty do. Medical specialties are areas where doctors focus their training and experience.
+### Scope
+Information about medical specialties and what specialists do.
 
-If you need to see a specialist, you can use this module to understand what that doctor specializes in and what conditions they treat. For example, a cardiologist specializes in heart problems.
+### What it does
+- Lists medical specialties and their focus areas
+- Describes what each specialist treats
+- Explains their training and expertise
+- Identifies common conditions they handle
+- Helps users understand when to see a specialist
 
-**Using Specialty Information:**
+### Why it matters
+When a doctor refers you to a specialist, you need to understand what they do and why you're being referred.
 
+### Usage
 ```python
 from medkit.medical.medical_speciality import get_speciality_info
 
-# Learn about a specialty
 specialty = get_speciality_info("cardiology")
 print(specialty)
 ```
 
-**Available Specialties:**
-
-This module covers many medical specialties including cardiology (heart doctors), neurology (brain and nerve doctors), orthopedics (bone and joint doctors), dermatology (skin doctors), oncology (cancer doctors), psychiatry (mental health doctors), pediatrics (children's doctors), and many others. Each specialty explains what the doctors do and what conditions they treat.
+### Specialties Included
+Cardiology (heart), neurology (brain and nerves), orthopedics (bones and joints), dermatology (skin), oncology (cancer), psychiatry (mental health), pediatrics (children), gastroenterology (digestive), pulmonology (lungs), and many others.
 
 ---
 
 ## Surgical Procedures
 
-Detailed information about surgical operations including how the surgery is performed, why it's needed, what to expect before and after, and what tools are used.
+### Scope
+Detailed explanations of surgical operations.
 
-If you're having surgery or need to understand a surgical procedure, this module explains it clearly. You learn what the procedure is for, how the surgeon does it, what happens before surgery, what happens during surgery, and what recovery is like.
+### What it does
+- Explains why the surgery is needed
+- Describes the surgical steps
+- Details what happens before surgery
+- Explains what happens during surgery
+- Describes recovery and aftercare
+- Lists tools and equipment used
+- Discusses potential risks and benefits
 
-**Using Surgery Information:**
+### Why it matters
+Surgery can be frightening. Understanding what will happen reduces anxiety and helps patients prepare mentally and physically.
 
+### Usage
 ```python
 from medkit.medical.surgery_info import get_surgery_info
 
-# Learn about a procedure
 surgery = get_surgery_info("coronary artery bypass")
 print(surgery)
 ```
 
-**Procedures Covered:**
-
-This module covers common surgeries including heart surgeries, orthopedic surgeries, general surgeries, brain surgeries, and many others. Each procedure is explained step by step so you understand what happens.
+### Procedures Covered
+Cardiac surgeries, orthopedic surgeries, general surgeries, neurosurgeries, gastrointestinal surgeries, and more.
 
 ---
 
 ## Medical Implants
 
-Information about medical devices and implants that are placed in the body to help with health conditions. Implants include pacemakers for the heart, artificial joints for bones, and many other devices.
+### Scope
+Information about medical devices permanently or semi-permanently placed in the body.
 
-When a doctor recommends an implant, you can learn what it is, how it works, why you might need it, how long it lasts, and what to expect living with it.
+### What it does
+- Explains what the implant is
+- Describes how it works
+- Identifies who needs it
+- Details the implantation procedure
+- Explains lifespan and durability
+- Lists potential complications
+- Describes living with the implant
+- Covers maintenance and follow-up
 
-**Using Implant Information:**
+### Why it matters
+If a doctor recommends an implant, patients need to understand what it is, why they need it, and how it will affect their life.
 
+### Usage
 ```python
 from medkit.medical.medical_implant import get_implant_info
 
-# Learn about an implant
 implant = get_implant_info("pacemaker")
 print(implant)
 ```
 
-**Types of Implants:**
-
-This module includes heart implants like pacemakers, bone implants like artificial hip replacements, hearing implants like cochlear implants, and eye implants. Each implant description explains what it does, who needs it, and how it works.
+### Implants Covered
+Cardiac devices (pacemakers, defibrillators), orthopedic implants (artificial joints, pins), hearing implants (cochlear implants), eye implants, spinal implants, and others.
 
 ---
 
 ## Herbal Medicine
 
-Evidence-based information about herbal remedies, traditional medicines, and plant-based treatments. This module explains what each herb does, whether scientific research supports using it, what the safety concerns are, and how to use it safely.
+### Scope
+Evidence-based information about herbal remedies and plant-based treatments.
 
-Herbal remedies have been used for thousands of years, and many are now studied scientifically. This module helps you understand which herbs have scientific support and which ones might interact with medications you're taking.
+### What it does
+- Identifies what each herb is traditionally used for
+- Reviews scientific research on effectiveness
+- Explains active compounds in herbs
+- Details proper dosage and preparation
+- Lists potential side effects
+- Identifies drug interactions
+- Provides safety information
+- Recommends when to see a doctor
 
-**Using Herbal Information:**
+### Why it matters
+Herbal remedies can be effective but also carry risks. Users need evidence-based information to use them safely.
 
+### Usage
 ```python
 from medkit.medical.herbal_info import get_herbal_information
 
-# Learn about an herb
 herb = get_herbal_information("turmeric")
 print(herb)
 ```
 
-**Important Safety Information:**
+### Herbs Covered
+Turmeric, ginger, echinacea, garlic, ginseng, St. John's Wort, valerian, and hundreds of other herbs.
 
-Herbal remedies can be powerful and can interact with medications. Before using any herb, especially if you take medications, are pregnant, are breastfeeding, or have health conditions, talk to your doctor. Some herbs can reduce the effectiveness of medications, while others can increase side effects.
+### Critical Safety Warning
+Herbs can:
+- Interact with medications
+- Cause allergic reactions
+- Be harmful during pregnancy
+- Affect surgical procedures
 
-**Herbs Covered:**
-
-This module covers commonly used herbs including turmeric for inflammation, ginger for nausea and inflammation, echinacea for immune support, and many others. Each entry explains what the herb is traditionally used for, what scientific research says about it, how to use it safely, and what precautions to take.
+Always consult a doctor before using herbs, especially if you take medications.
 
 ---
 
 ## Disclaimer
 
-This medical reference information is for educational purposes to help you understand medical concepts and health information better. It should not replace a consultation with your doctor. Always talk to your healthcare provider before making decisions about your health, starting new treatments, or taking supplements.
+**Educational Use Only:** This information is for learning purposes and understanding medical concepts.
+
+**Not Medical Advice:** This is not a substitute for professional medical diagnosis, treatment, or advice.
+
+**See a Doctor:** For any health concern, consult a qualified healthcare provider in person.
+
+**Individual Variation:** Medical information applies differently to different people. Your doctor knows your full medical history.

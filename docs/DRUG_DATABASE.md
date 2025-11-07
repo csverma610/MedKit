@@ -1,159 +1,281 @@
 # Drug Database Documentation
 
-The Drug Database module helps you understand medicines and medications. It provides information about how drugs work, their side effects, dosages, and most importantly, how different drugs can interact with each other or with food.
+## Overview
+
+The Drug Database module provides comprehensive information about medications, drug interactions, and pharmaceutical safety. It helps users understand what medications do, how to use them safely, and what happens when drugs interact.
+
+**What it does:** Delivers medication information and interaction data.
+**Why it matters:** Patients need to understand their medications to use them safely and avoid harmful interactions.
+
+---
 
 ## Medicine Information
 
-Learn detailed information about any medication or drug. When you search for a medicine, you get comprehensive information about what it does, how to take it, what side effects to watch for, and who should not take it.
+### Scope
+Provides detailed information about specific medications and drugs.
 
-For example, if your doctor prescribes aspirin, you can look it up to understand what aspirin does, how much to take, what side effects might happen, and what other medicines or conditions might affect whether it's safe for you to take.
+### What it does
+- Lists the drug name (generic and brand names)
+- Explains what the drug treats (indications)
+- Specifies dosage and frequency
+- Describes how to take it (with food, with water, etc.)
+- Lists common side effects
+- Identifies serious side effects
+- Explains who should NOT take it (contraindications)
+- Details drug interactions (see Drug-Drug Interactions below)
+- Describes how long it stays in the body
+- Explains how the drug works in the body
+- Lists warnings and precautions
 
-**How to Use:**
+### Why it matters
+When prescribed a medication, patients need to know what it does, how to take it, what to watch for, and when to contact their doctor.
 
+### Usage
 ```python
 from medkit.drug.medicine_info import get_medicine_info
 
-# Look up a medication
 info = get_medicine_info("aspirin")
 print(info)
 ```
 
-**From Command Line:**
+### Drugs Covered
+Over-the-counter medications, prescription drugs, supplements, and common medications across all categories.
 
-```bash
-python cli/cli_medicine_info.py aspirin
-python cli/cli_medicine_info.py ibuprofen --interactions
-```
-
-**What Information You Get:**
-
-When you look up a medicine, you learn the generic name and brand names, what type of medicine it is, what it's used to treat, how much to take and how often, what side effects can happen, who should not take it, any special warnings, how it works in your body, and how long it stays in your system.
+### Important Note
+Always take medication exactly as prescribed. Do not change doses or stop taking medications without talking to your doctor.
 
 ---
 
 ## Drug-Drug Interactions
 
-Understand what happens when you take two or more medicines together. Some medicines interact with each other in ways that can be dangerous or reduce how well they work.
+### Scope
+Information about what happens when two or more medications are taken together.
 
-For example, some blood thinner medications become dangerous when taken with aspirin because the combination increases bleeding risk too much. This module helps you know if medicines you take together are safe.
+### What it does
+- Identifies if two drugs interact
+- Explains the type of interaction
+- Rates the severity level (mild, moderate, severe)
+- Describes what the interaction does
+- Recommends whether drugs can be taken together
+- Suggests timing adjustments if needed
+- Identifies monitoring requirements
 
-**How to Use:**
+### Why it matters
+Some drug combinations are dangerous. Even common medications can cause harmful interactions. Patients need to know before taking multiple drugs.
 
+### Severity Levels Explained
+
+**Mild:** Little to no risk, but you should be aware
+- May slightly reduce effectiveness of one drug
+- May slightly increase side effects
+- Usually safe to take together
+
+**Moderate:** Real interaction that needs management
+- Can reduce how well one or both drugs work
+- Can increase side effects noticeably
+- May need dose adjustment
+- May need careful timing between doses
+- May need monitoring by doctor
+
+**Severe:** Serious risk, avoid combination if possible
+- Can cause dangerous side effects
+- Can significantly reduce drug effectiveness
+- Could harm organs (liver, kidneys, heart)
+- Should not be taken together without doctor approval
+- May require emergency medical attention if taken together
+
+### Usage
 ```python
 from medkit.drug.drug_drug_interaction import get_drug_interaction
 
-# Check if two drugs interact
 interaction = get_drug_interaction("warfarin", "aspirin")
 print(interaction)
 ```
 
-**From Command Line:**
+### Common Serious Interactions
 
-```bash
-python cli/cli_drug_interaction.py warfarin aspirin
-python cli/cli_drug_interaction.py metformin alcohol --severity
-```
+**Warfarin (blood thinner) + Aspirin:** Increases bleeding risk significantly. Needs careful monitoring.
 
-**Understanding Severity:**
+**Metformin + Contrast dye (for imaging):** Can damage kidneys. Dye procedures need special planning.
 
-When you check a drug interaction, you get a severity rating. Mild interactions mean there's little to no risk, but you should still be aware. Moderate interactions mean the interaction is real but can usually be managed with dose adjustments or careful monitoring. Severe interactions mean you should not take these drugs together without talking to your doctor first.
+**SSRIs (antidepressants) + NSAIDs:** Increases stomach bleeding risk.
 
-**Common Examples:**
+**Alcohol + Sedatives:** Severely increases drowsiness and impairs judgment.
 
-Blood thinners like warfarin should not be taken with aspirin because it increases bleeding too much. Some heart medications interact with each other in dangerous ways. Some antibiotics reduce the effectiveness of birth control. Alcohol can interact dangerously with many pain relievers and sedatives.
+**Alcohol + Pain relievers:** Can cause serious liver damage.
+
+### Important Note
+List all medications, supplements, and herbal products with your doctor and pharmacist. They will check for interactions.
 
 ---
 
 ## Drug-Disease Interactions
 
-Understand whether a medicine is safe for someone with a specific medical condition. Some medicines can be harmful if you have certain diseases.
+### Scope
+Information about whether a medication is safe for someone with a specific medical condition.
 
-For example, if you have kidney disease, some medicines can make it worse. If you have heart disease, certain other medicines might not be safe. This module helps you understand how medicines work with your health conditions.
+### What it does
+- Identifies if a drug is safe with a specific condition
+- Explains why the drug might be unsafe
+- Recommends alternatives if the drug is contraindicated
+- Identifies conditions requiring dose adjustments
+- Lists monitoring requirements
+- Explains potential complications
 
-**How to Use:**
+### Why it matters
+Some medications can make certain health conditions worse. A medication safe for one person may be dangerous for another due to their medical history.
 
+### Common Examples
+
+**Ibuprofen + Kidney disease:** NSAIDs can damage kidneys and should be avoided.
+
+**ACE inhibitors + High potassium:** These drugs raise potassium levels, which is dangerous if potassium is already high.
+
+**Statins + Liver disease:** These drugs are processed by the liver and can be harmful if the liver is damaged.
+
+**Steroids + Diabetes:** Steroids raise blood sugar, making diabetes harder to control.
+
+**Bronchodilators + Heart arrhythmias:** Can worsen heart rhythm problems.
+
+### Usage
 ```python
 from medkit.drug.drug_disease_interaction import get_drug_disease_interaction
 
-# Check if medicine is safe with a condition
 result = get_drug_disease_interaction("ibuprofen", "kidney disease")
 print(result)
 ```
 
-**Common Examples:**
-
-Nonsteroidal anti-inflammatory drugs like ibuprofen can damage kidneys, especially if you already have kidney disease. Certain blood pressure medicines can be dangerous if you have specific heart conditions. Acetaminophen can damage the liver if you have liver disease or drink alcohol heavily. Some medicines that treat low blood pressure can be dangerous if you have heart failure.
+### Important Note
+Tell your doctor about ALL your health conditions. Some conditions require special medication precautions.
 
 ---
 
 ## Drug-Food Interactions
 
-Learn how food and drinks can affect medicines. Some foods can change how well a medicine works or increase side effects.
+### Scope
+Information about how food and drinks affect medications.
 
-For example, grapefruit juice can make some cholesterol medicines work too well, causing side effects. Vitamin K in leafy greens can reduce the effect of blood thinners. This module helps you understand these interactions so you can take your medicines safely.
+### What it does
+- Identifies which foods/drinks interact with a drug
+- Explains the type of interaction
+- Describes what the interaction does
+- Recommends timing adjustments
+- Lists foods to avoid
+- Identifies safe alternatives
 
-**How to Use:**
+### Why it matters
+Food can change how well medications work or increase side effects. Some interactions are serious.
 
+### Common Examples
+
+**Grapefruit juice + Statins:** Increases drug levels, causing side effects like muscle pain and liver damage.
+
+**Leafy greens + Warfarin:** Vitamin K reduces blood thinner effectiveness. Eat consistent amounts of greens.
+
+**Dairy + Antibiotics:** Calcium interferes with absorption. Take on empty stomach, 2 hours before dairy.
+
+**Alcohol + Metronidazole:** Causes severe nausea, vomiting, and flushing.
+
+**Tyramine-rich foods + MAOIs:** Can cause dangerous blood pressure spikes. (Aged cheese, cured meats, fermented foods)
+
+### Usage
 ```python
 from medkit.drug.drug_food_interaction import get_drug_food_interaction
 
-# Check if food affects a medicine
 result = get_drug_food_interaction("warfarin", "vitamin K")
 print(result)
 ```
 
-**Common Examples:**
-
-Grapefruit juice increases the effect of many cholesterol medicines and can cause dangerous side effects. Leafy green vegetables like spinach and kale contain vitamin K which reduces how well blood thinners like warfarin work, so you need to eat about the same amount consistently. Dairy products reduce how well some antibiotics work, so take these antibiotics on an empty stomach. Alcohol mixed with pain relievers or sedatives can cause serious problems.
+### Important Note
+Ask your pharmacist about food interactions when getting a new prescription.
 
 ---
 
 ## Similar Drugs and Alternatives
 
-Find alternative medicines that work similarly to a medicine you take. If a medicine isn't working for you, causes bad side effects, or is too expensive, there are usually alternatives.
+### Scope
+Information about alternative medications in the same drug class.
 
-This module helps you understand what other medicines in the same family might work better for you. You can discuss these alternatives with your doctor or pharmacist.
+### What it does
+- Lists medications that work similarly
+- Explains differences between drugs
+- Identifies which might work better
+- Suggests cost alternatives
+- Compares side effect profiles
+- Helps find alternatives if current drug doesn't work
 
-**How to Use:**
+### Why it matters
+If a medication doesn't work, causes bad side effects, or is too expensive, alternatives may be available. This helps users discuss options with doctors.
 
+### Usage
 ```python
 from medkit.drug.similar_drugs import get_similar_drugs
 
-# Find alternatives
 alternatives = get_similar_drugs("aspirin")
 print(alternatives)
 ```
 
-**Examples:**
+### Example Alternatives
 
-If aspirin doesn't work well for you, similar pain relievers include ibuprofen, naproxen, and acetaminophen. If you're on one blood pressure medicine, your doctor might try a different type that works better for you. If one antibiotic doesn't work, another antibiotic in a similar class might be better.
+**Instead of Aspirin:** Ibuprofen, naproxen, acetaminophen (different classes, different side effects)
+
+**Instead of One Blood Pressure Drug:** Different classes available: ACE inhibitors, beta-blockers, calcium channel blockers, diuretics
+
+**Instead of One Antibiotic:** Other antibiotics in same or different class may work if bacterial resistance develops
 
 ---
 
 ## Drug Comparison
 
-Compare medicines side-by-side to understand their differences. When you have several medicine options, comparison helps you and your doctor decide which is best for you.
+### Scope
+Side-by-side comparison of multiple medications.
 
-You can compare how well medicines work, what side effects each has, how often you need to take them, how much they cost, and other important factors.
+### What it does
+- Lists effectiveness at treating the condition
+- Compares side effect profiles
+- Shows cost differences
+- Compares dosing frequency (once daily vs. three times daily)
+- Identifies drug interactions for each
+- Compares time to work
+- Lists contraindications for each
 
-**How to Use:**
+### Why it matters
+When choosing between medication options, patients need to understand the tradeoffs between effectiveness, side effects, cost, and convenience.
 
+### Usage
 ```python
 from medkit.drug.drugs_comparison import compare_drugs
 
-# Compare multiple medicines
 comparison = compare_drugs(["aspirin", "ibuprofen", "acetaminophen"])
 print(comparison)
 ```
 
-**What to Compare:**
+### What to Compare When Choosing Medications
 
-When comparing medicines, look at how well each medicine works for your specific problem, what side effects each can cause, how often you need to take it, whether it has food or drug interactions, and which one is most convenient for you.
+1. **Effectiveness:** Does it work as well for my specific problem?
+2. **Side effects:** Which side effects matter most to me?
+3. **Convenience:** Can I take it as prescribed (once daily vs. three times daily)?
+4. **Cost:** Can I afford it? Are generic versions available?
+5. **Interactions:** Will it interact with my other medications or conditions?
+6. **Duration:** How long does it take to work?
 
 ---
 
 ## Disclaimer
 
-This drug information is educational only and should not replace consultation with your pharmacist or doctor. Before taking any new medicine, changing doses, or stopping medicine, talk to your healthcare provider or pharmacist. Never stop or change medicines on your own without talking to your doctor first. Always take medicines exactly as prescribed, even if you feel better or feel worse.
+**Informational Only:** This information is educational and does not replace professional medical advice.
 
-Medical interactions can be serious. If you think you have taken too much medicine or are having a bad reaction, call poison control or emergency services immediately.
+**Not Diagnosis or Treatment:** Use this to understand medications, not to diagnose or treat yourself.
+
+**Talk to Your Pharmacist or Doctor:** Before starting any medication, changing doses, or stopping medication:
+- Ask your pharmacist or doctor
+- Discuss all medications you take
+- Ask about side effects to watch for
+- Ask about interactions
+
+**Emergency:** If you think you have taken too much medication or are having a severe reaction:
+- Call Poison Control: 1-800-222-1222 (US)
+- Call 911 for emergency services
+- Go to the nearest emergency room
+
+**Never Self-Prescribe:** Do not start, stop, or change medications without talking to your doctor.

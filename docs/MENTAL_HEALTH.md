@@ -1,173 +1,270 @@
 # Mental Health Documentation
 
-The Mental Health module provides tools to understand, assess, and support mental health. It includes screening questionnaires, assessment tools, conversation interfaces, and important crisis resources.
+## Overview
+
+The Mental Health module provides tools for mental health screening, assessment, and support. It includes structured questionnaires, chat interfaces, and crisis resources.
+
+**What it does:** Screens for mental health conditions and provides support information.
+**Why it matters:** Early screening helps identify mental health issues. Support tools provide education and crisis resources when needed.
+
+---
 
 ## Mental Health Assessment
 
-Complete structured assessments to understand your mental health. These are questionnaires used by mental health professionals to screen for common conditions like depression, anxiety, and other mental health issues.
+### Scope
+Structured screening questionnaires for common mental health conditions.
 
-Mental health assessments help you understand what you're experiencing and whether you should talk to a mental health professional. The assessments use questions that have been proven to help identify mental health conditions accurately.
+### What it does
+- Asks questions about mood, sleep, energy, concentration
+- Evaluates anxiety symptoms (worry, panic, physical symptoms)
+- Screens for depression (sadness, hopelessness, interest loss)
+- Assesses substance use concerns
+- Screens for bipolar disorder (high and low moods)
+- Evaluates PTSD and trauma reactions
+- Assesses suicide risk
+- Provides scoring to indicate risk level
 
-**How to Use:**
+### Scoring Results
 
+**Low Risk:** Minimal symptoms, no immediate concern, consider routine follow-up
+
+**Moderate Risk:** Some symptoms present, consider talking to a doctor
+
+**High Risk:** Significant symptoms, strongly recommend professional evaluation
+
+**Crisis Risk:** Immediate danger, requires emergency intervention
+
+### Why it matters
+Early identification of mental health issues helps people get treatment. Screening questionnaires are used by professionals and validated through research.
+
+### Usage
 ```python
 from medkit.mental_health.mental_health_assessment import assess_mental_health
 
-# Complete an assessment
-assessment = assess_mental_health()
+assessment = assess_mental_health(user_responses)
 print(assessment)
 ```
 
-**From Command Line:**
-
-```bash
-python cli/cli_mental_health.py --assessment
-```
-
-**What Assessments Are Available:**
-
-The module includes screening for depression that asks about mood, sleep, appetite, and energy. There's an anxiety screening that asks about worry and panic. Substance use screening helps identify if alcohol or drugs are a problem. Bipolar disorder screening looks for periods of high energy. PTSD screening asks about trauma reactions.
-
-**How Assessments Work:**
-
-You answer questions about how you've been feeling. Your answers create a score that indicates whether you might have a mental health condition. If your score suggests you might have an issue, the recommendation is to talk to a mental health professional for proper evaluation.
+### Important Note
+These assessments are educational screening tools, not diagnosis. Only a mental health professional can diagnose.
 
 ---
 
 ## Mental Health Chat
 
-Talk to a supportive chatbot about your mental health concerns. This isn't therapy, but it provides a way to discuss what you're experiencing and get supportive responses.
+### Scope
+A conversational interface for discussing mental health concerns.
 
-The chat interface listens to what you say, responds supportively, provides information about mental health conditions, suggests coping strategies, and can help you understand whether you should talk to a professional.
+### What it does
+- Provides supportive responses to mental health concerns
+- Offers information about mental health conditions
+- Suggests coping strategies (breathing, grounding techniques)
+- Provides psychoeducation
+- Identifies crisis warning signs
+- Provides emergency resources when needed
+- Encourages professional help
+- Validates user experiences
 
-**How to Use:**
+### What It Cannot Do
+- This is NOT therapy
+- Cannot replace talking to a mental health professional
+- Cannot prescribe medications
+- Cannot treat mental health conditions
+- Cannot provide crisis counseling (for that, call a hotline)
 
+### Why it matters
+When someone is struggling, having immediate supportive communication can reduce isolation and help them seek professional help.
+
+### Usage
 ```python
 from medkit.mental_health.mental_health_chat import start_mental_health_chat
 
-# Start chatting
 chat = start_mental_health_chat()
 response = chat.send_message("I've been feeling really sad")
 print(response)
 ```
 
-**From Command Line:**
+### Limitations
 
-```bash
-python cli/cli_mental_health.py --chat
-```
+**Not a therapist:** AI cannot build the therapeutic relationship professionals provide.
 
-**What the Chat Can Do:**
+**Not your doctor:** Cannot assess your unique medical situation.
 
-The chat provides emotional support and understanding about your feelings. It offers information about mental health conditions. It suggests practical coping strategies like breathing exercises, grounding techniques, and self-care activities. It can identify if you're in crisis and provide emergency resources. It encourages you to talk to a professional.
+**General guidance:** Uses general mental health knowledge, not your personal history.
 
-**What the Chat Cannot Do:**
-
-This chat is not therapy and cannot replace talking to a mental health professional. It doesn't prescribe medications. It doesn't treat mental health conditions. For serious concerns, always talk to a doctor or mental health professional.
+**Always see a professional:** For any concerning symptoms or crisis, see a professional.
 
 ---
 
 ## SANE Interview
 
-Complete a structured mental health interview called SANE (Structured Affective Neuroscience Environment). This is a comprehensive interview format used by mental health professionals to gather detailed information about your mental health history.
+### Scope
+Structured mental health interview used by mental health professionals.
 
-The SANE interview systematically asks about your current symptoms, how long you've had them, past mental health issues, family history, substance use, medical conditions, and your current situation. This structured approach ensures nothing important is missed.
+### What it does
+- Gathers current mental health symptoms
+- Asks about symptom duration
+- Explores past mental health history
+- Investigates family mental health history
+- Assesses substance use history
+- Reviews medical history
+- Evaluates social support and life situation
+- Performs mental status examination
+- Organizes information for professional review
 
-**How to Use:**
+### Why it matters
+Professional mental health assessment requires comprehensive information. The SANE format ensures important areas are covered systematically.
 
+### Interview Sections
+
+1. **Demographics:** Age, gender, occupation, family composition
+2. **Chief complaint:** Why the person is seeking help
+3. **History of present illness:** Detailed symptom description
+4. **Past psychiatric history:** Previous diagnoses, treatments, hospitalizations
+5. **Family history:** Family members with mental health conditions
+6. **Substance use:** Alcohol, drugs, tobacco, medications
+7. **Medical history:** Physical conditions, surgeries, medications
+8. **Social history:** Support systems, living situation, employment
+9. **Mental status exam:** Appearance, mood, thought processes, perception
+
+### Usage
 ```python
 from medkit.mental_health.sane_interview import SANEInterview
 
-# Start the interview
 interview = SANEInterview()
 response = interview.next_question()
 print(response)
 ```
 
-**From Command Line:**
-
-```bash
-python cli/cli_mental_health.py --interview
-```
-
-**Interview Sections:**
-
-The interview starts by getting your basic information. It asks about your main concern. It goes into detail about current symptoms. It asks about past mental health issues. It asks about family history of mental health problems. It asks about substance use. It covers medical history. It collects information about your life situation and support systems. It does a mental status examination.
-
-**Why This Format Helps:**
-
-The structured approach makes sure doctors have all the information they need. It follows the format mental health professionals are trained to use. It creates a comprehensive picture of your mental health history. Information gathered is organized so it's easy for professionals to review.
+### Why Professionals Use This Format
+- Ensures nothing important is missed
+- Provides standardized information for comparison
+- Helps identify patterns and relationships
+- Creates organized documentation
+- Supports treatment planning
 
 ---
 
 ## Symptom Detection Chat
 
-Chat about your symptoms in a conversational way to explore what might be going on. This is different from a rigid questionnaire - it's more like talking to someone.
+### Scope
+Conversational symptom analysis for mental health concerns.
 
-As you describe your symptoms in conversation, the tool analyzes them and helps identify possible conditions you might want to discuss with a doctor.
+### What it does
+- Listens to symptom description
+- Asks clarifying questions
+- Analyzes symptom patterns
+- Identifies possible mental health conditions
+- Prioritizes conditions by likelihood
+- Identifies warning signs
+- Recommends urgency of professional evaluation
+- Suggests questions to ask a professional
 
-**How to Use:**
+### Why it matters
+When people describe symptoms conversationally rather than answering questionnaires, they may provide more detailed information. This tool helps organize that information.
 
+### Important Limitations
+
+**Cannot diagnose:** Only professionals can diagnose mental health conditions.
+
+**Overlapping symptoms:** Many conditions share similar symptoms.
+
+**Individual variation:** Mental health presentations vary greatly by person.
+
+**Use as starting point:** This helps prepare for professional evaluation, not replace it.
+
+### Usage
 ```bash
 python cli/cli_symptoms_checker.py --symptoms "sadness,hopelessness,sleep problems"
 ```
-
-**What Happens:**
-
-You describe how you're feeling. The tool asks clarifying questions to understand better. Based on what you say, it suggests possible mental health conditions that have those symptoms. It identifies any emergency warning signs. It recommends whether you should talk to a professional.
-
-**Important Limitation:**
-
-This symptom checker is educational only. It cannot diagnose you. Many different mental health conditions have overlapping symptoms. Only a mental health professional who talks to you and learns your full history can make a real diagnosis. Use this as a starting point for talking to a professional, not as a diagnosis.
 
 ---
 
 ## Emergency Resources
 
-If you're in a mental health crisis or having thoughts of suicide, get help immediately. These resources are available 24/7.
+### When to Use Emergency Resources
 
-**National Suicide Prevention Lifeline:** 988 (call or text, available in the US)
-You can call or text 988 any time if you're having thoughts of suicide or if you're in crisis. Trained counselors will listen and help.
+**Call or Text 988 (US Suicide & Crisis Lifeline):**
+- Having thoughts of suicide
+- In mental health crisis
+- Feeling hopeless or overwhelmed
+- Need to talk to someone immediately
+- Available 24/7, free, confidential
 
-**Crisis Text Line:** Text HOME to 741741
-You can text if you're more comfortable communicating that way. Send messages to 741741 and trained counselors will respond.
+**Text HOME to 741741 (Crisis Text Line):**
+- Prefer texting to talking
+- In crisis but not safe to call
+- Need immediate support
+- Available 24/7, free, confidential
 
-**Emergency Services:** 911 (in the US) or your local emergency number
-Call 911 if you're in immediate danger. Go to your nearest emergency room if you think you might hurt yourself.
+**Call 911 or Go to ER:**
+- Immediate danger to self or others
+- Severe symptoms (unable to function, extreme agitation)
+- Medication overdose or poisoning
+- Medical emergency related to mental health
 
-**International Association for Suicide Prevention:** https://www.iasp.info/resources/Crisis_Centres/
-This website lists crisis hotlines around the world.
+**Tell Someone You Trust:**
+- A family member
+- A close friend
+- A teacher or counselor
+- Anyone who cares about you
+
+### International Resources
+
+**International Association for Suicide Prevention:**
+https://www.iasp.info/resources/Crisis_Centres/
+
+Lists crisis hotlines and mental health resources worldwide.
 
 ---
 
-## When to Get Help
+## When to Seek Professional Help
 
-Talk to a mental health professional if you're experiencing any of these: feeling sad or empty most of the day for more than two weeks, losing interest in activities you normally enjoy, significant changes in sleep or appetite, difficulty concentrating, feeling hopeless or worthless, having thoughts of death or suicide, excessive worry that interferes with daily life, panic attacks, substance use problems, or significant life changes.
+### See a Mental Health Professional If:
+- Feeling sad, empty, or hopeless most days for 2+ weeks
+- Losing interest in activities you enjoy
+- Significant changes in sleep or appetite
+- Difficulty concentrating or making decisions
+- Feeling worthless or guilty
+- Thoughts of death or suicide
+- Excessive worry interfering with daily life
+- Panic attacks
+- Using alcohol or drugs to cope
+- Significant relationship or work problems
 
-Mental health is just as important as physical health. Getting help early works better than waiting. Mental health professionals can help, and treatment works.
+### Types of Professionals
+- **Psychiatrist:** Medical doctor, prescribes medications
+- **Psychologist:** Provides therapy and counseling
+- **Licensed counselor:** Provides therapy and support
+- **Clinical social worker:** Provides therapy and connects to resources
+- **Peer specialist:** Someone with lived mental health experience
 
----
-
-## What Mental Health Treatment Involves
-
-Therapy involves talking to a trained mental health professional who helps you understand your feelings and develop strategies to feel better. Different types of therapy work for different people.
-
-Medication prescribed by a psychiatrist can help with some mental health conditions. Many people benefit from a combination of therapy and medication.
-
-Support groups connect you with others experiencing similar challenges. Peer support from people who understand what you're going through can be very helpful.
-
-Lifestyle changes like better sleep, exercise, and social connection support mental health recovery.
+### Treatment Options
+- **Therapy:** Talk therapy with trained professional
+- **Medication:** Prescribed by psychiatrist
+- **Support groups:** Connect with others having similar experiences
+- **Hospitalization:** For safety when in crisis
+- **Lifestyle changes:** Sleep, exercise, social connection
 
 ---
 
 ## Disclaimer
 
-This mental health information is educational only. It is not treatment. If you're struggling mentally, please talk to a mental health professional, doctor, or call a crisis line. Mental health conditions are treatable, and help is available. You don't have to struggle alone.
+**Not Therapy:** These tools are not therapy. Therapy requires a trained professional building a relationship with you.
 
-If you're thinking about suicide or hurting yourself, please reach out:
-- Call or text 988 (Suicide & Crisis Lifeline)
+**Not Diagnosis:** These tools do not diagnose mental health conditions. Only professionals can diagnose.
+
+**Not Crisis Counseling:** If in crisis, call a crisis hotline, not this tool.
+
+**Educational Only:** This information educates about mental health. It does not treat mental health conditions.
+
+**Immediate Help:** If thinking about suicide or in crisis:
+- Call 988 (US)
 - Text HOME to 741741
-- Call 911 or go to your nearest emergency room
-- Tell someone you trust how you're feeling
+- Call 911
+- Go to nearest emergency room
+- Tell someone you trust
 
-Your life matters. Help is available.
+**Your Life Matters:** Help is available. Mental health conditions are treatable. You don't have to suffer alone.
+
+**Professional Help Works:** Therapy, medication, and support help people recover. Treatment is effective.
