@@ -2,7 +2,7 @@
 
 This directory contains command-line interfaces for querying MedKit medical information modules. These tools provide easy access to comprehensive medical knowledge through the terminal.
 
-## Available CLI Tools (17 Tools)
+## Available CLI Tools (19 Tools)
 
 ### 1. Disease Information
 ```bash
@@ -95,7 +95,33 @@ python cli/cli_term_extractor.py "History of myocardial infarction treated with 
 python cli/cli_term_extractor.py --file clinical_notes.txt --output extracted_terms.json
 ```
 
-### 8. Medicine/Drug Information
+### 8. Surgery Information
+```bash
+python cli/cli_surgery_info.py <surgery_name> [--output file.json] [--verbose]
+```
+Get comprehensive information about surgical procedures including indications, techniques, risks, and recovery.
+
+**Example:**
+```bash
+python cli/cli_surgery_info.py "Knee Replacement"
+python cli/cli_surgery_info.py "Coronary Artery Bypass" --verbose
+python cli/cli_surgery_info.py "Appendectomy" --output surgery_info.json
+```
+
+### 9. Surgical Tools Information
+```bash
+python cli/cli_surgical_tools.py <tool_name> [--output file.json] [--verbose]
+```
+Get detailed information about surgical tools and instruments, how they work, and proper usage.
+
+**Example:**
+```bash
+python cli/cli_surgical_tools.py scalpel
+python cli/cli_surgical_tools.py "surgical retractor" --verbose
+python cli/cli_surgical_tools.py forceps --output forceps_info.json
+```
+
+### 10. Medicine/Drug Information
 ```bash
 python cli/cli_medicine_info.py <drug_name> [--interactions] [--verbose]
 ```
@@ -107,9 +133,9 @@ python cli/cli_medicine_info.py aspirin
 python cli/cli_medicine_info.py ibuprofen --interactions
 ```
 
-### 9. Drug Interactions (3 Types)
+### 11. Drug Interactions (3 Types)
 
-#### 9a. Drug-Drug Interaction Checker
+#### 11a. Drug-Drug Interaction Checker
 ```bash
 python cli/cli_drug_interaction.py <drug1> <drug2> [--severity] [--verbose]
 ```
@@ -121,7 +147,7 @@ python cli/cli_drug_interaction.py aspirin ibuprofen
 python cli/cli_drug_interaction.py warfarin aspirin --severity
 ```
 
-#### 9b. Drug-Disease Interaction Checker
+#### 11b. Drug-Disease Interaction Checker
 ```bash
 python cli/cli_drug_disease_interaction.py <drug_name> <disease_name> [--output file.json] [--verbose]
 ```
@@ -134,7 +160,7 @@ python cli/cli_drug_disease_interaction.py metformin diabetes --verbose
 python cli/cli_drug_disease_interaction.py "ACE inhibitor" "high potassium" --output interaction.json
 ```
 
-#### 9c. Drug-Food Interaction Checker
+#### 11c. Drug-Food Interaction Checker
 ```bash
 python cli/cli_drug_food_interaction.py <drug_name> <food_name> [--output file.json] [--verbose]
 ```
@@ -147,7 +173,7 @@ python cli/cli_drug_food_interaction.py statin grapefruit --verbose
 python cli/cli_drug_food_interaction.py metronidazole alcohol --output interaction.json
 ```
 
-### 11. Medical Anatomy
+### 12. Medical Anatomy
 ```bash
 python cli/cli_medical_anatomy.py <body_part> [--functions] [--verbose]
 ```
@@ -159,7 +185,7 @@ python cli/cli_medical_anatomy.py heart
 python cli/cli_medical_anatomy.py brain --functions
 ```
 
-### 12. Medical Dictionary/Terminology
+### 13. Medical Dictionary/Terminology
 ```bash
 python cli/cli_medical_dictionary.py <term> [--synonyms] [--verbose]
 ```
@@ -171,7 +197,7 @@ python cli/cli_medical_dictionary.py hypertension
 python cli/cli_medical_dictionary.py "myocardial infarction" --verbose
 ```
 
-### 13. Medical Specialties
+### 14. Medical Specialties
 ```bash
 python cli/cli_medical_speciality.py <specialty> [--doctors] [--conditions] [--procedures]
 ```
@@ -183,7 +209,7 @@ python cli/cli_medical_speciality.py cardiology
 python cli/cli_medical_speciality.py neurology --conditions
 ```
 
-### 14. Herbal Medicine Information
+### 15. Herbal Medicine Information
 ```bash
 python cli/cli_herbal_info.py <herb_name> [--benefits] [--interactions] [--dosage] [--safety]
 ```
@@ -196,7 +222,7 @@ python cli/cli_herbal_info.py ginger --benefits
 python cli/cli_herbal_info.py echinacea --interactions
 ```
 
-### 15. Mental Health Tools
+### 16. Mental Health Tools
 ```bash
 python cli/cli_mental_health.py [--assessment] [--chat] [--interview] [--anonymous]
 ```
@@ -209,7 +235,7 @@ python cli/cli_mental_health.py --chat
 python cli/cli_mental_health.py --interview
 ```
 
-### 16. Symptom Checker
+### 17. Symptom Checker
 ```bash
 python cli/cli_symptoms_checker.py --symptoms "symptom1,symptom2,..." [--severity] [--duration] [--urgent]
 ```
