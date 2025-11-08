@@ -1,178 +1,228 @@
 #!/usr/bin/env python3
 """
-Script to generate comprehensive test templates for all remaining modules.
+Comprehensive script to generate test templates for all modules.
 
-This script reads the module structure and generates proper unit test files
-to replace the dummy tests.
+This script automatically discovers all Python modules in medkit/ and generates
+corresponding test files for any modules that don't have tests yet.
+
+Usage:
+    python generate_tests.py              # Generate all missing tests
+    python generate_tests.py --module-name    # Generate test for specific module
 """
 
-test_templates = {
-    "test_drug_drug_food_interaction.py": '''"""
-Proper unit tests for drug_food_interaction module.
+import os
+from pathlib import Path
+from typing import Dict, Tuple
 
-Tests cover:
-- Food/beverage interaction models
-- Interaction severity and effects
-- Timing and absorption impacts
-- Management recommendations
-- Realistic food-drug interactions
-"""
+# Base template for test files
+BASE_TEST_TEMPLATE = '''"""
+Unit tests for {module_name} module.
 
-import unittest
-from pydantic import ValidationError
-
-# Assuming drug_food_interaction has similar structures to drug_drug_interaction
-# This is a template - adjust imports based on actual module structure
-
-class TestDrugFoodInteractionModels(unittest.TestCase):
-    """Test drug-food interaction models."""
-
-    def test_interaction_severity_levels(self):
-        """Test interaction severity levels."""
-        # Test that different severity levels can be created and compared
-        severities = ["MINOR", "MODERATE", "SIGNIFICANT"]
-        self.assertEqual(len(severities), 3)
-
-    def test_food_timing_impact(self):
-        """Test how food timing affects drug absorption."""
-        # Test: Some drugs require fasting, others need food
-        foods_with_timing = {
-            "Warfarin + Vitamin K": "Avoid or maintain consistent intake",
-            "Statins + Grapefruit": "Avoid completely",
-            "Tetracycline + Calcium": "Separate by 2 hours"
-        }
-        self.assertEqual(len(foods_with_timing), 3)
-
-class TestRealisticFoodInteractions(unittest.TestCase):
-    """Test realistic food-drug interactions."""
-
-    def test_warfarin_vitamin_k(self):
-        """Test warfarin-vitamin K interaction."""
-        # High-risk interaction affecting anticoagulation
-        self.assertTrue(True)  # Placeholder
-
-    def test_statins_grapefruit(self):
-        """Test statins with grapefruit juice."""
-        # Grapefruit increases statin levels significantly
-        self.assertTrue(True)  # Placeholder
-
-    def test_tetracycline_dairy(self):
-        """Test tetracycline with dairy products."""
-        # Calcium in dairy impairs tetracycline absorption
-        self.assertTrue(True)  # Placeholder
-
-    def test_bisphosphonates_food(self):
-        """Test bisphosphonates with food."""
-        # Must be taken on empty stomach
-        self.assertTrue(True)  # Placeholder
-
-if __name__ == "__main__":
-    unittest.main(verbosity=2)
-''',
-
-    "test_medical_topic.py": '''"""
-Proper unit tests for medical_topic module.
-
-Tests cover:
-- Topic documentation generation
-- Epidemiology and pathophysiology
-- Diagnosis and treatment sections
-- Prevention and FAQs
-- Data structure validation
+This is an auto-generated test template. Please add:
+- Proper test cases specific to module functionality
+- Realistic test data and assertions
+- Edge cases and error handling
+- Integration tests where applicable
 """
 
 import unittest
-from pydantic import ValidationError
+from unittest.mock import Mock, patch, MagicMock
 
-class TestMedicalTopicModels(unittest.TestCase):
-    """Test medical topic data models."""
+# TODO: Import the module under test
+# from medkit.{module_path} import ClassName
 
-    def test_topic_creation(self):
-        """Test creating medical topic."""
-        # Should create with all required sections
-        self.assertTrue(True)  # Placeholder
 
-    def test_topic_sections_present(self):
-        """Test all expected sections are present."""
-        expected_sections = [
-            "overview", "epidemiology", "pathophysiology",
-            "clinical_presentation", "diagnosis", "treatment"
-        ]
-        self.assertEqual(len(expected_sections), 6)
+class Test{class_name}Models(unittest.TestCase):
+    """Test {module_name} data models and classes."""
 
-class TestRealisticTopics(unittest.TestCase):
-    """Test realistic medical topics."""
+    def setUp(self):
+        """Set up test fixtures."""
+        # TODO: Initialize test data and objects
+        pass
 
-    def test_diabetes_topic(self):
-        """Test diabetes topic generation."""
-        # Should include pathophysiology, diagnosis, treatment
-        self.assertTrue(True)  # Placeholder
+    def tearDown(self):
+        """Clean up after tests."""
+        pass
 
-    def test_hypertension_topic(self):
-        """Test hypertension topic."""
-        self.assertTrue(True)  # Placeholder
+    def test_module_import(self):
+        """Test that module can be imported."""
+        # TODO: Replace with actual module import
+        self.assertTrue(True)
 
-if __name__ == "__main__":
-    unittest.main(verbosity=2)
-''',
+    def test_basic_functionality(self):
+        """Test basic module functionality."""
+        # TODO: Add actual test cases
+        self.assertTrue(True)
 
-    "test_medical_test_info.py": '''"""
-Proper unit tests for medical_test_info module.
+    def test_data_validation(self):
+        """Test data validation."""
+        # TODO: Add validation test cases
+        self.assertTrue(True)
 
-Tests cover:
-- Medical test information models
-- Normal ranges and abnormal findings
-- Test procedures and preparation
-- Risks and timelines
-"""
 
-import unittest
+class Test{class_name}Integration(unittest.TestCase):
+    """Integration tests for {module_name} module."""
 
-class TestMedicalTestModels(unittest.TestCase):
-    """Test medical test information models."""
+    def setUp(self):
+        """Set up integration tests."""
+        pass
 
-    def test_test_creation(self):
-        """Test creating medical test information."""
-        self.assertTrue(True)  # Placeholder
+    def test_module_integration(self):
+        """Test module integration with other components."""
+        # TODO: Add integration test cases
+        self.assertTrue(True)
 
-    def test_normal_ranges(self):
-        """Test normal reference ranges."""
-        # Different tests have different normal values
-        self.assertTrue(True)  # Placeholder
-
-class TestCommonMedicalTests(unittest.TestCase):
-    """Test common medical tests."""
-
-    def test_complete_blood_count(self):
-        """Test CBC information."""
-        self.assertTrue(True)  # Placeholder
-
-    def test_metabolic_panel(self):
-        """Test metabolic panel."""
-        self.assertTrue(True)  # Placeholder
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
-''',
-}
+'''
+
+
+def camel_case(snake_str: str) -> str:
+    """Convert snake_case to CamelCase."""
+    components = snake_str.split('_')
+    return ''.join(x.title() for x in components)
+
+
+def find_all_modules(base_path: str = "medkit") -> list:
+    """Find all Python modules in the medkit directory."""
+    modules = []
+    for root, dirs, files in os.walk(base_path):
+        # Skip __pycache__ and __init__.py
+        dirs[:] = [d for d in dirs if d != '__pycache__']
+
+        for file in files:
+            if file.endswith('.py') and file != '__init__.py':
+                module_path = os.path.join(root, file)
+                modules.append(module_path)
+
+    return sorted(modules)
+
+
+def module_path_to_test_name(module_path: str) -> Tuple[str, str]:
+    """
+    Convert module path to test file name and class name.
+
+    Args:
+        module_path: e.g., "medkit/drug/medicine_info.py"
+
+    Returns:
+        Tuple of (test_filename, class_name)
+        e.g., ("test_medicine_info.py", "MedicineInfo")
+    """
+    # Get filename without extension
+    filename = Path(module_path).stem
+
+    # Create test filename
+    test_filename = f"test_{filename}.py"
+
+    # Create class name (CamelCase)
+    class_name = camel_case(filename)
+
+    return test_filename, class_name
+
+
+def get_module_import_path(module_path: str) -> str:
+    """
+    Convert file path to Python import path.
+
+    Args:
+        module_path: e.g., "medkit/drug/medicine_info.py"
+
+    Returns:
+        e.g., "medkit.drug.medicine_info"
+    """
+    return module_path.replace('/', '.').replace('.py', '')
+
+
+def generate_test_file(module_path: str, test_file_path: str) -> bool:
+    """
+    Generate a test file for the given module.
+
+    Args:
+        module_path: Path to the module file
+        test_file_path: Path where test file should be created
+
+    Returns:
+        True if generated, False if already exists
+    """
+    if os.path.exists(test_file_path):
+        return False
+
+    test_filename, class_name = module_path_to_test_name(module_path)
+    module_name = Path(module_path).stem
+
+    # Generate test content
+    test_content = BASE_TEST_TEMPLATE.format(
+        module_name=module_name,
+        class_name=class_name,
+        module_path=get_module_import_path(module_path)
+    )
+
+    # Create test file
+    os.makedirs(os.path.dirname(test_file_path), exist_ok=True)
+
+    with open(test_file_path, 'w') as f:
+        f.write(test_content)
+
+    return True
+
 
 def main():
-    """Generate test files."""
-    import os
-    from pathlib import Path
+    """Generate test files for all modules missing tests."""
+    base_path = "medkit"
+    tests_dir = "tests"
 
-    tests_dir = Path("/Users/csv610/Projects/Gemini/MedKit/tests")
+    print("=" * 80)
+    print("MedKit Test Generator - Generating Tests for All Modules")
+    print("=" * 80)
+    print()
 
-    for filename, content in test_templates.items():
-        filepath = tests_dir / filename
-        print(f"Generating {filename}...")
+    # Find all modules
+    all_modules = find_all_modules(base_path)
+    print(f"Found {len(all_modules)} modules in {base_path}/")
+    print()
 
-        with open(filepath, 'w') as f:
-            f.write(content)
+    # Generate tests for missing modules
+    generated_count = 0
+    skipped_count = 0
 
-        print(f"✓ Created {filename}")
+    print("Generating test files...")
+    print("-" * 80)
 
-    print(f"\n✅ Generated {len(test_templates)} test files")
+    for module_path in all_modules:
+        test_filename, _ = module_path_to_test_name(module_path)
+        test_file_path = os.path.join(tests_dir, test_filename)
+
+        if generate_test_file(module_path, test_file_path):
+            print(f"✓ Generated: {test_file_path}")
+            print(f"    for module: {module_path}")
+            generated_count += 1
+        else:
+            skipped_count += 1
+
+    print()
+    print("=" * 80)
+    print(f"Summary:")
+    print(f"  Total modules: {len(all_modules)}")
+    print(f"  Test files generated: {generated_count}")
+    print(f"  Test files skipped (already exist): {skipped_count}")
+    print("=" * 80)
+    print()
+
+    if generated_count > 0:
+        print(f"✅ Successfully generated {generated_count} test file(s)")
+        print()
+        print("Next steps:")
+        print("  1. Run the generated tests: pytest tests/ -v")
+        print("  2. Update test_*.py files with proper test cases")
+        print("  3. Replace TODO comments with actual test implementations")
+        print("  4. Run coverage: pytest tests/ --cov=medkit")
+    else:
+        print("✅ All modules already have test files")
+
+    print()
+
 
 if __name__ == "__main__":
     main()
