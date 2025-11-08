@@ -21,6 +21,12 @@ USAGE:
 from dataclasses import dataclass, field
 from typing import Optional, Dict, List
 from pathlib import Path
+import sys
+
+
+def _is_running_tests() -> bool:
+    """Detect if code is running under pytest."""
+    return "pytest" in sys.modules or "PYTEST_CURRENT_TEST" in sys.environ
 
 
 @dataclass
@@ -63,6 +69,10 @@ class ModuleConfig:
 
         if self.log_file is None and self.module_name:
             self.log_file = Path(__file__).parent.parent / "logs" / f"{self.module_name}.log"
+
+        # Disable database storage during tests to avoid side effects
+        if _is_running_tests():
+            self.db_store = False
 
 
 class ModuleRegistry:

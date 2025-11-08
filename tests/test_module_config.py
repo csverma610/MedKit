@@ -276,5 +276,43 @@ class TestModuleCategories(unittest.TestCase):
         self.assertGreaterEqual(len(core_modules), 2)
 
 
+class TestModuleConfigTestEnvironment(unittest.TestCase):
+    """Test that ModuleConfig properly detects test environment."""
+
+    def test_db_store_disabled_during_tests(self):
+        """Test that db_store is False when running under pytest."""
+        config = ModuleConfig(
+            module_name="test_module",
+            module_path="medkit.test.test_module",
+            model_name="gemini-1.5-flash",
+            description="Test module",
+            category="test"
+        )
+        # During pytest execution, db_store should be False
+        self.assertFalse(config.db_store)
+
+    def test_all_modules_have_db_store_false_during_tests(self):
+        """Test that all registry modules have db_store=False during tests."""
+        modules = ModuleRegistry.get_all_modules()
+        for module_name, config in modules.items():
+            self.assertFalse(
+                config.db_store,
+                f"Module '{module_name}' should have db_store=False during tests"
+            )
+
+    def test_db_store_explicit_override_during_tests(self):
+        """Test that explicit db_store can still be set but gets overridden in tests."""
+        config = ModuleConfig(
+            module_name="test_module",
+            module_path="medkit.test.test_module",
+            model_name="gemini-1.5-flash",
+            description="Test module",
+            category="test",
+            db_store=True  # Explicitly set to True
+        )
+        # Should still be False because tests override it
+        self.assertFalse(config.db_store)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
