@@ -73,7 +73,7 @@ class Config(StorageConfig):
     """Configuration for the medical term extractor."""
     output_dir: Path = field(default_factory=lambda: Path("outputs"))
     log_file: Path = field(default_factory=lambda: Path(__file__).parent / "logs" / f"{Path(__file__).stem}.log")
-    quiet: bool = True
+    verbosity: int = 2  # Verbosity level: 0=CRITICAL, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG
 
     def __post_init__(self):
         """Set default db_path if not provided, then validate."""
@@ -282,7 +282,7 @@ Be thorough and accurate. Extract ALL medical terms found in the text."""
         """
         Print a summary of the extracted terms.
         """
-        if self.config.quiet:
+        if self.config.verbosity < 3:
             return
         print("\n" + "="*70)
         print("MEDICAL TERM EXTRACTION SUMMARY")
@@ -297,11 +297,11 @@ Be thorough and accurate. Extract ALL medical terms found in the text."""
         print(f"  - Causation Relationships: {len(terms.causation_relationships)}")
         print("\n✓ Extraction complete.")
 
-def extract_medical_terms(text: str, output_path: Optional[Path] = None, quiet: bool = True) -> MedicalTerms:
+def extract_medical_terms(text: str, output_path: Optional[Path] = None, verbosity: int = 2) -> MedicalTerms:
     """
     High-level function to extract and optionally save medical terms from text.
     """
-    config = Config(quiet=quiet)
+    config = Config(verbosity=verbosity)
     extractor = MedicalTermExtractor(config=config)
     return extractor.generate(text, output_path)
 
@@ -310,7 +310,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract medical terms from text or a file.")
     parser.add_argument("input", type=str, help="The input text file path or a string of text.")
     parser.add_argument("-o", "--output", type=str, help="Optional: The path to save the output JSON file.")
-    parser.add_argument("-v", "--verbose", action="store_true", help="Show verbose console output.")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbosity level (default: 2=WARNING)")
 
     args = parser.parse_args()
 

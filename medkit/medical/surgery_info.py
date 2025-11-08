@@ -78,7 +78,7 @@ class Config(StorageConfig):
     output_dir: Path = field(default_factory=lambda: Path("outputs"))
     log_file: Path = field(default_factory=lambda: Path(__file__).parent / "logs" / f"{Path(__file__).stem}.log")
     specialty: str = "Surgery/Procedure"
-    quiet: bool = True
+    verbosity: int = 2  # Verbosity level: 0=CRITICAL, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG
 
     def __post_init__(self):
         """Set default db_path if not provided, then validate."""
@@ -299,7 +299,7 @@ Return structured JSON matching the exact schema provided, with all required fie
         return output_path
 
     def print_summary(self, surgery_info: SurgeryInfo) -> None:
-        if self.config.quiet:
+        if self.config.verbosity < 3:
             return
         print("\n" + "="*70)
         print(f"SURGERY INFORMATION SUMMARY: {surgery_info.metadata.surgery_name}")
@@ -308,11 +308,11 @@ Return structured JSON matching the exact schema provided, with all required fie
         print(f"  - Body Systems: {surgery_info.metadata.body_systems_involved}")
         print(f"\n✓ Generation complete. Saved to {self.output_path}")
 
-def get_surgery_info(surgery_name: str, output_path: Optional[Path] = None, quiet: bool = True) -> SurgeryInfo:
+def get_surgery_info(surgery_name: str, output_path: Optional[Path] = None, verbosity: int = 2) -> SurgeryInfo:
     """
     High-level function to generate and optionally save surgery information.
     """
-    config = Config(quiet=quiet)
+    config = Config(verbosity=verbosity)
     generator = SurgeryInfoGenerator(config=config)
     return generator.generate(surgery_name, output_path)
 
@@ -321,7 +321,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Generate comprehensive surgical procedure information.")
     parser.add_argument("surgery", nargs='+', help="Name of the surgical procedure")
     parser.add_argument("-o", "--output", type=Path, help="Path to save JSON output.")
-    parser.add_argument("-v", "--verbose", action="store_true", help="Show verbose console output.")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbosity level (default: 2=WARNING)")
 
     args = parser.parse_args()
 

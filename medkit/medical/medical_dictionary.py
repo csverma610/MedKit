@@ -56,7 +56,7 @@ class Config(StorageConfig):
     output_dir: Path = field(default_factory=lambda: Path("outputs"))
     log_file: Path = field(default_factory=lambda: Path(__file__).parent / "logs" / f"{Path(__file__).stem}.log")
     model: str = field(default_factory=lambda: get_module_config("medical_dictionary").model_name)
-    quiet: bool = True
+    verbosity: int = 2  # Verbosity level: 0=CRITICAL, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG
 
     def __post_init__(self):
         """Set default db_path if not provided, then validate."""
@@ -156,7 +156,7 @@ class MedicalDictionaryGenerator:
         """
         Print a summary of the generated medical term.
         """
-        if self.config.quiet:
+        if self.config.verbosity < 3:
             return
         print("\n" + "="*70)
         print(f"MEDICAL DICTIONARY ENTRY SUMMARY: {medical_term.term}")
@@ -210,7 +210,7 @@ def main():
     parser = argparse.ArgumentParser(description="Generate a medical dictionary entry.")
     parser.add_argument("-i", "--input", type=str, required=True, help="The medical term to define.")
     parser.add_argument("-o", "--output", ype=str, default=None, help="Optional: The path to save the output JSON file.")
-    parser.add_argument("-v", "--quiet", action="store_true", help="Show verbose console output.")
+    parser.add_argument("-v", "--quiet", action="store_true", help="Verbosity level (default: 2=WARNING)")
 
     args = parser.parse_args()
 

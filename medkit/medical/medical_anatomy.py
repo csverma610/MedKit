@@ -73,7 +73,7 @@ class Config(StorageConfig):
     """Configuration for the medical anatomy generator."""
     output_dir: Path = field(default_factory=lambda: Path("outputs"))
     log_file: Path = field(default_factory=lambda: Path(__file__).parent / "logs" / f"{Path(__file__).stem}.log")
-    quiet: bool = True
+    verbosity: int = 2  # Verbosity level: 0=CRITICAL, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG
 
     def __post_init__(self):
         """Set default db_path if not provided, then validate."""
@@ -350,7 +350,7 @@ Provide accurate, detailed anatomical information based on standard anatomical r
         """
         Print a summary of the generated anatomical information.
         """
-        if self.config.quiet:
+        if self.config.verbosity < 3:
             return
         print("\n" + "="*70)
         print(f"ANATOMY INFORMATION SUMMARY: {anatomy_info.overview.structure_name}")
@@ -360,11 +360,11 @@ Provide accurate, detailed anatomical information based on standard anatomical r
         print(f"  - Classification: {anatomy_info.overview.anatomical_classification}")
         print(f"\n✓ Generation complete. Saved to {self.output_path}")
 
-def get_anatomy_info(structure_name: str, output_path: Optional[Path] = None, quiet: bool = True) -> MedicalAnatomy:
+def get_anatomy_info(structure_name: str, output_path: Optional[Path] = None, verbosity: int = 2) -> MedicalAnatomy:
     """
     High-level function to generate and optionally save anatomy information.
     """
-    config = Config(quiet=quiet)
+    config = Config(verbosity=verbosity)
     generator = MedicalAnatomyGenerator(config=config)
     return generator.generate(structure_name, output_path)
 
@@ -373,11 +373,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate comprehensive information for an anatomical structure.")
     parser.add_argument("-i", "--anatomy", type=str, required=True, help="The name of the anatomical structure to generate information for.")
     parser.add_argument("-o", "--output", type=str, help="Optional: The path to save the output JSON file.")
-    parser.add_argument("-q", "--quiet", action="store_true", help="Show verbose console output.")
+    parser.add_argument("-v", "--verbosity", type=int, default=2, choices=[0, 1, 2, 3, 4], help="Verbosity level: 0=CRITICAL, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG")
 
     args = parser.parse_args()
 
-    get_anatomy_info(args.anatomy, args.output, args.quiet)
+    get_anatomy_info(args.anatomy, args.output, args.verbosity)
 
 
     def close(self):

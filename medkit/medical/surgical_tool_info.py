@@ -78,7 +78,7 @@ class Config(StorageConfig):
     output_dir: Path = field(default_factory=lambda: Path("outputs"))
     log_file: Path = field(default_factory=lambda: Path(__file__).parent / "logs" / f"{Path(__file__).stem}.log")
     specialty: str = "Surgery/Surgical Instruments"
-    quiet: bool = True
+    verbosity: int = 2  # Verbosity level: 0=CRITICAL, 1=ERROR, 2=WARNING, 3=INFO, 4=DEBUG
 
     def __post_init__(self):
         """Set default db_path if not provided, then validate."""
@@ -326,7 +326,7 @@ Return structured JSON matching the exact schema provided, with all required fie
         return output_path
 
     def print_summary(self, tool_info: SurgicalToolInfo) -> None:
-        if self.config.quiet:
+        if self.config.verbosity < 3:
             return
 
         print("\n" + "="*70)
@@ -336,7 +336,7 @@ Return structured JSON matching the exact schema provided, with all required fie
         print(f"  - Specialties: {tool_info.tool_basics.surgical_specialties}")
         print(f"\n✓ Generation complete. Saved to {self.output_path}")
 
-def get_surgical_tool_info(tool_name: str, output_path: Optional[Path] = None, quiet: bool = True) -> SurgicalToolInfo:
+def get_surgical_tool_info(tool_name: str, output_path: Optional[Path] = None, verbosity: int = 2) -> SurgicalToolInfo:
     """
     High-level function to generate and optionally save surgical tool information.
 
@@ -345,7 +345,7 @@ def get_surgical_tool_info(tool_name: str, output_path: Optional[Path] = None, q
         output_path: Optional path to save the output JSON file.
         quiet: If True, suppress console output (only save to file and logs).
     """
-    config = Config(quiet=quiet)
+    config = Config(verbosity=verbosity)
     generator = SurgicalToolInfoGenerator(config=config)
     return generator.generate(tool_name, output_path)
 
@@ -354,7 +354,7 @@ def main():
     parser = argparse.ArgumentParser(description="Generate comprehensive surgical tool information.")
     parser.add_argument("-i", "--tool", nargs='+', help="Name of the surgical tool")
     parser.add_argument("-o", "--output", type=Path, help="Path to save JSON output.")
-    parser.add_argument("-v", "--verbose", action="store_true", help="Show verbose console output.")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbosity level (default: 2=WARNING)")
 
     args = parser.parse_args()
 

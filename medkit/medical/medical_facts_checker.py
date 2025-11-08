@@ -204,11 +204,11 @@ class MedicalFactsChecker:
         print(f"  - Explanation: {analysis.detailed_analysis.explanation}")
         print(f"\n✓ Analysis complete. Saved to {self.output_path}")
 
-def analyze_statement(statement: str, output_path: Optional[Path] = None, quiet: bool = True) -> FactFictionAnalysis:
+def analyze_statement(statement: str, output_path: Optional[Path] = None, verbosity: int = 2) -> FactFictionAnalysis:
     """
     High-level function to generate and optionally save fact check analysis.
     """
-    config = Config(quiet=quiet)
+    config = Config(verbosity=verbosity)
     checker = MedicalFactsChecker(config=config)
     return checker.generate(statement, output_path)
 
@@ -228,7 +228,7 @@ Examples:
     )
     parser.add_argument("-i", "--statement", required=True, help="Statement to analyze")
     parser.add_argument("-o", "--output", type=Path, help="Path to save JSON output.")
-    parser.add_argument("-v", "--verbose", action="store_true", help="Show verbose console output.")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbosity level (default: 2=WARNING)")
 
     args = parser.parse_args()
 
