@@ -17,6 +17,7 @@ from typing import Optional
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from utils.pydantic_prompt_generator import PromptStyle
 from core.medkit_client import MedKitClient
+from core.module_config import get_module_config
 
 
 class TwentyFourHourDietRecall(BaseModel):
@@ -483,8 +484,15 @@ def generate_ai_nutrition_assessment(
     Returns:
         NutritionGrowthAssessment: AI-generated validated assessment object
     """
-    # Initialize MedKitClient
-    client = MedKitClient(model_name="gemini-2.5-flash")
+    # Initialize MedKitClient with model from ModuleConfig
+    try:
+        module_config = get_module_config("exam_nutrition_growth")
+        model_name = module_config.model_name
+    except ValueError:
+        # Fallback if module not registered yet
+        model_name = "gemini-2.5-flash"
+
+    client = MedKitClient(model_name=model_name)
 
     # Prepare patient context from responses
     patient_context = f"""

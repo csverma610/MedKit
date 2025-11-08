@@ -32,6 +32,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 from medkit.core.medkit_client import MedKitClient
+from medkit.core.module_config import get_module_config, ModuleConfig
 
 from medkit.utils.logging_config import setup_logger
 
@@ -41,20 +42,23 @@ from medkit.utils.lmdb_storage import LMDBStorage, LMDBConfig
 # Configure logging
 logger = setup_logger(__name__)
 
-# ============================================================================ 
+# ============================================================================
 # CONFIGURATION
-# ============================================================================ 
+# ============================================================================
 
 @dataclass
 class Config:
-    """Configuration for the medical dictionary generator."""
+    """Configuration for the medical dictionary generator.
+
+    This class is deprecated. Use get_module_config("medical_dictionary") instead.
+    """
     output_dir: Path = field(default_factory=lambda: Path("outputs"))
     db_path: str = field(default_factory=lambda: str(Path(__file__).parent.parent / "storage" / "medical_dictionary.lmdb"))
     db_capacity_mb: int = 500
     db_store: bool = True
     db_overwrite: bool = False  # If True, overwrite existing cached entries; if False, use cached entry if exists
     log_file: Path = field(default_factory=lambda: Path(__file__).parent / "logs" / f"{Path(__file__).stem}.log")
-    model: str = "gemini-1.5-flash"
+    model: str = field(default_factory=lambda: get_module_config("medical_dictionary").model_name)
     quiet: bool = True
 
 # ============================================================================ 
@@ -77,10 +81,19 @@ class MedicalTerm(BaseModel):
 class MedicalDictionaryGenerator:
     """Medical dictionary using MedKitClient for generation."""
 
-    def __init__(self, config: Optional[Config] = None):
-        """Initialize Medical Dictionary."""
+    def __init__(self, config: Optional[Config] = None, module_config: Optional[ModuleConfig] = None):
+        """Initialize Medical Dictionary.
+
+        Args:
+            config: Optional Config dataclass (deprecated). If not provided, creates default.
+            module_config: Optional ModuleConfig from get_module_config(). If not provided, loads from registry.
+        """
+        if module_config is None:
+            module_config = get_module_config("medical_dictionary")
+
         self.config = config or Config()
-        self.medkit_client = MedKitClient(model_name=self.config.model)
+        self.module_config = module_config
+        self.medkit_client = MedKitClient(model_name=self.module_config.model_name)
         self.term_query: Optional[str] = None
         self.output_path: Optional[Path] = None
 
