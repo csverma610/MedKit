@@ -14,10 +14,14 @@ Welcome to the MedKit CI/CD documentation! This directory contains all the confi
 │   └── pull-request.yml          # PR validation and checks
 ├── CODEOWNERS                     # Code review assignments
 ├── dependabot.yml                # Automated dependency updates
-├── SETUP_INSTRUCTIONS.md         # ⭐ START HERE - Initial setup
-├── WORKFLOWS_SUMMARY.md          # Quick reference guide
-├── CI_CD_GUIDE.md                # Detailed documentation
-└── README.md                      # This file
+└── README.md                      # This file (navigation hub)
+
+docs/ci-cd/                       # CI/CD documentation
+├── QUICK_START.md                # ⭐ 5-minute quick start
+├── SETUP_INSTRUCTIONS.md         # Detailed setup guide
+├── WORKFLOWS_SUMMARY.md          # Quick reference
+├── CI_CD_GUIDE.md                # Comprehensive documentation
+└── IMPLEMENTATION_SUMMARY.md     # Project metrics and overview
 ```
 
 ---
@@ -27,7 +31,7 @@ Welcome to the MedKit CI/CD documentation! This directory contains all the confi
 ### For New Setup
 
 1. **Follow the setup instructions:**
-   - Read [`SETUP_INSTRUCTIONS.md`](./SETUP_INSTRUCTIONS.md)
+   - Read [`SETUP_INSTRUCTIONS.md`](../docs/ci-cd/SETUP_INSTRUCTIONS.md)
    - Configure secrets in GitHub
    - Enable branch protection rules
 
@@ -51,9 +55,9 @@ Welcome to the MedKit CI/CD documentation! This directory contains all the confi
 ### For Existing Setup
 
 Jump to the relevant section:
-- **Quick reference:** [`WORKFLOWS_SUMMARY.md`](./WORKFLOWS_SUMMARY.md)
-- **Detailed guide:** [`CI_CD_GUIDE.md`](./CI_CD_GUIDE.md)
-- **Troubleshooting:** See SETUP_INSTRUCTIONS.md section
+- **Quick reference:** [`WORKFLOWS_SUMMARY.md`](../docs/ci-cd/WORKFLOWS_SUMMARY.md)
+- **Detailed guide:** [`CI_CD_GUIDE.md`](../docs/ci-cd/CI_CD_GUIDE.md)
+- **Troubleshooting:** See [`SETUP_INSTRUCTIONS.md`](../docs/ci-cd/SETUP_INSTRUCTIONS.md)
 
 ---
 
@@ -78,14 +82,15 @@ Jump to the relevant section:
 | `Dockerfile` | Multi-stage container build (optional) |
 | `.dockerignore` | Docker build exclusions |
 
-### Documentation
+### Documentation (in `docs/ci-cd/`)
 
 | File | Content |
 |------|---------|
+| `QUICK_START.md` | 5-minute quick start |
 | `SETUP_INSTRUCTIONS.md` | Step-by-step setup guide |
 | `WORKFLOWS_SUMMARY.md` | Quick reference and checklist |
 | `CI_CD_GUIDE.md` | Comprehensive documentation |
-| `README.md` | This file |
+| `IMPLEMENTATION_SUMMARY.md` | Project metrics and overview |
 
 ---
 
@@ -166,7 +171,7 @@ git push origin v1.0.0
 
 ## ✅ Setup Checklist
 
-- [ ] Read [`SETUP_INSTRUCTIONS.md`](./SETUP_INSTRUCTIONS.md)
+- [ ] Read [`SETUP_INSTRUCTIONS.md`](../docs/ci-cd/SETUP_INSTRUCTIONS.md)
 - [ ] Add required secrets (if applicable)
 - [ ] Configure branch protection rules for `main`
 - [ ] Enable GitHub Pages (optional)
@@ -237,7 +242,15 @@ git push origin v1.2.3
 
 ## 📚 Documentation Files
 
-### [`SETUP_INSTRUCTIONS.md`](./SETUP_INSTRUCTIONS.md)
+See `docs/ci-cd/` folder for all CI/CD documentation:
+
+### [`QUICK_START.md`](../docs/ci-cd/QUICK_START.md)
+Get started in 5 minutes with:
+- Quick setup steps
+- Copy-paste commands
+- Common issues and solutions
+
+### [`SETUP_INSTRUCTIONS.md`](../docs/ci-cd/SETUP_INSTRUCTIONS.md)
 Complete step-by-step setup guide:
 - Configuring secrets
 - Setting up branch protection
@@ -246,7 +259,7 @@ Complete step-by-step setup guide:
 - Adding status badges
 - Troubleshooting
 
-### [`WORKFLOWS_SUMMARY.md`](./WORKFLOWS_SUMMARY.md)
+### [`WORKFLOWS_SUMMARY.md`](../docs/ci-cd/WORKFLOWS_SUMMARY.md)
 Quick reference guide:
 - Workflow table
 - Common operations
@@ -254,7 +267,7 @@ Quick reference guide:
 - Environment variables
 - Troubleshooting tips
 
-### [`CI_CD_GUIDE.md`](./CI_CD_GUIDE.md)
+### [`CI_CD_GUIDE.md`](../docs/ci-cd/CI_CD_GUIDE.md)
 Comprehensive detailed guide:
 - Full workflow descriptions
 - Configuration file explanations
@@ -262,6 +275,13 @@ Comprehensive detailed guide:
 - Status badges
 - Advanced customization
 - Best practices
+
+### [`IMPLEMENTATION_SUMMARY.md`](../docs/ci-cd/IMPLEMENTATION_SUMMARY.md)
+Project overview and metrics:
+- Implementation status
+- Integration points
+- Customization options
+- Support and maintenance
 
 ---
 
@@ -287,7 +307,7 @@ Comprehensive detailed guide:
 - [ ] Check branch is set to `gh-pages`
 - [ ] View docs build logs in Actions tab
 
-See [`SETUP_INSTRUCTIONS.md`](./SETUP_INSTRUCTIONS.md) for more troubleshooting.
+See [`SETUP_INSTRUCTIONS.md`](../docs/ci-cd/SETUP_INSTRUCTIONS.md) for more troubleshooting.
 
 ---
 
@@ -320,7 +340,7 @@ The Release workflow will:
 
 ## 🎯 Next Steps
 
-1. **Read:** [`SETUP_INSTRUCTIONS.md`](./SETUP_INSTRUCTIONS.md)
+1. **Read:** [`QUICK_START.md`](../docs/ci-cd/QUICK_START.md) or [`SETUP_INSTRUCTIONS.md`](../docs/ci-cd/SETUP_INSTRUCTIONS.md)
 2. **Configure:** GitHub secrets and branch protection
 3. **Test:** Run workflows locally and on GitHub
 4. **Monitor:** Watch Actions tab as you develop
