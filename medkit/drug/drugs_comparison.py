@@ -45,11 +45,13 @@ from typing import Optional
 
 from medkit.core.medkit_client import MedKitClient
 from medkit.core.module_config import get_module_config
+from medkit.utils.storage_config import StorageConfig
 from medkit.utils.pydantic_prompt_generator import PromptStyle
 from medkit.utils.logging_config import setup_logger
 
 import hashlib
 from medkit.utils.lmdb_storage import LMDBStorage, LMDBConfig
+from dataclasses import dataclass, field
 
 # Configure logging
 logger = setup_logger(__name__)
@@ -204,16 +206,31 @@ class MedicinesComparisonResult(BaseModel):
     )
 
 
-class DrugsComparisonConfig(BaseModel):
+@dataclass
+class DrugsComparisonConfig(StorageConfig):
+    """
+    Configuration for drugs_comparison.
+
+    Inherits from StorageConfig for LMDB database settings:
+    - db_path: Auto-generated path to drugs_comparison.lmdb
+    - db_capacity_mb: Database capacity (default 500 MB)
+    - db_store: Whether to cache results (default True)
+    - db_overwrite: Whether to refresh cache (default False)
+    """
     """Configuration for drugs comparison."""
     output_path: Optional[Path] = None
     verbosity: bool = False
     prompt_style: PromptStyle = PromptStyle.DETAILED
-    db_path: str = str(Path(__file__).parent.parent.parent / "storage" / "drugs_comparison.lmdb")
-    db_capacity_mb: int = 500
     enable_cache: bool = True
-    db_overwrite: bool = False  # If True, overwrite existing cached entries; if False, use cached entry if exists
 
+    def __post_init__(self):
+        """Set default db_path if not provided, then validate."""
+        if self.db_path is None:
+            self.db_path = str(
+                Path(__file__).parent.parent / "storage" / "drugs_comparison.lmdb"
+            )
+        # Call parent validation
+        super().__post_init__()
 
 class DrugsComparison:
     """Compares two medicines based on provided configuration."""

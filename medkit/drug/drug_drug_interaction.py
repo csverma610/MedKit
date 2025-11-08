@@ -50,6 +50,7 @@ import logging
 import sys
 import json
 import argparse
+from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
 from pydantic import BaseModel, Field, validator
@@ -59,6 +60,7 @@ from medkit.core.medkit_client import MedKitClient
 from medkit.core.module_config import get_module_config
 from medkit.utils.pydantic_prompt_generator import PromptStyle
 from medkit.utils.logging_config import setup_logger
+from medkit.utils.storage_config import StorageConfig
 
 import hashlib
 from medkit.utils.lmdb_storage import LMDBStorage, LMDBConfig
@@ -241,15 +243,30 @@ class DrugInteractionResult(BaseModel):
     )
 
 
-class DrugDrugInteractionConfig(BaseModel):
-    """Configuration for drug-drug interaction analysis."""
+@dataclass
+class DrugDrugInteractionConfig(StorageConfig):
+    """
+    Configuration for drug-drug interaction analysis.
+
+    Inherits from StorageConfig for LMDB database settings:
+    - db_path: Auto-generated path to drug_drug_interaction.lmdb
+    - db_capacity_mb: Database capacity (default 500 MB)
+    - db_store: Whether to cache results (default True)
+    - db_overwrite: Whether to refresh cache (default False)
+    """
     output_path: Optional[Path] = None
     verbosity: bool = False
     prompt_style: PromptStyle = PromptStyle.DETAILED
-    db_path: str = str(Path(__file__).parent.parent.parent / "storage" / "drug_drug_interaction.lmdb")
-    db_capacity_mb: int = 500
     enable_cache: bool = True
-    db_overwrite: bool = False  # If True, overwrite existing cached entries; if False, use cached entry if exists
+
+    def __post_init__(self):
+        """Set default db_path if not provided, then validate."""
+        if self.db_path is None:
+            self.db_path = str(
+                Path(__file__).parent.parent / "storage" / "drug_drug_interaction.lmdb"
+            )
+        # Call parent validation
+        super().__post_init__()
 
 
 class DrugDrugInteraction:

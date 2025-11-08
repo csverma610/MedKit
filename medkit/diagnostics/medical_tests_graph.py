@@ -13,6 +13,7 @@ Author: ChatGPT (for Chaman Singh Verma)
 # =========================
 from typing import List, Literal, Optional
 from pathlib import Path
+from dataclasses import dataclass, field
 from pydantic import BaseModel, Field, validator
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -21,6 +22,7 @@ from medkit.core.medkit_client import MedKitClient
 from medkit.core.gemini_client import ModelInput
 
 import hashlib
+from medkit.utils.storage_config import StorageConfig
 from medkit.utils.lmdb_storage import LMDBStorage, LMDBConfig
 
 # Uncomment in production:
@@ -30,90 +32,29 @@ from medkit.utils.lmdb_storage import LMDBStorage, LMDBConfig
 # =========================
 # Configuration
 # =========================
-class TestGraphConfig(BaseModel):
-    """Configuration for Medical Test Knowledge Graph Builder."""
+@dataclass
+class TestGraphConfig(StorageConfig):
+    """
+    Configuration for medical_tests_graph.
+
+    Inherits from StorageConfig for LMDB database settings:
+    - db_path: Auto-generated path to medical_tests_graph.lmdb
+    - db_capacity_mb: Database capacity (default 500 MB)
+    - db_store: Whether to cache results (default True)
+    - db_overwrite: Whether to refresh cache (default False)
+    """
     output_path: Optional[Path] = None
     verbosity: bool = False
-    db_path: str = str(Path(__file__).parent.parent.parent / "storage" / "medical_tests_graph.lmdb")
-    db_capacity_mb: int = 500
     enable_cache: bool = True
-    db_overwrite: bool = False  # If True, overwrite existing cached entries; if False, use cached entry if exists
 
-
-# =========================
-# 1️⃣ Pydantic Models
-# =========================
-
-# ---- Canonical edge (relation) types ----
-Relation = Literal[
-    "measures",
-    "detects",
-    "diagnoses",
-    "monitors",
-    "screen_for",
-    "related_to_disease",
-    "requires_sample",
-    "uses_instrument",
-    "evaluates_function_of",
-    "ordered_for_symptom",
-    "follow_up_of",
-    "has_reference_range",
-    "other",
-]
-
-# ---- Node (entity) types ----
-NodeType = Literal[
-    "Test",
-    "Biomarker",
-    "Disease",
-    "Condition",
-    "BodySystem",
-    "Organ",
-    "Instrument",
-    "SampleType",
-    "Symptom",
-    "Parameter",
-    "Procedure",
-    "Other",
-]
-
-# ---- Aliases for normalization ----
-RELATION_ALIASES = {
-    "measure": "measures",
-    "detect": "detects",
-    "detects_for": "detects",
-    "diagnose": "diagnoses",
-    "used_to_diagnose": "diagnoses",
-    "monitor": "monitors",
-    "screen": "screen_for",
-    "check": "screen_for",
-    "related": "related_to_disease",
-    "requires": "requires_sample",
-    "uses": "uses_instrument",
-    "evaluates": "evaluates_function_of",
-    "ordered_for": "ordered_for_symptom",
-    "follow_up": "follow_up_of",
-    "range": "has_reference_range",
-}
-
-NODE_TYPE_ALIASES = {
-    "test": "Test",
-    "lab_test": "Test",
-    "blood_test": "Test",
-    "biomarker": "Biomarker",
-    "parameter": "Parameter",
-    "disease": "Disease",
-    "condition": "Condition",
-    "organ": "Organ",
-    "system": "BodySystem",
-    "instrument": "Instrument",
-    "device": "Instrument",
-    "sample": "SampleType",
-    "symptom": "Symptom",
-    "procedure": "Procedure",
-}
-
-
+    def __post_init__(self):
+        """Set default db_path if not provided, then validate."""
+        if self.db_path is None:
+            self.db_path = str(
+                Path(__file__).parent.parent / "storage" / "medical_tests_graph.lmdb"
+            )
+        # Call parent validation
+        super().__post_init__()
 class Triple(BaseModel):
     """Represents one medical test knowledge triple."""
     source: str = Field(..., description="Subject entity")

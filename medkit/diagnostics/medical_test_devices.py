@@ -62,6 +62,7 @@ from medkit.core.module_config import get_module_config
 
 import hashlib
 from medkit.utils.lmdb_storage import LMDBStorage, LMDBConfig
+from medkit.utils.storage_config import StorageConfig
 
 # Configure logging
 logger = setup_logger(__name__)
@@ -71,16 +72,21 @@ logger = setup_logger(__name__)
 # ============================================================================ 
 
 @dataclass
-class Config:
+class Config(StorageConfig):
     """Configuration for the medical test device generator."""
     output_dir: Path = field(default_factory=lambda: Path("outputs"))
-    db_path: str = field(default_factory=lambda: str(Path(__file__).parent.parent / "storage" / "medical_test_devices.lmdb"))
-    db_capacity_mb: int = 500
     enable_cache: bool = True
-    db_overwrite: bool = False  # If True, overwrite existing cached entries; if False, use cached entry if exists
     log_file: Path = field(default_factory=lambda: Path(__file__).parent / "logs" / f"{Path(__file__).stem}.log")
     verbosity: int = 2  # 0=CRITICAL, 1=ERROR, 2=WARNING (default), 3=INFO, 4=DEBUG
 
+    def __post_init__(self):
+        """Set default db_path if not provided, then validate."""
+        if self.db_path is None:
+            self.db_path = str(
+                Path(__file__).parent.parent / "storage" / "medical_test_devices.lmdb"
+            )
+        # Call parent validation
+        super().__post_init__()
 # ============================================================================ 
 # PYDANTIC MODELS FOR DEVICE INFORMATION STRUCTURE
 # ============================================================================ 

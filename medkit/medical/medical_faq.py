@@ -63,6 +63,7 @@ from medkit.utils.logging_config import setup_logger
 
 import hashlib
 from medkit.utils.lmdb_storage import LMDBStorage, LMDBConfig
+from medkit.utils.storage_config import StorageConfig
 
 # Configure logging
 logger = setup_logger(__name__)
@@ -72,14 +73,18 @@ logger = setup_logger(__name__)
 # ============================================================================
 
 @dataclass
-class Config:
+class Config(StorageConfig):
     """Configuration for the FAQ generator."""
     verbose: bool = False
-    db_path: str = field(default_factory=lambda: str(Path(__file__).parent.parent / "storage" / "medical_faq.lmdb"))
-    db_capacity_mb: int = 500
-    db_store: bool = True
-    db_overwrite: bool = False  # If True, overwrite existing cached entries; if False, use cached entry if exists
 
+    def __post_init__(self):
+        """Set default db_path if not provided, then validate."""
+        if self.db_path is None:
+            self.db_path = str(
+                Path(__file__).parent.parent / "storage" / "medical_faq.lmdb"
+            )
+        # Call parent validation
+        super().__post_init__()
 # ============================================================================
 # PYDANTIC MODELS FOR FAQ STRUCTURE
 # ============================================================================
