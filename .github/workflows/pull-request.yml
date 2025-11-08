@@ -1,0 +1,63 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check PR title
+        uses: conventional-commits-check@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate PR description
+        run: |
+          if [ -z "${{ github.event.pull_request.body }}" ]; then
+            echo "⚠️  PR description is empty"
+          fi
+
+  check-changes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for documentation updates
+        run: |
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+          if echo "$CHANGED_FILES" | grep -qE '\.py$'; then
+            if ! echo "$CHANGED_FILES" | grep -qE 'docs|README'; then
+              echo "⚠️  Warning: Python files changed but no documentation updates found"
+            fi
+          fi
+
+      - name: Check for test updates
+        run: |
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+          if echo "$CHANGED_FILES" | grep -qE '^medkit/.*\.py$' | grep -v __pycache__; then
+            if ! echo "$CHANGED_FILES" | grep -qE '^tests/.*\.py$'; then
+              echo "⚠️  Warning: Source files changed but no test updates found"
+            fi
+          fi
+
+  changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check if CHANGELOG.md exists
+        run: |
+          if [ ! -f "CHANGELOG.md" ]; then
+            echo "⚠️  No CHANGELOG.md found in repository"
+          fi

@@ -1,0 +1,26 @@
+# MedKit Codeowners
+# This file defines who should be notified for pull request reviews
+
+# Default owners
+* @csverma610
+
+# Medical modules
+/medkit/medical/ @csverma610
+/medkit/drug/ @csverma610
+/medkit/diagnostics/ @csverma610
+/medkit/mental_health/ @csverma610
+/medkit/phyexams/ @csverma610
+
+# Core and utilities
+/medkit/core/ @csverma610
+/medkit/utils/ @csverma610
+
+# CLI and documentation
+/cli/ @csverma610
+/docs/ @csverma610
+
+# Tests
+/tests/ @csverma610
+
+# CI/CD configurations
+/.github/ @csverma610
