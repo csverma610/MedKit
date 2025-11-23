@@ -119,6 +119,11 @@ pip install git+https://github.com/csverma610/medkit.git#egg=medkit[docs]
 ```bash
 git clone https://github.com/csverma610/medkit.git
 cd medkit
+make dev-setup
+```
+
+Or manually:
+```bash
 pip install -e ".[dev]"
 ```
 
@@ -262,11 +267,18 @@ Comprehensive documentation is available for all features and modules.
 
 ### Building Documentation Locally
 
+Using Make:
+```bash
+make docs              # Build HTML documentation
+make docs-serve        # Build and serve locally at http://localhost:8000
+make docs-clean        # Remove built documentation
+```
+
+Or manually:
 ```bash
 cd docs
 pip install -r ../requirements-dev.txt
-make clean
-make html
+sphinx-build -b html . _build/html
 ```
 
 Then open `docs/_build/html/index.html` in your browser.
@@ -327,7 +339,24 @@ print(f"Recommendations: {assessment.recommendations}")
 
 ## Testing
 
-Run the test suite:
+Run the test suite using Make:
+
+```bash
+# Run all tests
+make test
+
+# Run with coverage report
+make test-cov
+
+# Run tests in parallel (faster)
+make test-parallel
+
+# Run specific test type
+make test-unit      # Unit tests only
+make test-fast      # Quick tests with minimal output
+```
+
+Or use pytest directly:
 
 ```bash
 # Install test dependencies
@@ -345,20 +374,67 @@ pytest tests/test_disease_info.py
 
 ## Development
 
-### Code Quality
+### Using the Makefile
+
+A comprehensive Makefile is provided for common development tasks. Use `make help` to see all available targets:
+
+```bash
+make help
+```
+
+#### Common Development Commands
+
+```bash
+# Setup development environment
+make install-dev         # Install development dependencies
+make dev-setup          # Complete setup (venv + install)
+
+# Code Quality
+make lint               # Run all quality checks
+make format             # Format code with black and isort
+make format-check       # Check formatting without changes
+make typecheck          # Type checking with mypy
+make security           # Security scanning with bandit
+
+# Testing
+make test               # Run all tests
+make test-cov           # Run tests with coverage report
+make test-fast          # Quick test run
+make test-parallel      # Run tests in parallel
+
+# Documentation
+make docs               # Build documentation
+make docs-serve         # Build and serve docs locally
+
+# Before Pushing
+make pre-commit         # Quick checks before commit
+make ready              # Full CI checks locally
+
+# Cleanup
+make clean              # Remove all artifacts
+make clean-pyc          # Remove Python cache files
+```
+
+### Manual Code Quality Commands
 
 Format code with Black:
 ```bash
+make format
+# or manually:
 black medkit/ cli/ tests/
 ```
 
 Check linting:
 ```bash
+make format-check
+# or manually:
 flake8 medkit/ cli/ tests/
 ```
 
 Type checking:
 ```bash
+make typecheck
+# or manually:
 mypy medkit/ cli/ tests/
 ```
 

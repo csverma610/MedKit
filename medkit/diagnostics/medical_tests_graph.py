@@ -29,6 +29,62 @@ from medkit.utils.lmdb_storage import LMDBStorage, LMDBConfig
 
 
 # =========================
+# Type Definitions
+# =========================
+Relation = Literal[
+    "measures",
+    "detects",
+    "diagnoses",
+    "monitors",
+    "screen_for",
+    "related_to_disease",
+    "requires_sample",
+    "uses_instrument",
+    "evaluates_function_of",
+    "ordered_for_symptom",
+    "follow_up_of",
+    "has_reference_range",
+    "other",
+]
+
+NodeType = Literal["Test", "Biomarker", "Disease", "SampleType", "Instrument", "Organ", "Other"]
+
+RELATION_ALIASES = {
+    "measures": "measures",
+    "detects": "detects",
+    "diagnoses": "diagnoses",
+    "monitors": "monitors",
+    "screen": "screen_for",
+    "screen_for": "screen_for",
+    "related": "related_to_disease",
+    "related_to_disease": "related_to_disease",
+    "sample": "requires_sample",
+    "requires_sample": "requires_sample",
+    "instrument": "uses_instrument",
+    "uses_instrument": "uses_instrument",
+    "evaluates": "evaluates_function_of",
+    "evaluates_function_of": "evaluates_function_of",
+    "symptom": "ordered_for_symptom",
+    "ordered_for_symptom": "ordered_for_symptom",
+    "follow_up": "follow_up_of",
+    "follow_up_of": "follow_up_of",
+    "reference": "has_reference_range",
+    "has_reference_range": "has_reference_range",
+}
+
+NODE_TYPE_ALIASES = {
+    "test": "Test",
+    "biomarker": "Biomarker",
+    "disease": "Disease",
+    "sample": "SampleType",
+    "sampletype": "SampleType",
+    "instrument": "Instrument",
+    "organ": "Organ",
+    "other": "Other",
+}
+
+
+# =========================
 # Configuration
 # =========================
 @dataclass

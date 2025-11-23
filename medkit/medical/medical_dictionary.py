@@ -47,11 +47,7 @@ logger = setup_logger(__name__)
 
 @dataclass
 class Config(MedKitConfig):
-    """Configuration for the medical dictionary generator.
-
-    This class is deprecated. Use get_module_config("medical_dictionary") instead.
-    """
-    model: str = field(default_factory=lambda: get_module_config("medical_dictionary").model_name)
+    """Configuration for the medical dictionary generator."""
 
     def __post_init__(self):
         """Set default db_path if not provided, then validate."""
@@ -81,19 +77,14 @@ class MedicalTerm(BaseModel):
 class MedicalDictionaryGenerator:
     """Medical dictionary using MedKitClient for generation."""
 
-    def __init__(self, config: Optional[Config] = None, module_config: Optional[ModuleConfig] = None):
+    def __init__(self, config: Optional[Config] = None):
         """Initialize Medical Dictionary.
 
         Args:
-            config: Optional Config dataclass (deprecated). If not provided, creates default.
-            module_config: Optional ModuleConfig from get_module_config(). If not provided, loads from registry.
+            config: Optional Config dataclass. If not provided, creates default.
         """
-        if module_config is None:
-            module_config = get_module_config("medical_dictionary")
-
         self.config = config or Config()
-        self.module_config = module_config
-        self.medkit_client = MedKitClient(model_name=self.module_config.model_name)
+        self.medkit_client = MedKitClient()
         self.term_query: Optional[str] = None
         self.output_path: Optional[Path] = None
 
