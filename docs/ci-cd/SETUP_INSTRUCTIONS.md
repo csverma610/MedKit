@@ -32,18 +32,6 @@ GitHub Actions should be enabled by default for public repositories.
    - **Name:** `PYPI_API_TOKEN`
    - **Value:** Your PyPI token (get from https://pypi.org/account/)
 
-### Optional: Add Docker Hub credentials
-
-1. Click **New repository secret**
-
-2. Add secrets:
-   - **Name:** `DOCKER_USERNAME`
-   - **Value:** Your Docker Hub username
-
-3. Add another:
-   - **Name:** `DOCKER_PASSWORD`
-   - **Value:** Your Docker Hub password or access token
-
 ### Optional: Add Google API Key for integration tests
 
 1. Click **New repository secret**
@@ -189,7 +177,6 @@ The Release workflow will:
 - Build distribution packages
 - Create GitHub Release with artifacts
 - Publish to PyPI (if PYPI_API_TOKEN is configured)
-- Build Docker image (if Docker credentials are configured)
 
 ---
 
@@ -234,15 +221,6 @@ The Release workflow will:
 - Verify docs build successfully in workflow logs
 - May take a few minutes to appear
 
-### Docker push failing
-
-**Problem:** Docker image fails to push
-
-**Solution:**
-- Verify Docker Hub credentials are correct
-- Check Docker Hub account is not rate-limited
-- Verify `DOCKER_USERNAME` and `DOCKER_PASSWORD` secrets
-
 ---
 
 ## Monitoring Workflows
@@ -281,12 +259,10 @@ The Release workflow will:
 | `.github/workflows/tests.yml` | Run pytest across Python versions |
 | `.github/workflows/code-quality.yml` | Code linting, formatting, type-checking |
 | `.github/workflows/docs.yml` | Build and deploy documentation |
-| `.github/workflows/release.yml` | PyPI & Docker publishing |
+| `.github/workflows/release.yml` | PyPI publishing |
 | `.github/workflows/pull-request.yml` | PR validation checks |
 | `.github/CODEOWNERS` | Code review assignments |
 | `.github/dependabot.yml` | Automated dependency updates |
-| `Dockerfile` | Container image definition |
-| `.dockerignore` | Docker build exclusions |
 
 ---
 

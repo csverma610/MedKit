@@ -7,7 +7,7 @@
 | **Tests** | Push/PR to main, develop | Run pytest across Python 3.8-3.12 | ✅ Configured |
 | **Code Quality** | Push/PR to main, develop | Lint, format, type-check, security scan | ✅ Configured |
 | **Documentation** | Push/PR to main, develop | Build and deploy Sphinx docs | ✅ Configured |
-| **Release** | Tag push (v*) | Publish to PyPI and Docker Hub | ✅ Configured |
+| **Release** | Tag push (v*) | Publish to PyPI | ✅ Configured |
 | **Pull Request** | PR to main, develop | Validate commits and encourage tests/docs | ✅ Configured |
 
 ---
@@ -27,8 +27,6 @@
 ├── CI_CD_GUIDE.md                # Comprehensive CI/CD documentation
 └── WORKFLOWS_SUMMARY.md          # This file
 
-Dockerfile                         # Multi-stage container build
-.dockerignore                      # Docker build exclusions
 ```
 
 ---
@@ -40,8 +38,6 @@ Dockerfile                         # Multi-stage container build
 - [ ] Enable GitHub Actions (should be default for public repos)
 - [ ] Add required secrets (if needed):
   - `PYPI_API_TOKEN` - for PyPI publishing
-  - `DOCKER_USERNAME` - for Docker Hub (optional)
-  - `DOCKER_PASSWORD` - for Docker Hub (optional)
   - `GOOGLE_API_KEY` - for integration tests (optional)
 
 ### Repository Branch Protection
@@ -117,7 +113,6 @@ git push origin v1.2.3
 # 1. Build distribution packages
 # 2. Create GitHub Release
 # 3. Publish to PyPI
-# 4. Build and push Docker image
 ```
 
 ---
@@ -150,7 +145,6 @@ git push origin v1.2.3
 - **Triggers:** When a tag matching `v*` is pushed
 - **Builds:** Python wheel and sdist packages
 - **Publishes:** To PyPI automatically
-- **Docker:** Builds and pushes image to Docker Hub
 - **GitHub:** Creates Release with artifacts
 - **Time:** ~2-3 minutes
 
@@ -164,13 +158,9 @@ git push origin v1.2.3
 
 ## Environment Variables
 
-### Required
-- `GOOGLE_API_KEY` - For integration tests (set in GitHub Secrets)
-
 ### Optional
+- `GOOGLE_API_KEY` - For integration tests (GitHub Secret)
 - `PYPI_API_TOKEN` - For PyPI publishing (GitHub Secret)
-- `DOCKER_USERNAME` - For Docker Hub (GitHub Secret)
-- `DOCKER_PASSWORD` - For Docker Hub (GitHub Secret)
 
 ---
 

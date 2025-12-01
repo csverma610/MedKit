@@ -116,7 +116,6 @@ The Release workflow will:
 - Build distribution packages
 - Create GitHub Release
 - Publish to PyPI (if configured)
-- Build Docker image (if configured)
 
 ---
 
@@ -189,7 +188,6 @@ After setup, verify:
 ✓ Build distribution packages
 ✓ Create GitHub Release
 ✓ Publish to PyPI (if configured)
-✓ Build Docker image (if configured)
 ```
 
 ---

@@ -110,12 +110,10 @@ make clean html
 - Builds Python distribution (wheel and sdist)
 - Creates GitHub Release with artifacts
 - Publishes package to PyPI
-- (Optional) Builds and pushes Docker images
 
 **Key features:**
 - Automated PyPI publishing
 - GitHub Release creation with build artifacts
-- Docker image building and pushing
 - Supports semantic versioning
 
 **How to create a release:**
@@ -129,8 +127,6 @@ git push origin v1.0.0
 
 **Required secrets:**
 - `PYPI_API_TOKEN` - PyPI API token for publishing
-- `DOCKER_USERNAME` - Docker Hub username (optional)
-- `DOCKER_PASSWORD` - Docker Hub password (optional)
 
 ---
 
@@ -165,13 +161,6 @@ Configures automated dependency updates:
 
 Creates automated pull requests for dependency updates, allowing you to review and merge them.
 
-### `Dockerfile` & `.dockerignore`
-Provides containerized deployment:
-- Multi-stage build for optimal image size
-- Non-root user for security
-- Health checks for container monitoring
-- Python 3.11 slim image for minimal footprint
-
 ---
 
 ## Secrets Required
@@ -180,17 +169,13 @@ To fully utilize the CI/CD pipeline, configure these secrets in GitHub:
 
 ### Optional Secrets
 
-1. **`GOOGLE_API_KEY`** - Required for integration tests with Gemini API
+1. **`GOOGLE_API_KEY`** - For integration tests with Gemini API
    - Set in repository settings: Settings → Secrets and variables → Actions
    - Used for testing medical data fetching
 
-2. **`PYPI_API_TOKEN`** - Required for PyPI publishing
+2. **`PYPI_API_TOKEN`** - For PyPI publishing
    - Get from https://pypi.org/account/
    - Used in Release workflow
-
-3. **`DOCKER_USERNAME`** & **`DOCKER_PASSWORD`** - Required for Docker publishing
-   - Docker Hub credentials
-   - Used in Release workflow for pushing Docker images
 
 ### GitHub Token
 - `GITHUB_TOKEN` is automatically provided by GitHub Actions
