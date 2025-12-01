@@ -4,7 +4,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Documentation Status](https://readthedocs.org/projects/medkit/badge/?version=latest)](https://medkit.readthedocs.io)
 
-A comprehensive **medical information and reference system** powered by Google's Gemini AI. MedKit provides programmatic access to medical knowledge, drug interactions, disease information, diagnostic tools, and clinical decision support.
+A comprehensive medical information and reference system powered by Google's Gemini AI. MedKit provides programmatic access to medical knowledge, drug interactions, disease information, diagnostic tools, and clinical decision support.
+
+**Status:** Beta (v1.0.0) | **License:** MIT | **Python:** 3.8+
 
 ## System Architecture
 
@@ -51,73 +53,84 @@ A comprehensive **medical information and reference system** powered by Google's
 
 ## Features
 
-### 🏥 Medical Reference
-[View detailed documentation →](docs/medical_ai/)
+### Medical Reference
 
-- **Disease Information** - Comprehensive disease definitions, symptoms, causes, and treatments
-- **Medical Anatomy** - Detailed anatomical structures and physiological functions
-- **Medical Specialties** - Information about different medical disciplines and subspecialties
-- **Surgical Procedures** - Surgical techniques, instruments, and operative procedures
-- **Medical Implants** - Types and uses of medical implants and prosthetics
-- **Herbal Medicine** - Evidence-based information on herbal remedies
+Comprehensive medical knowledge base covering:
+- Disease information with definitions, symptoms, causes, and treatments
+- Anatomical structures and physiological functions
+- Medical specialties and disciplines
+- Surgical procedures, techniques, and instruments
+- Medical implants and prosthetics
+- Herbal medicine with evidence-based information
 
-### 💊 Drug Database
-[View detailed documentation →](docs/drug_ai/)
+See [docs/medical_ai/](docs/medical_ai/) for complete documentation.
 
-- **Medicine Information** - Drug details, dosing, side effects, and contraindications
-- **Drug-Drug Interactions** - Check interactions between medications
-- **Drug-Disease Interactions** - Safety in specific conditions
-- **Drug-Food Interactions** - Dietary considerations
-- **Similar Drugs** - Find alternative medications
-- **Drug Comparison** - Compare multiple medications side-by-side
+### Drug Database
 
-### 🔍 Diagnostic Tools
-[View detailed documentation →](docs/diagnostic_ai/)
+Pharmaceutical reference covering:
+- Medicine information including dosing, side effects, contraindications
+- Drug-drug interactions between medications
+- Drug-disease interactions and safety in specific conditions
+- Drug-food interactions and dietary considerations
+- Alternative medications and drug comparisons
 
-- **Medical Tests** - Information about diagnostic tests and their purposes
-- **Test Devices** - Medical diagnostic equipment and devices
-- **Physical Examinations** - Comprehensive guides for 27+ body systems and physical exams
-- **Symptom Detection** - AI-powered symptom analysis and differential diagnosis
-- **Medical Decision Guides** - Evidence-based clinical decision trees
-- **Synthetic Case Reports** - Generated medical case studies for learning
+See [docs/drug_ai/](docs/drug_ai/) for complete documentation.
 
-### 🧠 Mental Health
-[View detailed documentation →](docs/psychology_ai/)
+### Diagnostic Tools
 
-- **Mental Health Assessments** - Structured screening tools and assessments
-- **Mental Health Chat** - Conversational mental health support interface
-- **SANE Interview** - Structured clinical interview tool
-- **Symptom Detection Chat** - Interactive symptom assessment
+Clinical decision support including:
+- Medical tests and diagnostic procedures
+- Medical diagnostic equipment and devices
+- Physical examination guides for 27+ body systems
+- Symptom analysis and differential diagnosis
+- Evidence-based clinical decision trees
+- Medical case studies for reference
 
-### 🛠️ Utilities
-- **Local Caching** - LMDB-based caching for offline access and performance
-- **Privacy Compliance** - HIPAA and privacy-aware data handling
-- **Fact Checking** - AI-powered medical fact verification
+See [docs/diagnostic_ai/](docs/diagnostic_ai/) for complete documentation.
+
+### Mental Health
+
+Psychological assessment and support:
+- Structured screening tools and assessments
+- Conversational support interface
+- Structured clinical interview tools
+- Interactive symptom assessment
+- Crisis resources and support information
+
+See [docs/psychology_ai/](docs/psychology_ai/) for complete documentation.
+
+### Utilities
+
+Infrastructure and support features:
+- LMDB-based caching for offline access and performance
+- HIPAA-compliant data handling
+- Medical fact verification
+- Structured logging and configuration
 
 ## Installation
 
 ### Basic Installation
 
 ```bash
-pip install git+https://github.com/csverma610/medkit.git
+pip install git+https://github.com/csv610/medkit.git
 ```
 
 ### With Development Tools
 
 ```bash
-pip install git+https://github.com/csverma610/medkit.git#egg=medkit[dev]
+pip install git+https://github.com/csv610/medkit.git#egg=medkit[dev]
 ```
 
 ### With Documentation Building
 
 ```bash
-pip install git+https://github.com/csverma610/medkit.git#egg=medkit[docs]
+pip install git+https://github.com/csv610/medkit.git#egg=medkit[docs]
 ```
 
 ### Local Development
 
 ```bash
-git clone https://github.com/csverma610/medkit.git
+git clone https://github.com/csv610/medkit.git
 cd medkit
 make dev-setup
 ```
@@ -127,10 +140,13 @@ Or manually:
 pip install -e ".[dev]"
 ```
 
-## Requirements
+## System Requirements
 
 - Python 3.8+
-- Google Gemini API key (get one [here](https://ai.google.dev/))
+- Google Gemini API key (obtain from https://ai.google.dev/)
+- 512MB minimum RAM (1GB recommended)
+- 500MB+ disk space for LMDB caching
+- Internet connection for initial setup and generation (caching enables offline use)
 
 ## Quick Start
 
@@ -234,36 +250,46 @@ medkit/
 
 ## Configuration
 
-Set up your Google Gemini API key:
+### Environment Setup
+
+Set the Google Gemini API key:
 
 ```bash
-export GOOGLE_API_KEY="your-api-key-here"
+export GEMINI_API_KEY="your-api-key-here"
 ```
 
-Or configure programmatically:
+### Programmatic Configuration
 
 ```python
 from medkit.core.config import MedKitConfig
 
-config = MedKitConfig(api_key="your-api-key")
+config = MedKitConfig(
+    api_key="your-api-key",
+    model="gemini-2.5-flash",
+    temperature=0.3,              # Low temperature for medical accuracy
+    db_store=True,                # Enable LMDB caching
+    db_path="~/.medkit/cache",    # Custom cache location
+    db_capacity_mb=500,           # Cache size limit
+    verbosity="info"              # Logging level
+)
 ```
 
 ## Documentation
 
 Comprehensive documentation is available for all features and modules.
 
-### 📚 Documentation Index
+### Documentation Index
 
-| Section | Description | Link |
-|---------|-------------|------|
-| **Medical Reference** | Disease info, anatomy, specialties, implants, herbal medicine | [📖 View](docs/medical_ai/) |
-| **Drug Database** | Medicine info, drug interactions, dosing, alternatives | [📖 View](docs/drug_ai/) |
-| **Diagnostic Tools** | Medical tests, devices, physical exams, decision guides | [📖 View](docs/diagnostic_ai/) |
-| **Mental Health** | Assessments, chat, SANE interview, crisis resources | [📖 View](docs/psychology_ai/) |
-| **CLI Tools** | Command-line interfaces for all modules | [📖 View](cli/README.md) |
-| **API Reference** | Complete API documentation | [📖 View](docs/api/) |
-| **Tutorials** | Step-by-step usage guides | [📖 View](docs/tutorials.rst) |
-| **Development** | Setup for developers | [📖 View](docs/development_setup.rst) |
+| Section | Description | Location |
+|---------|-------------|----------|
+| Medical Reference | Disease info, anatomy, specialties, implants, herbal medicine | [docs/medical_ai/](docs/medical_ai/) |
+| Drug Database | Medicine info, drug interactions, dosing, alternatives | [docs/drug_ai/](docs/drug_ai/) |
+| Diagnostic Tools | Medical tests, devices, physical exams, decision guides | [docs/diagnostic_ai/](docs/diagnostic_ai/) |
+| Mental Health | Assessments, chat, SANE interview, crisis resources | [docs/psychology_ai/](docs/psychology_ai/) |
+| CLI Tools | Command-line interfaces for all modules | [cli/README.md](cli/README.md) |
+| API Reference | Complete API documentation | [docs/api/](docs/api/) |
+| Tutorials | Step-by-step usage guides | [docs/tutorials.rst](docs/tutorials.rst) |
+| Development | Setup for developers | [docs/development_setup.rst](docs/development_setup.rst) |
 
 ### Building Documentation Locally
 
@@ -285,10 +311,10 @@ Then open `docs/_build/html/index.html` in your browser.
 
 ### Online Documentation
 
-- [ReadTheDocs](https://medkit.readthedocs.io) (coming soon)
-- API Reference: Full module and function documentation
-- Tutorials: Practical examples and use cases
-- Development Setup: Instructions for contributors
+- ReadTheDocs: https://medkit.readthedocs.io
+- Full API reference with module and function documentation
+- Practical tutorials and use cases
+- Contributor setup instructions
 
 ## Usage Examples
 
@@ -339,55 +365,53 @@ print(f"Recommendations: {assessment.recommendations}")
 
 ## Testing
 
-Run the test suite using Make:
+The project includes 135 test files covering all modules with comprehensive coverage.
+
+### Using Make
 
 ```bash
-# Run all tests
-make test
-
-# Run with coverage report
-make test-cov
-
-# Run tests in parallel (faster)
-make test-parallel
-
-# Run specific test type
-make test-unit      # Unit tests only
-make test-fast      # Quick tests with minimal output
+make test              # Run all tests
+make test-cov          # Run with coverage report
+make test-parallel     # Run tests in parallel (faster)
+make test-unit         # Unit tests only
+make test-fast         # Quick tests with minimal output
 ```
 
-Or use pytest directly:
+### Using pytest Directly
 
 ```bash
-# Install test dependencies
-pip install -e ".[dev]"
+pip install -e ".[dev]"      # Install test dependencies
 
-# Run all tests
-pytest tests/
+pytest tests/                 # Run all tests
+pytest tests/ --cov=medkit    # Run with coverage
+pytest tests/test_disease_info.py  # Run specific test file
+```
 
-# Run with coverage
-pytest tests/ --cov=medkit
+### Coverage Reports
 
-# Run specific test file
-pytest tests/test_disease_info.py
+Coverage reports are generated automatically with:
+```bash
+make test-cov
+# View report in htmlcov/index.html
 ```
 
 ## Development
 
-### Using the Makefile
-
-A comprehensive Makefile is provided for common development tasks. Use `make help` to see all available targets:
+### Setup Development Environment
 
 ```bash
-make help
+make dev-setup          # Complete setup
+# or manually:
+python -m venv venv
+source venv/bin/activate
+pip install -e ".[dev]"
 ```
 
-#### Common Development Commands
+### Available Make Targets
 
 ```bash
-# Setup development environment
-make install-dev         # Install development dependencies
-make dev-setup          # Complete setup (venv + install)
+make help               # Show all available targets
+make install-dev        # Install development dependencies
 
 # Code Quality
 make lint               # Run all quality checks
@@ -404,9 +428,9 @@ make test-parallel      # Run tests in parallel
 
 # Documentation
 make docs               # Build documentation
-make docs-serve         # Build and serve docs locally
+make docs-serve         # Build and serve locally
 
-# Before Pushing
+# CI/CD
 make pre-commit         # Quick checks before commit
 make ready              # Full CI checks locally
 
@@ -415,27 +439,20 @@ make clean              # Remove all artifacts
 make clean-pyc          # Remove Python cache files
 ```
 
-### Manual Code Quality Commands
+### Code Quality
 
-Format code with Black:
+Format and lint code:
 ```bash
-make format
-# or manually:
-black medkit/ cli/ tests/
+black medkit/ cli/ tests/           # Format with black
+isort medkit/ cli/ tests/           # Sort imports
+flake8 medkit/ cli/ tests/          # Check linting
+mypy medkit/ cli/ tests/            # Type checking
 ```
 
-Check linting:
+Or use the convenience target:
 ```bash
-make format-check
-# or manually:
-flake8 medkit/ cli/ tests/
-```
-
-Type checking:
-```bash
-make typecheck
-# or manually:
-mypy medkit/ cli/ tests/
+make lint               # Run all checks
+make format             # Run formatters
 ```
 
 ### Contributing
@@ -450,11 +467,13 @@ See [CONTRIBUTING.md](docs/contributing.rst) for detailed guidelines.
 
 ## Important Disclaimers
 
-⚠️ **Medical Disclaimer**: This tool is for **informational purposes only** and should not be used as a substitute for professional medical advice. Always consult with qualified healthcare professionals for medical decisions.
+**Medical Disclaimer:** This tool is for informational purposes only and should not be used as a substitute for professional medical advice. Always consult with qualified healthcare professionals for medical decisions.
 
-⚠️ **Accuracy**: While MedKit strives for accuracy, medical information is constantly evolving. Verify all information with current medical literature and professional guidance.
+**Accuracy:** Medical information is constantly evolving. Verify all information with current medical literature and professional guidance before use.
 
-⚠️ **Privacy**: Handle all patient data with care. Ensure compliance with HIPAA and applicable data protection regulations.
+**Privacy:** Handle all patient data with care. Ensure compliance with HIPAA and applicable data protection regulations. MedKit provides privacy-aware features but users remain responsible for compliance.
+
+**Emergency Situations:** For medical emergencies, contact emergency services or visit a hospital immediately. Do not rely on this tool for emergency diagnosis or treatment.
 
 ## License
 
@@ -462,48 +481,81 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 ## Citation
 
-If you use MedKit in your research or project, please cite:
+If you use MedKit in research or publications, please cite:
 
 ```bibtex
 @software{medkit2024,
   title={MedKit: Medical Information and Reference System},
   author={Your Name},
   year={2024},
-  url={https://github.com/csverma610/medkit}
+  url={https://github.com/csv610/medkit}
 }
 ```
 
 ## Acknowledgments
 
-- Built with [Google Gemini AI](https://ai.google.dev/)
-- Medical data sources: [RxNorm](https://www.nlm.nih.gov/research/umls/rxnorm/), medical literature, and clinical guidelines
-- Documentation generated with [Sphinx](https://www.sphinx-doc.org/)
+- Google Gemini AI (https://ai.google.dev/)
+- RxNorm API (https://www.nlm.nih.gov/research/umls/rxnorm/)
+- Pydantic (https://pydantic-docs.helpmanual.io/)
+- LMDB (https://lmdb.readthedocs.io/)
+- Sphinx documentation generator (https://www.sphinx-doc.org/)
 
-## Support
+## Support & Feedback
 
-- 📖 [Documentation](https://medkit.readthedocs.io)
-- 🐛 [Report Issues](https://github.com/csverma610/medkit/issues)
-- 💬 [Discussions](https://github.com/csverma610/medkit/discussions)
-- 📧 Email: youremail@example.com
+- Documentation: https://medkit.readthedocs.io
+- Issues: https://github.com/csv610/medkit/issues
+- Discussions: https://github.com/csv610/medkit/discussions
+- Help: See /help in Claude Code
+
+## Technology Stack
+
+### Core Dependencies
+- google-genai (>=0.3.0) - Gemini AI integration
+- pydantic (>=2.0.0) - Data validation and schemas
+- requests (>=2.28.0) - HTTP client
+- lmdb (>=1.0.0) - Embedded database caching
+- networkx (>=3.0) - Graph analysis
+- matplotlib (>=3.6.0) - Visualization
+- streamlit - Web UI framework
+
+### Development Tools
+- pytest - Testing framework
+- black - Code formatting
+- flake8 - Linting
+- mypy - Type checking
+- sphinx - Documentation generation
+
+## Project Statistics
+
+- **Python Modules:** 123
+- **Lines of Code:** ~39,560
+- **Test Files:** 135
+- **CLI Tools:** 19+
+- **Physical Exam Guides:** 27+
 
 ## Roadmap
 
-- [ ] Web dashboard for interactive queries
-- [ ] Mobile app interface
-- [ ] Integration with EHR systems
-- [ ] Multilingual support
-- [ ] Offline mode enhancement
-- [ ] API endpoint service
-- [ ] Real-time evidence updates
+Planned features include:
+- Web dashboard for interactive queries
+- Mobile app integration
+- EHR system integration
+- Multilingual support
+- Enhanced offline capabilities
+- API endpoint service
+- Real-time clinical guideline updates
 
-## Related Projects
+## Related Resources
 
-- [BERT-Based Medical Named Entity Recognition](https://github.com/example/bert-medical-ner)
-- [OpenEHR Standards Implementation](https://www.openehr.org/)
-- [HL7 FHIR Standards](https://www.hl7.org/fhir/)
+- [SNOMED CT](https://www.snomed.org/) - Standardized medical terminology
+- [ICD-10](https://www.cdc.gov/nchs/icd/icd10cm.htm) - International Classification of Diseases
+- [OpenEHR Standards](https://www.openehr.org/) - Electronic health record standards
+- [HL7 FHIR](https://www.hl7.org/fhir/) - Healthcare data interchange standard
+- [PubMed](https://pubmed.ncbi.nlm.nih.gov/) - Medical literature database
+- [NIH](https://www.nih.gov/) - National Institutes of Health
+- [CDC](https://www.cdc.gov/) - Centers for Disease Control
 
 ---
 
-**Last Updated**: November 2024
+**Last Updated:** December 2024
 
-Made with ❤️ for healthcare professionals and developers
+For the latest information, visit the GitHub repository: https://github.com/csv610/medkit
