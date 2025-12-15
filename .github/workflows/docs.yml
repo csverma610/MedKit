@@ -37,7 +37,7 @@ jobs:
           make clean html
 
       - name: Upload documentation artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: documentation
           path: docs/_build/html/
